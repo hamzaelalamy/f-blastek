@@ -4,7 +4,7 @@ import exp from 'constants';
 dotenv.config();
 
 const connectDB = (url:any) => {
-    mongoose.connect('mongodb://localhost:27017')
+    mongoose.connect(url)
     .then(()=>console.log('connected to mongoDB'))
     .catch(()=>console.log('Error connecting to mongoDB'));
 }
