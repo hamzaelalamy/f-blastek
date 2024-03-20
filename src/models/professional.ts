@@ -40,19 +40,19 @@ const professionalSchema = new Schema<IProfessional>({
         required: [true, 'CIN is required'], 
         unique: true, 
         minlength: [6, 'CIN must be at least 6 characters'], 
-        maxlength: [10, 'CIN cannot exceed 10 characters'] 
+        maxlength: [10, 'CIN cannot exceed 10 characters']
     },
     email: { 
         type: String, 
         required: [true, 'Email is required'], 
         unique: true, 
-        match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Invalid email format'] 
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     phoneNumber: { 
         type: String, 
         required: [true, 'Phone number is required'], 
         unique: true,
-        match: [/^\d{10}$/, 'Invalid phone number format (10 digits)'] 
+        match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)'] 
     },
     city: { 
         type: String, 
@@ -107,7 +107,7 @@ const professionalSchema = new Schema<IProfessional>({
     },
     // payments_history: { type: [Schema.Types.Mixed], required: [true, 'Payments history is required'] },
     resetPasswordToken: { type: String }
-});
+}, {timestamps: true});
 
 professionalSchema.pre<IProfessional>('save', async function (next) {
     if (!this.isModified('password')) {
