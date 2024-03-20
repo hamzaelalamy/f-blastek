@@ -1,0 +1,38 @@
+import {Schema, Document, model} from 'mongoose';
+
+
+interface IPayments extends Document {
+    interventionId: Schema.Types.ObjectId;
+    clientId: Schema.Types.ObjectId;
+    professionalId: Schema.Types.ObjectId;
+    amount: number;
+    gatewayTransactionId: Schema.Types.ObjectId;
+    paymentStatus: string;
+    paymentMethod?: string;
+}
+
+const paymentsSchema = new Schema<IPayments>({
+    interventionId: { 
+        type: Schema.Types.ObjectId, 
+        required: [true, 'Intervention is required'] },
+    clientId: { 
+        type: Schema.Types.ObjectId, 
+        required: [true, 'Client is required'] },
+    professionalId: { 
+        type: Schema.Types.ObjectId, 
+        required: [true, 'Professional amount is required'] },
+    amount: { 
+        type: Number, 
+        required: [true, 'Transaction amount is required'] },
+    gatewayTransactionId: { 
+        type: Schema.Types.ObjectId, 
+        required: true },
+    paymentStatus: { 
+        type: String, 
+        required: true },
+    paymentMethod: { type: String },
+});
+
+const PaymentsModel = model<IPayments>('Payments', paymentsSchema);
+
+export default PaymentsModel;
