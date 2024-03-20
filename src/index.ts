@@ -1,8 +1,10 @@
 //requiring necessary packages
 import express, { Express, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
-import connectDB from "./config/databaseConfig";
 import morgan from 'morgan';
+import connectDB from "./config/databaseConfig";
+
+
 import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
 

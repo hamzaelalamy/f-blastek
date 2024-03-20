@@ -1,5 +1,5 @@
 import {Schema, model, Document} from "mongoose";
-
+import bcrypt from 'bcrypt';
 interface IProfessional extends Document {
     firstName : string;
     lastName : string;
@@ -21,7 +21,8 @@ interface IProfessional extends Document {
         timeslots: string[];
     };
     password: string;
-    payments_history: any[];
+    payments: number[];
+    // payments_history: any[];
     resetPasswordToken?: string;
 }
 
@@ -53,20 +54,37 @@ const professionalSchema = new Schema<IProfessional>({
         unique: true,
         match: [/^\d{10}$/, 'Invalid phone number format (10 digits)'] 
     },
-    city: { type: String, required: [true, 'City is required'] },
-    address: { type: String, required: [true, 'Address is required'] },
-    geolocation: { type: Schema.Types.Mixed },
-    scannedCin: { type: String, required: [true, 'Scanned CIN is required'] },
+    city: { 
+        type: String, 
+        required: [true, 'City is required'] },
+    address: { 
+        type: String, 
+        required: [true, 'Address is required'] },
+    geolocation: { 
+        type: Schema.Types.Mixed
+     },
+    scannedCin: { 
+        type: String, 
+        required: [true, 'Scanned CIN is required'] },
     photo: { type: String },
-    specialization: { type: String, required: [true, 'Specialization is required'] },
-    hourlyRate: { type: Number, required: [true, 'Hourly rate is required'], min: [0, 'Hourly rate cannot be negative'] },
-    bio: { type: String, required: [true, 'Bio is required'] },
+    specialization: { 
+        type: String, 
+        required: [true, 'Specialization is required'] },
+    hourlyRate: { 
+        type: Number, 
+        required: [true, 'Hourly rate is required'], 
+        min: [0, 'Hourly rate cannot be negative'] },
+    bio: { 
+        type: String, 
+        required: [true, 'Bio is required'] },
     experiences: { 
         type: [String], 
         required: [true, 'Experiences are required'], 
         validate: [(experiences: string[]) => experiences.length > 0, 'At least one experience is required'] 
     },
-    backgroundCheckCompleted: { type: Boolean, required: [true, 'Background check status is required'] },
+    backgroundCheckCompleted: { 
+        type: Boolean, 
+        required: [true, 'Background check status is required'] },
     availability: {
         days: { 
             type: [String], 
@@ -79,9 +97,30 @@ const professionalSchema = new Schema<IProfessional>({
             validate: [(timeslots: string[]) => timeslots.length > 0, 'At least one availability timeslot is required'] 
         }
     },
-    password: { type: String, required: [true, 'Password is required'], minlength: [6, 'Password must be at least 6 characters long'] },
+    password: { 
+        type: String, 
+        required: [true, 'Password is required'], 
+        minlength: [6, 'Password must be at least 6 characters long'] },
+    payments: {
+        type: [Number],
+        default: []
+    },
     // payments_history: { type: [Schema.Types.Mixed], required: [true, 'Payments history is required'] },
     resetPasswordToken: { type: String }
+});
+
+professionalSchema.pre<IProfessional>('save', async function (next) {
+    if (!this.isModified('password')) {
+        return next();
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(this.password, 10);
+        this.password = hashedPassword;
+        next();
+    } catch (error) {
+        return next(error as Error);
+    }
 });
 
 // Create and export the Professional model
