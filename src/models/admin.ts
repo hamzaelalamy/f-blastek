@@ -8,6 +8,7 @@ interface IAdmin extends mongoose.Document {
   password: string;
   resetPasswordToken?: string;
   resetPasswordExpire?: Date;
+  createdAt: Date;
 }
 
 const adminSchema = new mongoose.Schema<IAdmin>({
@@ -30,10 +31,11 @@ const adminSchema = new mongoose.Schema<IAdmin>({
     required: [true, 'Password is required']
   },
   resetPasswordToken: String,
-  resetPasswordExpire: Date
+  resetPasswordExpire: Date,
+  createdAt: { type: Date, default: Date.now }
 });
 
-adminSchema.pre<IAdmin>('save', async function(next) {
+adminSchema.pre<IAdmin>('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
   }

@@ -2,19 +2,20 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 interface IClient extends mongoose.Document {
-  firstName: string;
-  lastName: string;
-  cin: string;
-  email: string;
-  phoneNumber: string;
-  address: string;
-  geoLocation?: string; 
-  scannedCIN: string;
-  photo?: string; 
-  password: string;
-  payments: number[];
-  resetPasswordToken?: string;
-  resetPasswordExpire?: Date;
+    firstName: string;
+    lastName: string;
+    cin: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    geoLocation?: string;
+    scannedCIN: string;
+    photo?: string;
+    password: string;
+    payments: number[];
+    resetPasswordToken?: string;
+    resetPasswordExpire?: Date;
+    createdAt: Date;
 }
 
 const clientSchema = new mongoose.Schema<IClient>({
@@ -60,10 +61,11 @@ const clientSchema = new mongoose.Schema<IClient>({
         default: []
     },
     resetPasswordToken: String,
-    resetPasswordExpire: Date
+    resetPasswordExpire: Date,
+    createdAt: { type: Date, default: Date.now }
 });
 
-clientSchema.pre<IClient>('save', async function(next) {
+clientSchema.pre<IClient>('save', async function (next) {
     if (!this.isModified('password')) {
         return next();
     }
