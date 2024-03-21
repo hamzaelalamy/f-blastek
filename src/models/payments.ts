@@ -17,10 +17,12 @@ const paymentsSchema = new Schema<IPayments>({
         required: [true, 'Intervention is required'] },
     clientId: { 
         type: Schema.Types.ObjectId, 
-        required: [true, 'Client is required'] },
+        required: [true, 'Client is required'],
+        ref:'client' },
     professionalId: { 
         type: Schema.Types.ObjectId, 
-        required: [true, 'Professional amount is required'] },
+        required: [true, 'Professional amount is required'],
+        ref:'professionnal' },
     amount: { 
         type: Number, 
         required: [true, 'Transaction amount is required'] },
