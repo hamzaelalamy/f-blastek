@@ -6,9 +6,8 @@ import {
   updateProfessionalById,
   deleteProfessionalById,
 } from "../controllers/Professional.controller";
+import createProfessionalValidation from "../utils/professional.sanitization";
 import validateRequest from "../middleware/validationMiddleware";
-import { body } from "express-validator";
-import { createProfessionalValidation } from "../utils/professional.sanitization";
 
 const router = Router();
 
@@ -23,7 +22,12 @@ router.get("/professionals", getAllProfessionals);
 
 router.get("/professionals/:id", getProfessionalById);
 
-router.put("/professionals/:id", updateProfessionalById);
+router.put(
+  "/professionals/:id",
+  createProfessionalValidation,
+  validateRequest,
+  updateProfessionalById
+);
 
 router.delete("/professionals/:id", deleteProfessionalById);
 
