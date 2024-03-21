@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import {Schema, model, Document} from "mongoose";
 import bcrypt from 'bcrypt';
 
-interface IAdmin extends mongoose.Document {
+interface IAdmin extends Document {
   firstName: string;
   lastName: string;
   email: string;
@@ -11,7 +11,7 @@ interface IAdmin extends mongoose.Document {
   createdAt: Date;
 }
 
-const adminSchema = new mongoose.Schema<IAdmin>({
+const adminSchema = new Schema<IAdmin>({
   firstName: {
     type: String,
     required: [true, 'First name is required']
@@ -49,6 +49,6 @@ adminSchema.pre<IAdmin>('save', async function (next) {
   }
 });
 
-const Admin = mongoose.model<IAdmin>('Admin', adminSchema);
+const Admin =  model<IAdmin>('Admin', adminSchema);
 
 export default Admin;
