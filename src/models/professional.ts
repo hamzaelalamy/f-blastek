@@ -16,9 +16,9 @@ interface IProfessional extends Document {
     bio: string;
     experiences?: string[];
     backgroundCheckCompleted: boolean;
-    availability: {
-        days: string[];
-        timeslots: string[];
+    availability?: {
+        days?: string[];
+        timeslots?: string[];
     };
     password: string;
     payments?: number[];
@@ -87,17 +87,15 @@ const professionalSchema = new Schema<IProfessional>({
     },
     backgroundCheckCompleted: { 
         type: Boolean, 
-        required: [true, 'Background check status is required'] },
+        required: [true, 'Background check status is required'], 
+        default:false
+    },
     availability: {
         days: { 
             type: [String], 
-            required: [true, 'Availability days are required'], 
-            validate: [(days: string[]) => days.length > 0, 'At least one availability day is required'] 
         },
         timeslots: { 
             type: [String], 
-            required: [true, 'Availability timeslots are required'], 
-            validate: [(timeslots: string[]) => timeslots.length > 0, 'At least one availability timeslot is required'] 
         }
     },
     password: { 

@@ -15,10 +15,10 @@ export const createProfessional = async (req: Request, res: Response) => {
 
 export const getAllProfessionals = async (req: Request, res: Response) => {
     try {
-        const professionals = await Professional.find();
-        if ( !professionals || professionals.length) {
-             res.status(404).json({message: 'No professionals found'});
-        }
+        const professionals = await Professional.find({});
+        if (!professionals || professionals.length === 0) {
+            res.status(404).json({ message: 'No professionals found' });
+       }
         res.status(200).json(professionals);
     } catch (error) {
         console.error(error);
