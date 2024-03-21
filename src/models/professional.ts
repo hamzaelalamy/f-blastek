@@ -3,41 +3,43 @@ import bcrypt from 'bcrypt';
 interface IProfessional extends Document {
     firstName : string;
     lastName : string;
-    cin : string;
+    cin?: string;
     email: string;
-    phoneNumber: string;
+    phoneNumber?: string;
     city: string;
     address: string;
     geolocation?: any;
-    scannedCin: string;
+    scannedCin?: string;
     photo?: string;
     specialization: string;
     hourlyRate: number;
     bio: string;
-    experiences: string[];
+    experiences?: string[];
     backgroundCheckCompleted: boolean;
     availability: {
         days: string[];
         timeslots: string[];
     };
     password: string;
-    payments: number[];
+    payments?: number[];
     // payments_history: any[];
-    resetPasswordToken?: string;
+    passwordResetToken?: string;
+    passwordResetTokenExpires?: Date;
 }
 
 const professionalSchema = new Schema<IProfessional>({
     firstName: {
         type: String,
-        required: [true, 'First name is required']
+        required: [true, 'First name is required'],
+        lowercase:true
     },
     lastName: {
         type: String,
-        required: [true, 'Last name is required']
+        required: [true, 'Last name is required'],
+        lowercase: true
     },
     cin: { 
-        type: String, 
-        required: [true, 'CIN is required'], 
+        type: String,
         unique: true, 
         minlength: [6, 'CIN must be at least 6 characters'], 
         maxlength: [10, 'CIN cannot exceed 10 characters']
@@ -46,11 +48,12 @@ const professionalSchema = new Schema<IProfessional>({
         type: String, 
         required: [true, 'Email is required'], 
         unique: true, 
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+        lowercase: true,
+        trim: true
     },
     phoneNumber: { 
         type: String, 
-        required: [true, 'Phone number is required'], 
         unique: true,
         match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)'] 
     },
@@ -64,8 +67,8 @@ const professionalSchema = new Schema<IProfessional>({
         type: Schema.Types.Mixed
      },
     scannedCin: { 
-        type: String, 
-        required: [true, 'Scanned CIN is required'] },
+        type: String,
+    },
     photo: { type: String },
     specialization: { 
         type: String, 
@@ -79,7 +82,7 @@ const professionalSchema = new Schema<IProfessional>({
         required: [true, 'Bio is required'] },
     experiences: { 
         type: [String], 
-        required: [true, 'Experiences are required'], 
+        default: 'No past Experience',
         validate: [(experiences: string[]) => experiences.length > 0, 'At least one experience is required'] 
     },
     backgroundCheckCompleted: { 
@@ -106,7 +109,8 @@ const professionalSchema = new Schema<IProfessional>({
         default: []
     },
     // payments_history: { type: [Schema.Types.Mixed], required: [true, 'Payments history is required'] },
-    resetPasswordToken: { type: String }
+    passwordResetToken: { type: String },
+    passwordResetTokenExpires: { type: Date }
 }, {timestamps: true});
 
 professionalSchema.pre<IProfessional>('save', async function (next) {
@@ -124,6 +128,6 @@ professionalSchema.pre<IProfessional>('save', async function (next) {
 });
 
 // Create and export the Professional model
-const ProfessionalModel = model<IProfessional>('Professional', professionalSchema);
+const Professional = model<IProfessional>('Professional', professionalSchema);
 
-export default ProfessionalModel;
+export default Professional;
