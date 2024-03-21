@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import Admin from '../models/admin';
+import { Request, Response } from "express";
+import Admin from "../models/admin";
 
 export const createAdmin = async (req: Request, res: Response) => {
   try {
@@ -8,7 +8,7 @@ export const createAdmin = async (req: Request, res: Response) => {
     await admin.save();
     res.status(201).json(admin);
   } catch (error) {
-    res.status(500).json({ error: 'Error creating admin' });
+    res.status(500).json({ error: "Error creating admin" });
   }
 };
 
@@ -17,7 +17,7 @@ export const getAllAdmins = async (req: Request, res: Response) => {
     const admins = await Admin.find();
     res.status(200).json(admins);
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -26,12 +26,12 @@ export const getAdminById = async (req: Request, res: Response) => {
     const adminId = req.params.id;
     const admin = await Admin.findById(adminId);
     if (!admin) {
-      res.status(404).json({ error: 'Admin not found' });
+      res.status(404).json({ error: "Admin not found" });
     } else {
       res.status(200).json(admin);
     }
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -45,12 +45,12 @@ export const updateAdminById = async (req: Request, res: Response) => {
       { new: true }
     );
     if (!updatedAdmin) {
-      res.status(404).json({ error: 'Admin not found' });
+      res.status(404).json({ error: "Admin not found" });
     } else {
       res.status(200).json(updatedAdmin);
     }
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -59,12 +59,12 @@ export const deleteAdminById = async (req: Request, res: Response) => {
     const adminId = req.params.id;
     const deletedAdmin = await Admin.findByIdAndDelete(adminId);
     if (!deletedAdmin) {
-      res.status(404).json({ error: 'Admin not found' });
+      res.status(404).json({ error: "Admin not found" });
     } else {
-      res.status(200).json({ message: 'Admin deleted successfully' });
+      res.status(200).json({ message: "Admin deleted successfully" });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
