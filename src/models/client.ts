@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-interface IClient extends mongoose.Document {
+export interface IClient extends mongoose.Document {
     firstName: string;
     lastName: string;
-    cin: string;
+    cin?: string;
     email: string;
     phoneNumber: string;
     address: string;
@@ -12,7 +12,7 @@ interface IClient extends mongoose.Document {
     scannedCIN: string;
     photo?: string;
     password: string;
-    payments: number[];
+    payments?: number[];
     resetPasswordToken?: string;
     resetPasswordExpire?: Date;
     createdAt: Date;
@@ -29,7 +29,6 @@ const clientSchema = new mongoose.Schema<IClient>({
     },
     cin: {
         type: String,
-        required: [true, 'CIN is required'],
         unique: true
     },
     email: {
