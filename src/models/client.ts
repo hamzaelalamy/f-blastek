@@ -29,9 +29,8 @@ const clientSchema = new Schema<IClient>({
     },
     cin: {
         type: String,
-        index: { unique: true },
         minlength: [6, 'CIN must be at least 6 characters'],
-        maxlength: [10, 'CIN cannot exceed 10 characters']
+        maxlength: [10, 'CIN cannot exceed 10 characters'],
     },
     email: {
         type: String,
@@ -48,7 +47,7 @@ const clientSchema = new Schema<IClient>({
     },
     city: {
         type: String,
-        required: [true, 'City is required']
+        required: [true, 'City is required'],
     },
     address: {
         type: String,
