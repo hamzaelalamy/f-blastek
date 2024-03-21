@@ -1,5 +1,5 @@
 //requiring necessary packages
-import express, { Express, Request, Response} from "express";
+import express, { Express, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import morgan from 'morgan';
 import connectDB from "./config/databaseConfig";
@@ -7,6 +7,7 @@ import connectDB from "./config/databaseConfig";
 
 import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
+import ProfessionalRoutes from "./routes/professional.routes";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use('/api', adminRoutes);
 app.use('/api', clientRoutes);
+app.use('/api', ProfessionalRoutes);
 app.get('*', (req: Request, res: Response) => {
   res.status(404).json({message: 'Not Found'});
 } )
