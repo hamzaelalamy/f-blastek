@@ -1,6 +1,5 @@
 import mongoose, { mongo } from 'mongoose';
 import dotenv from 'dotenv';
-import exp from 'constants';
 dotenv.config();
 
 const connectDB = (url:any) => {
