@@ -4,9 +4,9 @@ import Client from "../models/client";
 import Professional from "../models/professional";
 import Admin from "../models/admin";
 
-const isAdmin = (req: Request, res: Response, next: NextFunction) => {
+const isAdmin = async(req: Request, res: Response, next: NextFunction) => {
     const user = req.cookies.userToken as any;
-    const admin = Admin.findById(user._id);
+    const admin = await Admin.findById(user._id);
     if(!admin){
         return res.status(403).send("You are not an admin");
     } else {
@@ -14,9 +14,9 @@ const isAdmin = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-const isClient = (req: Request, res: Response, next: NextFunction) => {
+const isClient = async(req: Request, res: Response, next: NextFunction) => {
     const user = req.cookies.userToken as any;
-    const client = Client.findById(user._id);
+    const client = await Client.findById(user._id);
     if(!client){
         return res.status(403).send("You are not a client");
     } else {
@@ -24,9 +24,9 @@ const isClient = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-const isProfessional = (req: Request, res: Response, next: NextFunction) => {
+const isProfessional = async(req: Request, res: Response, next: NextFunction) => {
     const user = req.cookies.userToken as any;
-    const professional = Professional.findById(user._id);
+    const professional = await Professional.findById(user._id);
     if(!professional){
         return res.status(403).send("You are not a professional");
     } else {

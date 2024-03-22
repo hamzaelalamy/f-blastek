@@ -5,9 +5,9 @@ import isClient from '../middleware/authorization'
 import ClientSanitization from '../utils/client.sanitization'
 const router = express.Router();
 
-router.post('/auth/RegisterClient',ClientSanitization,validateRequest,RegisterClient);
-router.post('/auth/LoginClient',ClientSanitization,validateRequest,LoginClient);
-router.post('/auth/LogoutClient',ClientSanitization,validateRequest,Logout);
+router.post('/auth/RegisterClient',ClientSanitization,validateRequest,isClient,RegisterClient);
+router.post('/auth/LoginClient',ClientSanitization,validateRequest,isClient,LoginClient);
+router.post('/auth/LogoutClient',ClientSanitization,validateRequest,isClient,Logout);
 
 
 export default router;
