@@ -35,7 +35,6 @@ const clientSchema = new Schema<IClient>({
     email: {
         type: String,
         required: [true, 'Email is required'],
-        unique: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
         lowercase: true,
         trim: true
@@ -89,4 +88,4 @@ clientSchema.pre<IClient>('save', async function (next) {
 
 const Client =  model<IClient>('Client', clientSchema);
 
-export default Client;
+export default Client;      
