@@ -1,24 +1,24 @@
-import mongoose from 'mongoose';
+import {Schema, model, Document} from "mongoose";
 import bcrypt from 'bcrypt';
 
-export interface IClient extends mongoose.Document {
+interface IClient extends Document {
     firstName: string;
     lastName: string;
     cin?: string;
     email: string;
-    phoneNumber: string;
-    address: string;
-    geoLocation?: string;
-    scannedCIN: string;
+    phoneNumber?: string;
+    city: string;
+    address?: string;
+    geoLocation?: any;
+    scannedCIN?: string;
     photo?: string;
     password: string;
     payments?: number[];
     resetPasswordToken?: string;
     resetPasswordExpire?: Date;
-    createdAt: Date;
 }
 
-const clientSchema = new mongoose.Schema<IClient>({
+const clientSchema = new Schema<IClient>({
     firstName: {
         type: String,
         required: [true, 'First name is required']
@@ -29,28 +29,37 @@ const clientSchema = new mongoose.Schema<IClient>({
     },
     cin: {
         type: String,
-        unique: true
+        minlength: [6, 'CIN must be at least 6 characters'],
+        maxlength: [10, 'CIN cannot exceed 10 characters'],
     },
     email: {
         type: String,
         required: [true, 'Email is required'],
-        unique: true,
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+        lowercase: true,
+        trim: true
     },
     phoneNumber: {
         type: String,
-        required: [true, 'Phone number is required']
+        unique: true,
+        match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)']
+    },
+    city: {
+        type: String,
+        required: [true, 'City is required'],
     },
     address: {
         type: String,
-        required: [true, 'Address is required']
     },
-    geoLocation: String,
+    geoLocation: {
+        type:  Schema.Types.Mixed,
+    },
     scannedCIN: {
         type: String,
-        required: [true, 'Scanned CIN is required']
     },
-    photo: String,
+    photo: {
+        type: String
+    },
     password: {
         type: String,
         required: [true, 'Password is required']
@@ -61,8 +70,7 @@ const clientSchema = new mongoose.Schema<IClient>({
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
-    createdAt: { type: Date, default: Date.now }
-});
+}, { timestamps: true });
 
 clientSchema.pre<IClient>('save', async function (next) {
     if (!this.isModified('password')) {
@@ -78,6 +86,6 @@ clientSchema.pre<IClient>('save', async function (next) {
     }
 });
 
-const Client = mongoose.model<IClient>('Client', clientSchema);
+const Client =  model<IClient>('Client', clientSchema);
 
-export default Client;
+export default Client;      

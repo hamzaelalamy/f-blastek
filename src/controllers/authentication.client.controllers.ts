@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import Client from "../models/client";
 import dotenv from "dotenv";
+const maxage = 60 * 60 * 24 * 7 * 1000;
 dotenv.config();
 const secret_key: any = process.env.SECRET_KEY;
 
@@ -12,7 +13,7 @@ export const RegisterClient = async (req: Request, res: Response) => {
 
     const ClientExist = await Client.findOne({ email });
     if (ClientExist) {
-      res.status(400).json({ err: "Client already exists" });
+      return res.status(400).json({ Message: "Client already exists" });
     }
     const NewClient = new Client(req.body);
 
@@ -26,7 +27,6 @@ export const RegisterClient = async (req: Request, res: Response) => {
 
 export const LoginClient = async (req: Request, res: Response) => {
   const { email, password } = req.body;
-  const secretKey = process.env.SECRET_KEY;
   const ClientExist = await Client.findOne({ email });
 
   if (ClientExist) {
@@ -34,7 +34,7 @@ export const LoginClient = async (req: Request, res: Response) => {
       .compare(password, ClientExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {
-          const payload = { id: ClientExist.id, email: ClientExist.email };
+          const payload = { id: ClientExist.id };
           const token = jwt.sign(
             payload,
             secret_key,
@@ -45,9 +45,15 @@ export const LoginClient = async (req: Request, res: Response) => {
                   .status(500)
                   .json({ Message: "Faild to generate token", Error: err });
               }
-              res.json({ success: true, token: token });
+              res.json({
+                Messege: "The client Loged successfully",
+                success: true,
+                token: token,
+              });
             }
           );
+
+          res.cookie('user_token', token, { httpOnly: true, maxAge: maxage });
         } else {
           res.status(400).json({ Message: "Email or Password incorrect" });
         }
@@ -55,9 +61,16 @@ export const LoginClient = async (req: Request, res: Response) => {
       .catch((err) => {
         res.status(500).json({
           Message: "Error Comparing Password",
+          Error: err,
         });
       });
   } else {
     return res.status(404).json({ message: "The client does not exist" });
   }
 };
+
+export const Logout = (req: Request, res: Response) => {
+
+  return res.clearCookie('user_token').status(200).json({Message:"Loged out Successfully "})
+
+}
