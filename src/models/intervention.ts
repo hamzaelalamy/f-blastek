@@ -31,6 +31,6 @@ const interventionSchema = new Schema<IIntervention>(
   { timestamps: true }
 );
 
-const Intervention = model("Intervention", interventionSchema);
+const Intervention = model<IIntervention>("Intervention", interventionSchema);
 
 export default Intervention;

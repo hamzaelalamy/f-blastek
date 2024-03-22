@@ -22,6 +22,6 @@ const offreSchema = new Schema<IOffre>({
     }
 }, {timestamps:true})
 
-const Offre = model('Offre', offreSchema);
+const Offre = model<IOffre>('Offre', offreSchema);
 
 export default Offre;
