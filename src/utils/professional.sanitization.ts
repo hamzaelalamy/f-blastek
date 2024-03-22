@@ -5,11 +5,13 @@ const ProfessionalSanitization: ValidationChain[] = [
     body("lastName").notEmpty().trim().escape(),
     body("email").isEmail().normalizeEmail(),
     body("city").notEmpty().trim().escape(),
-    body("address").notEmpty().trim().escape(),
-    body("specialization").notEmpty().trim().escape(),
+    body("address").trim().escape(),
+    body("specialization").trim().escape(),
     body("hourlyRate").isNumeric(),
-    body("bio").notEmpty().trim().escape(),
+    body("bio").trim().escape(),
     body("backgroundCheckCompleted").isBoolean(),
+    body("password").isStrongPassword(),
+
 ];
 
 export default ProfessionalSanitization;
