@@ -1,7 +1,7 @@
 
 import { body, ValidationChain } from "express-validator";
 
-const createClientValidation: ValidationChain[] = [
+const ClientSanitization: ValidationChain[] = [
     body("firstName").notEmpty().trim().escape(),
     body("lastName").notEmpty().trim().escape(),
     body("email").isEmail().normalizeEmail(),
@@ -13,4 +13,4 @@ const createClientValidation: ValidationChain[] = [
     body("password").isStrongPassword(),
 ];
 
-export default createClientValidation;
+export default ClientSanitization;
