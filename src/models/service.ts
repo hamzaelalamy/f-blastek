@@ -9,16 +9,16 @@ interface IService extends Document {
 const servicesSchema = new Schema<IService>({
   name: {
     type: String,
-    required: true,
+    required: [true, 'Name is required'],
     unique: true,
   },
   categoryId: {
     type: Schema.Types.ObjectId,
-    required: true,
+    required: [true, 'Category ID is required'],
   },
   description: {
     type: String,
-    required: true,
+    required: [true, 'Description is required'],
   },
 });
 
