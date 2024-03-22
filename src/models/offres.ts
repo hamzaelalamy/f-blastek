@@ -6,7 +6,7 @@ interface IOffre extends Document {
     application_status : string;
 }
 
-const OffreSchema = new Schema<IOffre>({
+const offreSchema = new Schema<IOffre>({
     service_id: {
         type: Schema.Types.ObjectId,
         ref: 'service',
@@ -22,6 +22,6 @@ const OffreSchema = new Schema<IOffre>({
     }
 }, {timestamps:true})
 
-const Offre = model('Offre', OffreSchema);
+const Offre = model<IOffre>('Offre', offreSchema);
 
 export default Offre;
