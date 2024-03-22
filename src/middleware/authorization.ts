@@ -1,38 +1,43 @@
 import {Request, Response, NextFunction} from "express";
-import mongoose from "mongoose";
 import Client from "../models/client";
 import Professional from "../models/professional";
 import Admin from "../models/admin";
 
-const isAdmin = (req: Request, res: Response, next: NextFunction) => {
+const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
     const user = req.cookies.userToken as any;
-    const admin = Admin.findById(user._id);
+    const admin = await Admin.findById(user._id);
     if(!admin){
-        return res.status(403).send("You are not an admin");
+        res.status(403).send("You are not an admin");
     } else {
-        return next();
+        next();
     }
 };
 
-const isClient = (req: Request, res: Response, next: NextFunction) => {
+const isClient = async (req: Request, res: Response, next: NextFunction) => {
     const user = req.cookies.userToken as any;
-    const client = Client.findById(user._id);
+    const client = await Client.findById(user._id);
     if(!client){
-        return res.status(403).send("You are not a client");
+        res.status(403).send("You are not a client");
     } else {
         return next();
     }
 };
 
-const isProfessional = (req: Request, res: Response, next: NextFunction) => {
-    const user = req.cookies.userToken as any;
-    const professional = Professional.findById(user._id);
-    if(!professional){
-        return res.status(403).send("You are not a professional");
-    } else {
-        return next();
+const isProfessional = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = req.cookies.userToken as any;
+        const professional = await Professional.findById(user._id);
+        if (!professional) {
+            res.status(403).send("You are not a professional");
+        } else {
+            next();
+        }
+    } catch (error) {
+        // Handle any errors that occur during the authorization process
+        console.error("Error in isProfessional middleware:", error);
+        res.status(500).send("Internal Server Error");
     }
-}
+};
 
 
 
