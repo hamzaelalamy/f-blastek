@@ -4,6 +4,7 @@ import Client from "../models/client";
 import Professional from "../models/professional";
 import Admin from "../models/admin";
 
+
 const isAdmin = async(req: Request, res: Response, next: NextFunction) => {
     const user = req.cookies.userToken as any;
     const admin = await Admin.findById(user._id);
