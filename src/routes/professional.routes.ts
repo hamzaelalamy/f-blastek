@@ -6,14 +6,14 @@ import {
   updateProfessionalById,
   deleteProfessionalById,
 } from "../controllers/Professional.controller";
-import createProfessionalValidation from "../utils/professional.sanitization";
+import ProfessionalSanitization from "../utils/professional.sanitization";
 import validateRequest from "../middleware/validationMiddleware";
 
 const router = Router();
 
 router.post(
   "/professionals",
-  createProfessionalValidation,
+  ProfessionalSanitization,
   validateRequest,
   createProfessional
 );
@@ -24,7 +24,7 @@ router.get("/professionals/:id", getProfessionalById);
 
 router.put(
   "/professionals/:id",
-  createProfessionalValidation,
+  ProfessionalSanitization,
   validateRequest,
   updateProfessionalById
 );

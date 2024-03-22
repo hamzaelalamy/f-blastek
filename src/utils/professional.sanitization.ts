@@ -1,6 +1,6 @@
 import { body, ValidationChain } from "express-validator";
 
-const createProfessionalValidation: ValidationChain[] = [
+const ProfessionalSanitization: ValidationChain[] = [
     body("firstName").notEmpty().trim().escape(),
     body("lastName").notEmpty().trim().escape(),
     body("email").isEmail().normalizeEmail(),
@@ -12,4 +12,4 @@ const createProfessionalValidation: ValidationChain[] = [
     body("backgroundCheckCompleted").isBoolean(),
 ];
 
-export default createProfessionalValidation;
+export default ProfessionalSanitization;
