@@ -7,18 +7,18 @@ const maxage = 60 * 60 * 24 * 7 * 1000;
 dotenv.config();
 const secret_key: any = process.env.SECRET_KEY;
 
-export const RegisterClient = async (req: Request, res: Response) => {
+export const registerClient = async (req: Request, res: Response) => {
   try {
     const email = req.body.email;
     console.log(email)
 
-    const ClientExist = await Client.findOne({ email });
-    if (ClientExist) {
+    const clientExist = await Client.findOne({ email });
+    if (clientExist) {
       return res.status(400).json({ Message: "Client already exists" });
     }
-    const NewClient = new Client(req.body);
+    const newClient = new Client(req.body);
 
-    await NewClient.save();
+    await newClient.save();
     res.json({ message: "Client registered successfully" });
   } catch (err) {
     console.error("Error registering user:", err);
@@ -26,16 +26,16 @@ export const RegisterClient = async (req: Request, res: Response) => {
   }
 };
 
-export const LoginClient = async (req: Request, res: Response) => {
+export const loginClient = async (req: Request, res: Response) => {
   const { email, password } = req.body;
-  const ClientExist = await Client.findOne({ email });
+  const clientExist = await Client.findOne({ email });
 
-  if (ClientExist) {
+  if (clientExist) {
     bcrypt
-      .compare(password, ClientExist.password)
+      .compare(password, clientExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {
-          const payload = { id: ClientExist.id ,userType:"client" };
+          const payload = { id: clientExist.id ,userType:"client" };
           const token = jwt.sign(
             payload,
             secret_key,
@@ -70,8 +70,18 @@ export const LoginClient = async (req: Request, res: Response) => {
   }
 };
 
-export const Logout = (req: Request, res: Response) => {
+export const logoutClient = (req: Request, res: Response) => {
 
   return res.clearCookie('user_token').status(200).json({Message:"Loged out Successfully "})
+
+}
+
+export const forgotPasswordClient =(req:Request,res:Response)=>{
+
+
+}
+
+export const ResetPasswordClient=(req:Request,res:Response)=>{
+
 
 }
