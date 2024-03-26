@@ -21,7 +21,9 @@ const servicesSchema = new Schema<IService>({
     type: String,
     required: [true, 'Description is required'],
   },
-});
+},
+  { timestamps: true }
+);
 
 const Service = model<IService>("Service", servicesSchema);
 
