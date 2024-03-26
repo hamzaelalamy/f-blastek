@@ -40,7 +40,8 @@ const professionalSchema = new Schema<IProfessional>({
     },
     cin: { 
         type: String,
-        unique: true, 
+        unique: true,
+        sparse:true, 
         minlength: [6, 'CIN must be at least 6 characters'], 
         maxlength: [10, 'CIN cannot exceed 10 characters']
     },

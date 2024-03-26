@@ -11,6 +11,7 @@ const servicesSchema = new Schema<IService>({
     type: String,
     required: [true, 'Name is required'],
     unique: true,
+    sparse:true,
   },
   categoryId: {
     type: Schema.Types.ObjectId,

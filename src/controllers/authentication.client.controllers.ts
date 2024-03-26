@@ -9,7 +9,8 @@ const secret_key: any = process.env.SECRET_KEY;
 
 export const RegisterClient = async (req: Request, res: Response) => {
   try {
-    const { email } = req.body.email;
+    const email = req.body.email;
+    console.log(email)
 
     const ClientExist = await Client.findOne({ email });
     if (ClientExist) {
