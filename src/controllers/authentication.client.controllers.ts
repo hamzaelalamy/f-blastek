@@ -34,7 +34,7 @@ export const LoginClient = async (req: Request, res: Response) => {
       .compare(password, ClientExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {
-          const payload = { id: ClientExist.id };
+          const payload = { id: ClientExist.id, user_type_id: "client"};
           const token = jwt.sign(
             payload,
             secret_key,

@@ -41,8 +41,8 @@ const clientSchema = new Schema<IClient>({
     },
     phoneNumber: {
         type: String,
-        unique: true,
-        match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)']
+        // unique: true,
+        // match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)']
     },
     city: {
         type: String,

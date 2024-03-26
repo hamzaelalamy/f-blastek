@@ -3,7 +3,8 @@ import express, { Express, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import morgan from 'morgan';
 import connectDB from "./config/databaseConfig";
-
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
@@ -18,6 +19,8 @@ connectDB(process.env.DB_URL);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'))
+app.use(cookieParser());
+app.use(cors());
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "Testing" });

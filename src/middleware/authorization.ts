@@ -1,41 +1,34 @@
-import {Request, Response, NextFunction} from "express";
-import Client from "../models/client";
-import Professional from "../models/professional";
-import Admin from "../models/admin";
+// adminAuthMiddleware.ts
+
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
 
-const isAdmin = async(req: Request, res: Response, next: NextFunction) => {
-    const user = req.cookies.userToken as any;
-    const admin = await Admin.findById(user._id);
-    if(!admin){
-        res.status(403).send("You are not an admin");
-    } else {
-        next();
+const secret_key = 'secret key';
+
+const adminAuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  // Get the token from cookies or headers
+  const token = req.cookies.user_token || req.headers.authorization?.split(' ')[1];
+  console.log(token);
+
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized: No token provided' });
+  }
+
+  // Verify the token
+  jwt.verify(token, secret_key, (err: any, decoded: any) => {
+    if (err) {
+      return res.status(401).json({ message: 'Unauthorized: Invalid token' });
     }
+
+    // Check if user_type_id is admin
+    if (decoded.user_type_id !== 'admin') {
+      return res.status(403).json({ message: 'Forbidden: Not an admin' });
+    }
+
+    // If the user is admin, allow access to the next middleware/route handler
+    next();
+  });
 };
 
-const isClient = async(req: Request, res: Response, next: NextFunction) => {
-    const user = req.cookies.userToken as any;
-    const client = await Client.findById(user._id);
-    if(!client){
-        res.status(403).send("You are not a client");
-    } else {
-        return next();
-    }
-};
-
-const isProfessional = async(req: Request, res: Response, next: NextFunction) => {
-    const user = req.cookies.userToken as any;
-    const professional = await Professional.findById(user._id);
-    if(!professional){
-        return res.status(403).send("You are not a professional");
-    } else {
-        return next();
-    }
-};
-
-
-
-export default {isAdmin, isClient, isProfessional};
-
-
+export default adminAuthMiddleware;
