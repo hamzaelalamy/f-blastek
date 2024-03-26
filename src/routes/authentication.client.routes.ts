@@ -1,4 +1,4 @@
-import express, {RequestHandler} from 'express';
+import express from 'express';
 import {RegisterClient,LoginClient,Logout} from '../controllers/authentication.client.controllers';
 import validateRequest from '../middleware/validationMiddleware'
 import ClientSanitization from '../utils/client.sanitization'

@@ -7,13 +7,13 @@ interface IProfessional extends Document {
     email: string;
     phoneNumber?: string;
     city: string;
-    address: string;
+    address?: string;
     geolocation?: any;
     scannedCin?: string;
     photo?: string;
     specialization: string;
-    hourlyRate: number;
-    bio: string;
+    hourlyRate?: number;
+    bio?: string;
     experiences?: string[];
     backgroundCheckCompleted: boolean;
     availability?: {
@@ -61,7 +61,7 @@ const professionalSchema = new Schema<IProfessional>({
         required: [true, 'City is required'] },
     address: { 
         type: String, 
-        required: [true, 'Address is required'] },
+        },
     geolocation: { 
         type: Schema.Types.Mixed
      },
@@ -74,11 +74,9 @@ const professionalSchema = new Schema<IProfessional>({
         required: [true, 'Specialization is required'] },
     hourlyRate: { 
         type: Number, 
-        required: [true, 'Hourly rate is required'], 
         min: [0, 'Hourly rate cannot be negative'] },
     bio: { 
-        type: String, 
-        required: [true, 'Bio is required'] },
+        type: String, },
     experiences: { 
         type: [String], 
         default: 'No past Experience',
