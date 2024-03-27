@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 interface EmailOptions extends TransportOptions {
+    service: string;
+    port: number;
     auth: {
         user: string;
         pass: string;
@@ -12,22 +14,39 @@ interface EmailOptions extends TransportOptions {
 
 export const sendEmail =async (option: any) => {
 
+try{
+
+
+
     const transporter = nodemailer.createTransport({
 
-        host: process.env.EMAIL_HOST,
-        port: process.env.EMAIL_PORT,
+        service: 'gmail',
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASSWORD,
+            user: 'elaroussifatima7@gmail.com',
+            pass: 'xqqu hvfu ensb aqda'
         },
-    } as EmailOptions)
+    } as EmailOptions);
 
     const emailOptions = {
-        from: "elaroussi.fatima@arkx.academy",
+        from: "elaroussifatima7@gmail.com",
         to: option.email,
         subject: option.subject,
         text:option.message,
     }
-   await transporter.sendMail(emailOptions);
+  const emailSended= await transporter.sendMail(emailOptions);
+  if(emailSended){
+    console.log("Email sent info:............",emailSended)
+   return { success: true, message: "Email sent successfully" };
+  }
+  else{
+   return { success: false, message: "Faild to sent Email" };
+
+  }
+
+}catch(error){
+    console.error("Error sending email:", error);
+    return { success: false, message: "Internal server error related to send email" }
+}
+   
 }
 
