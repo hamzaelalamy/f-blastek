@@ -85,10 +85,15 @@ export const forgotPasswordClient =async(req:Request,res:Response)=>{
   if(!clientExist){
 res.status(404).json({message:"there is no client with the given email"});
   }
+if(clientExist){
 
+  const resetToken =  clientExist.createResetPasswordToken();
 
+ await clientExist.save({validateBeforeSave:false});
+}
+   
  }catch(err){
-
+  res.status(500).json({ error: "Internal server error" });
  } 
 
 }
