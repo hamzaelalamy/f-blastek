@@ -81,15 +81,27 @@ export const forgotPasswordClient =async(req:Request,res:Response)=>{
 
  try{
   const email = req.body.email;
+   
   const clientExist= await Client.findOne({email});
+
   if(!clientExist){
 res.status(404).json({message:"there is no client with the given email"});
   }
 if(clientExist){
 
-  const resetToken =  clientExist.createResetPasswordToken();
+  //const resetToken =  clientExist.createResetPasswordToken();
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  const tenMinutes = 10*60*1000;
+  const currentTime = Date.now();
+  const expiredTime = new Date(tenMinutes+currentTime);
+  clientExist.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+  clientExist.resetPasswordExpire  = expiredTime ;
 
  await clientExist.save({validateBeforeSave:false});
+res.status(200).json({Message: "Generate Reset token successfully"})
+}else{
+res.status(400).json({Message: "Faild to Generate Reset token "})
+
 }
    
  }catch(err){
