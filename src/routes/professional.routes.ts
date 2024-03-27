@@ -5,9 +5,11 @@ import {
   getProfessionalById,
   updateProfessionalById,
   deleteProfessionalById,
-} from "../controllers/professional.controller";
+} from "../controllers/Professional.controller";
 import ProfessionalSanitization from "../utils/professional.sanitization";
 import validateRequest from "../middleware/validationMiddleware";
+import verifyToken from "../middleware/authentication";
+import adminAuthMiddleware from "../middleware/authorization";
 
 const router = Router();
 
@@ -18,7 +20,7 @@ router.post(
   createProfessional
 );
 
-router.get("/professionals", getAllProfessionals);
+router.get("/professionals", verifyToken, getAllProfessionals);
 
 router.get("/professionals/:id", getProfessionalById);
 

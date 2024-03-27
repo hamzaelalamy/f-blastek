@@ -4,7 +4,8 @@ import Review from '../models/review';
 
 export const createReview = async (req: Request, res: Response) => {
     try {
-        const { clientId, professionalId, rating, description } = req.body;
+        const clientId = req.body.user.id;
+        const { professionalId, rating, description } = req.body;
         const review = new Review({ clientId, professionalId, rating, description });
         await review.save();
         res.status(201).json(review);

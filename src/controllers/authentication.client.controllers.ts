@@ -45,15 +45,16 @@ export const LoginClient = async (req: Request, res: Response) => {
                   .status(500)
                   .json({ Message: "Faild to generate token", Error: err });
               }
+              console.log(token);
+              res.cookie('user_token', token, { httpOnly: true, maxAge: maxage });
               res.json({
-                Messege: "The client Loged successfully",
+                Message: "The client Logged successfully",
                 success: true,
                 token: token,
               });
             }
           );
-
-          res.cookie('user_token', token, { httpOnly: true, maxAge: maxage });
+          
         } else {
           res.status(400).json({ Message: "Email or Password incorrect" });
         }
