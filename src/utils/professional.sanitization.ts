@@ -1,16 +1,16 @@
 import { body, ValidationChain } from "express-validator";
 
 const ProfessionalSanitization: ValidationChain[] = [
-    body("firstName").notEmpty().trim().escape(),
-    body("lastName").notEmpty().trim().escape(),
-    body("email").isEmail().normalizeEmail(),
-    body("city").notEmpty().trim().escape(),
+   // body("firstName").notEmpty().trim().escape().withMessage("first name is required"),
+   // body("lastName").notEmpty().trim().escape().withMessage("first name is required"),
+    body("email").isEmail().normalizeEmail().withMessage("Invalid password"),
+//  body("city").notEmpty().trim().escape().withMessage("city name is required"),
     body("address").trim().escape(),
     body("specialization").trim().escape(),
-    body("hourlyRate").isNumeric(),
+    body("hourlyRate").optional().isNumeric().withMessage("hourly rate should be a number"),
     body("bio").trim().escape(),
-    body("backgroundCheckCompleted").isBoolean(),
-    body("password").isStrongPassword(),
+   body("backgroundCheckCompleted").optional().isBoolean(),
+    body("password").isStrongPassword().withMessage("Password  is weak you should use Uppercase and number and caracters "),
 
 ];
 
