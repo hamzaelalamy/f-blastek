@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import Client from "../models/client";
 import dotenv from "dotenv";
+const crypto = require('crypto');
 const maxage = 60 * 60 * 24 * 7 * 1000;
 dotenv.config();
 const secret_key: any = process.env.SECRET_KEY;
@@ -76,12 +77,23 @@ export const logoutClient = (req: Request, res: Response) => {
 
 }
 
-export const forgotPasswordClient =(req:Request,res:Response)=>{
+export const forgotPasswordClient =async(req:Request,res:Response)=>{
 
+ try{
+  const email = req.body.email;
+  const clientExist= await Client.findOne({email});
+  if(!clientExist){
+res.status(404).json({message:"there is no client with the given email"});
+  }
+
+
+ }catch(err){
+
+ } 
 
 }
 
-export const ResetPasswordClient=(req:Request,res:Response)=>{
+export const resetPasswordClient=async (req:Request,res:Response)=>{
 
 
 }
