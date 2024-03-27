@@ -29,6 +29,8 @@ const clientSchema = new Schema<IClient>({
     },
     cin: {
         type: String,
+        unique: true,
+        sparse: true,
         minlength: [6, 'CIN must be at least 6 characters'],
         maxlength: [10, 'CIN cannot exceed 10 characters'],
     },
@@ -37,12 +39,15 @@ const clientSchema = new Schema<IClient>({
         required: [true, 'Email is required'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
         lowercase: true,
+        unique: true,
+        sparse:true,
         trim: true
     },
     phoneNumber: {
         type: String,
-        // unique: true,
-        // match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)']
+        unique: true,
+        sparse:true,
+        match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)']
     },
     city: {
         type: String,

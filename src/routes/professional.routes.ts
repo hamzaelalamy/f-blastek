@@ -9,7 +9,6 @@ import {
 import ProfessionalSanitization from "../utils/professional.sanitization";
 import validateRequest from "../middleware/validationMiddleware";
 import verifyToken from "../middleware/authentication";
-import adminAuthMiddleware from "../middleware/authorization";
 
 const router = Router();
 
@@ -26,6 +25,7 @@ router.get("/professionals/:id", getProfessionalById);
 
 router.put(
   "/professionals/:id",
+  verifyToken,
   ProfessionalSanitization,
   validateRequest,
   updateProfessionalById
