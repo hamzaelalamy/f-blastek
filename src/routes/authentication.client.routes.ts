@@ -8,7 +8,7 @@ router.post('/auth/registerClient',ClientSanitization,validateRequest,registerCl
 router.post('/auth/loginClient',ClientSanitization,validateRequest,loginClient);
 router.post('/auth/logoutClient',ClientSanitization,validateRequest,logoutClient);
 router.post('/auth/forgotPasswordClient',forgotPasswordClient);
-router.post('/auth/resetPasswordClient',resetPasswordClient);
+router.patch('/auth/resetPasswordClient/:token',resetPasswordClient);
 
 
 export default router;

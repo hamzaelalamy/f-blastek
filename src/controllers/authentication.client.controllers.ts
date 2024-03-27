@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import Client from "../models/client";
 import dotenv from "dotenv";
-const crypto = require('crypto');
+import crypto from 'crypto';
+import { sendEmail } from "../utils/email";
 const maxage = 60 * 60 * 24 * 7 * 1000;
 dotenv.config();
 const secret_key: any = process.env.SECRET_KEY;
@@ -89,7 +90,7 @@ res.status(404).json({message:"there is no client with the given email"});
   }
 if(clientExist){
 
-  //const resetToken =  clientExist.createResetPasswordToken();
+  
   const resetToken = crypto.randomBytes(32).toString("hex");
   const tenMinutes = 10*60*1000;
   const currentTime = Date.now();
@@ -99,6 +100,14 @@ if(clientExist){
 
  await clientExist.save({validateBeforeSave:false});
 res.status(200).json({Message: "Generate Reset token successfully"})
+
+  const resetUrl = `http://localhost:${process.env.PORT}/resetPasswordClient/:${resetToken}`
+  await sendEmail({
+    email: email,
+    subject: "Reset Your Password",
+    message: `we have received a password reset request please use the below link to reset your password\n\n${resetUrl}`,
+  });
+
 }else{
 res.status(400).json({Message: "Faild to Generate Reset token "})
 
