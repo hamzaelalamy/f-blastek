@@ -10,7 +10,7 @@ const ClientSanitization: ValidationChain[] = [
     //body("geoLocation").isObject(),
     body("scannedCIN").trim().escape(),
     body("photo").trim().escape(),
-    body("password").isStrongPassword(),
+    // body("password").isStrongPassword(),
 ];
 
 export default ClientSanitization;

@@ -1,42 +1,25 @@
-import {Request, Response, NextFunction} from "express";
-import mongoose from "mongoose";
-import Client from "../models/client";
-import Professional from "../models/professional";
-import Admin from "../models/admin";
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
+const secret_key: String | any = process.env.SECRET_KEY;
 
-const isAdmin = async(req: Request, res: Response, next: NextFunction) => {
-    const user = req.cookies.userToken as any;
-    const admin = await Admin.findById(user._id);
-    if(!admin){
-        return res.status(403).send("You are not an admin");
-    } else {
-        return next();
+const adminAuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  // Get the token from cookies or headers
+  const user = req.body.user;
+
+  if (!user) {
+    return res.status(401).json({ message: 'Unauthorized: No token provided' });
+  }
+    // Check if user_type_id is admin
+    if (user.user_type_id !== 'admin') {
+      return res.status(403).json({ message: 'Forbidden: Not an admin' });
     }
+
+    // If the user is admin, allow access to the next middleware/route handler
+    next();
+  
 };
 
-const isClient = async(req: Request, res: Response, next: NextFunction) => {
-    const user = req.cookies.userToken as any;
-    const client = await Client.findById(user._id);
-    if(!client){
-        return res.status(403).send("You are not a client");
-    } else {
-        return next();
-    }
-};
-
-const isProfessional = async(req: Request, res: Response, next: NextFunction) => {
-    const user = req.cookies.userToken as any;
-    const professional = await Professional.findById(user._id);
-    if(!professional){
-        return res.status(403).send("You are not a professional");
-    } else {
-        return next();
-    }
-}
-
-
-
-export default {isAdmin, isClient, isProfessional};
-
-
+export default adminAuthMiddleware;
