@@ -35,7 +35,6 @@ try{
     }
   const emailSended= await transporter.sendMail(emailOptions);
   if(emailSended){
-    console.log("Email sent info:............",emailSended)
    return { success: true, message: "Email sent successfully" };
   }
   else{
