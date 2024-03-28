@@ -13,6 +13,7 @@ interface IAdmin extends Document {
 
 const adminSchema = new Schema<IAdmin>({
   firstName: {
+  
     type: String,
     required: [true, 'First name is required']
   },

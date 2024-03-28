@@ -13,6 +13,7 @@ import authClientRoutes from "./routes/authentication.client.routes";
 import reviewsRoutes from "./routes/reviews.routes";
 import servicesRoutes from './routes/service.routes';
 import authProfessionalRoutes from "./routes/authentication.professional.ts.routes";
+import authAdminRoutes from "./routes/authentication.admin.routes";
 dotenv.config();
 
 const app: Express = express();
@@ -36,6 +37,8 @@ app.use('/api', professionalRoutes);
 app.use('/api', reviewsRoutes);
 app.use('/api', servicesRoutes);
 app.use('/api', authProfessionalRoutes);
+app.use('/api', authAdminRoutes);
+
 app.get('*', (req: Request, res: Response) => {
   res.status(404).json({message: 'Not Found'});
 } )
