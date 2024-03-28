@@ -79,7 +79,7 @@ export const logoutClient = (req: Request, res: Response) => {
   return res
     .clearCookie("user_token")
     .status(200)
-    .json({ Message: "Loged out Successfully " });
+    .json({ Message: "Logged out Successfully " });
 };
 
 export const forgotPasswordClient = async (req: Request, res: Response) => {

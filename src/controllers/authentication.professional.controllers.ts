@@ -74,7 +74,7 @@ export const loginProfessional = async (req: Request, res: Response) => {
 
 export const logoutProfessional = (req: Request, res: Response) => {
 
-  return res.clearCookie('user_token').status(200).json({Message:"Loged out Successfully "})
+  return res.clearCookie('user_token').status(200).json({Message:"Logged out Successfully "})
 
 }
 
