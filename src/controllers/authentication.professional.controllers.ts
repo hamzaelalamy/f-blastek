@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import Professional from "../models/professional";
+import {sendEmail} from "../utils/email";
+import crypto from "crypto"
 import dotenv from "dotenv";
 const maxage = 60 * 60 * 24 * 7 * 1000;
 dotenv.config();
@@ -47,7 +49,7 @@ export const loginProfessional = async (req: Request, res: Response) => {
                   .json({ Message: "Faild to generate token", Error: err });
               }
               res.json({
-                Messege: "The client Loged successfully",
+                Messege: "The professional Loged successfully",
                 success: true,
                 token: token,
               });
@@ -66,12 +68,96 @@ export const loginProfessional = async (req: Request, res: Response) => {
         });
       });
   } else {
-    return res.status(404).json({ message: "The client does not exist" });
+    return res.status(404).json({ message: "The professional does not exist" });
   }
 };
 
 export const logoutProfessional = (req: Request, res: Response) => {
 
-  return res.clearCookie('user_token').status(200).json({Message:"Loged out Successfully "})
+  return res.clearCookie('user_token').status(200).json({Message:"Logged out Successfully "})
 
 }
+
+
+export const forgotPasswordProfessional = async (req: Request, res: Response) => {
+  try {
+    const email = req.body.email;
+
+    const professionalExist = await Professional.findOne({ email });
+
+    if (!professionalExist) {
+      res
+        .status(404)
+        .json({ message: "there is no professional with the given email" });
+    }
+    if (professionalExist) {
+      const resetToken = crypto.randomBytes(32).toString("hex");
+
+      const tenMinutes = 10 * 60 * 1000;
+      const currentTime = Date.now();
+      const expiredTime = new Date(tenMinutes + currentTime);
+      professionalExist.passwordResetToken = crypto
+        .createHash("sha256")
+        .update(resetToken)
+        .digest("hex");
+
+
+
+      professionalExist.passwordResetTokenExpires = expiredTime;
+
+      await professionalExist.save({ validateBeforeSave: false });
+
+      const resetUrl = `${req.protocol}://${req.get('host')}api/auth/resetPasswordprofessional/${resetToken}`;
+
+      const sendMailToprofessional: any = await sendEmail({
+        email: email,
+        subject: "Reset Your Password",
+        message: `<p>You have requested to reset your password.Please be aware that it wil be expired in 10 minutes: click the link below to reset your password:</p>
+        <a href="${resetUrl}">${resetUrl}</a>`
+      });
+
+      if (sendMailToprofessional) {
+        res.status(200).json({ Message: "Generate Reset token successfully" });
+      } else {
+        res.status(400).json({ Message: "Faild to Generate Reset token " });
+      }
+    }
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const resetPasswordProfessional = async (req: Request, res: Response) => {
+  try {
+    const token = crypto
+      .createHash("sha256")
+      .update(req.params.token)
+      .digest("hex");
+  
+
+
+    const professionalExist = await Professional.findOne({ passwordResetToken: token, passwordResetTokenExpires: { $gt: Date.now() } });
+   
+    if (professionalExist) {
+      if (req.body.password === req.body.confirmpassword) {
+
+        professionalExist.password = req.body.password;
+        professionalExist.passwordResetToken = undefined;
+        professionalExist.passwordResetTokenExpires = undefined;
+        professionalExist.save();
+
+        res.status(200).json({message:"Password reset successfully"});
+      } else {
+        res.json({ Message: "Confirm pessword and password did not match" })
+
+      }
+
+    } else {
+      res.status(400).json({ Message: "Token is invalid or has expired" })
+
+    }
+  } catch (err) {
+    res.status(500).json({ Message: "internal server error" })
+  }
+
+};
