@@ -115,9 +115,8 @@ export const forgotPasswordClient = async (req: Request, res: Response) => {
       const sendMailToclient: any = await sendEmail({
         email: email,
         subject: "Reset Your Password",
-        message: `<p>You have requested to reset your password. Please click the link below to reset your password:</p>
+        message: `<p>You have requested to reset your password.Please be aware that it wil be expired in 10 minutes: click the link below to reset your password:</p>
         <a href="${resetUrl}">${resetUrl}</a>`
-        //message: `<p>we have received a password reset request please use the below link to reset your password</p>\n\n<a href=${resetUrl}>Click here</a>`,
       });
 
       if (sendMailToclient) {
@@ -137,11 +136,11 @@ export const resetPasswordClient = async (req: Request, res: Response) => {
       .createHash("sha256")
       .update(req.params.token)
       .digest("hex");
-    console.log("reset password: token ...........",token)
+  
 
 
     const clientExist = await Client.findOne({ resetPasswordToken: token, resetPasswordExpire: { $gt: Date.now() } });
-    console.log("reset password: clientExist ...........",clientExist)
+  
     if (clientExist) {
       if (req.body.password === req.body.confirmpassword) {
 
