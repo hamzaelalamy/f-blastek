@@ -3,7 +3,7 @@ import {getCheckoutSession,paymentSuccess,paymentFailed} from '../controllers/pa
 
 const router = express.Router();
 
-router.post('/payment/:professionalId',getCheckoutSession);
+router.post('/payment',getCheckoutSession);
 router.get('/paymentSuccess',paymentSuccess);
 router.get('/paymentFaild',paymentFailed);
 export default router;
