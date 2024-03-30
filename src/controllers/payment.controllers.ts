@@ -5,7 +5,6 @@ import Payment from "../models/payments";
 import Intervention from "../models/intervention";
 import Stripe from "stripe";
 import dotenv from "dotenv";
-import { json } from "body-parser";
 dotenv.config();
 
 
@@ -74,9 +73,9 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
    // console.log('Stripe Checkout Session:', session);
    const paymentIntentId : any= session.payment_intent;
 
-if (!paymentIntentId) {
-    return res.status(500).json({ message: "Error creating checkout session: Payment intent ID is missing" });
-}
+// if (!paymentIntentId) {
+//     return res.status(500).json({ message: "Error creating checkout session: Payment intent ID is missing" });
+// }
 
    console.log("paymentIntentId......................",paymentIntentId)
 
