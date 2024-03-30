@@ -5,8 +5,10 @@ import Payment from "../models/payments";
 import Intervention from "../models/intervention";
 import Stripe from "stripe";
 import dotenv from "dotenv";
-import { isAnyArrayBuffer } from "util/types";
+import { json } from "body-parser";
 dotenv.config();
+
+
 export const getCheckoutSession = async (req: Request, res: Response) => {
   const stripe_secret_key: any = process.env.PAYMENT_SECRET_TOKEN;
   try {
@@ -64,3 +66,14 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
     res.status(500).json({Message:'Error creating checkout session'})
   }
 };
+
+export const paymentSuccess=(req:Request,res:Response)=>{
+
+res.status(200).json({Message:'the payment successed '})
+
+}
+export const paymentFailed=(req:Request,res:Response)=>{
+
+    res.status(500).json({Message:'the payment faild '})
+    
+    }
