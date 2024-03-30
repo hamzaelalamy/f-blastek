@@ -3,7 +3,7 @@ import { Schema, model, Document } from "mongoose";
 interface IIntervention extends Document {
   name: string;
   clientId: Schema.Types.ObjectId;
-  professionaliD: Schema.Types.ObjectId;
+  professionalID: Schema.Types.ObjectId;
   status: string;
 }
 
@@ -18,7 +18,7 @@ const interventionSchema = new Schema<IIntervention>(
       ref: "client",
       required: [true, "A client needs to be selected"],
     },
-    professionaliD: {
+    professionalID: {
       type: Schema.Types.ObjectId,
       ref: "professional",
       required: [true, "A professional needs to be selected"],

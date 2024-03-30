@@ -12,20 +12,24 @@ dotenv.config();
 export const getCheckoutSession = async (req: Request, res: Response) => {
   const stripe_secret_key: any = process.env.PAYMENT_SECRET_TOKEN;
   try {
-    const professional = await Professional.findById(req.params.professionalId);
-    const client = await Client.findById(req.body.clientlId);
 
-    const intervention = await Intervention.findById(req.body.interventionId);
     const stripe = new Stripe(stripe_secret_key);
-    if (!client) {
-      return res.status(404).json({ message: "Client not found" });
-    }
-    if (!professional) {
-      return res.status(404).json({ message: "professional not found" });
-    }
+    const intervention = await Intervention.findById(req.body.interventionId);
+
     if (!intervention) {
       return res.status(404).json({ message: "intervetion not found" });
     }
+    const client = await Client.findById(intervention.clientId);
+
+    if (!client) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+    const professional = await Professional.findById(req.params.professionalId);
+
+    if (!professional) {
+      return res.status(404).json({ message: "professional not found" });
+    }
+  
 
     const email = client.email;
     const clientId = client.id;
@@ -42,7 +46,7 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
           price_data: {
             currency: "MAD",
             product_data: {
-              name: req.body.serviceName,
+              name: intervention.name,
               description: professional.bio,
             },
             unit_amount: 10000, // Update with actual service amount in cents
@@ -53,7 +57,7 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
     const payment = new Payment({
       interventionId: intervention.id,
       clientId: client.id,
-      professionalId: professional.id,
+      professionalId: intervention.professionaliD,
       amount: req.body.price,
       gatewayTransactionId: session.id,
   
