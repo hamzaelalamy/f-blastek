@@ -6,7 +6,7 @@ interface IPayments extends Document {
     clientId: Schema.Types.ObjectId;
     professionalId: Schema.Types.ObjectId;
     amount: number;
-    gatewayTransactionId: string;
+    gatewayTransactionId?: string;
     paymentStatus: string;
     paymentMethod?: string;
 }
@@ -27,8 +27,7 @@ const paymentsSchema = new Schema<IPayments>({
         type: Number, 
         required: [true, 'Transaction amount is required'] },
     gatewayTransactionId: { 
-        type: String, 
-        required: true },
+        type: String},
     paymentStatus: { 
         type: String, 
         required: true },

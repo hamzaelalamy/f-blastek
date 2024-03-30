@@ -72,14 +72,19 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
     });
 
    // console.log('Stripe Checkout Session:', session);
-
    const paymentIntentId : any= session.payment_intent;
+
+if (!paymentIntentId) {
+    return res.status(500).json({ message: "Error creating checkout session: Payment intent ID is missing" });
+}
+
    console.log("paymentIntentId......................",paymentIntentId)
 
    //const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 //    console.log("paymentIntent......................",paymentIntent)
 //    const transactionId = paymentIntent.id;
  //  console.log("transactionId......................",transactionId)
+
    
 //console.log("type of session id",typeof(session.id));
     const payment = new Payment({
