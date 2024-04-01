@@ -19,7 +19,7 @@ router.post(
   createProfessional
 );
 
-router.get("/professionals", verifyToken, getAllProfessionals);
+router.get("/professionals", getAllProfessionals);
 
 router.get("/professionals/:id", getProfessionalById);
 
