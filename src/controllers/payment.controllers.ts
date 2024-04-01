@@ -60,7 +60,7 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
               name: intervention.name,
               description: "professional.bio",
             },
-            unit_amount: 10000, // Update with actual service amount in cents
+            unit_amount: req.body.price *100, // Update with actual service amount in cents
           },
           quantity: 1,
         },
@@ -98,7 +98,7 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
 
     await payment.save();
     
-    res.status(200).json({Message : 'Paid successfully'})
+    res.status(200).json({url:session.url, Message : 'Paid successfully'})
   } catch (error) {
 
     console.error('Error creating checkout session:', error);
@@ -113,6 +113,6 @@ res.status(200).json({Message:'the payment successed '})
 }
 export const paymentFailed=(req:Request,res:Response)=>{
 
-    res.status(500).json({Message:'the payment faild '})
+    res.status(500).json({Message:'the payment failed '})
     
     }
