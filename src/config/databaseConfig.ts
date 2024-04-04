@@ -2,10 +2,14 @@ import mongoose, { mongo } from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const connectDB = (url:any) => {
-    mongoose.connect(url)
-    .then(()=>console.log('connected to mongoDB'))
-    .catch(()=>console.log('Error connecting to mongoDB'));
+const connectDB = async(url:any) => {
+    try {
+        await mongoose.connect(url, {
+            autoIndex: true
+        })
+        console.log('Connected to Mongodb Atlas');} catch (error) {
+        console.error(error);
+    }
 }
 
 export default connectDB;

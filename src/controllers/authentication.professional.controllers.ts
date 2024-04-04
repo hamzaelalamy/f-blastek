@@ -37,7 +37,7 @@ export const loginProfessional = async (req: Request, res: Response) => {
       .compare(password, professionalExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {
-          const payload = { id: professionalExist.id ,userType:"professional" };
+          const payload = { id: professionalExist.id ,user_type_id:"professional" };
           const token = jwt.sign(
             payload,
             secret_key,
