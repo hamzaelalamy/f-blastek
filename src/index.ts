@@ -5,6 +5,9 @@ import morgan from 'morgan';
 import connectDB from "./config/databaseConfig";
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import {options} from './swagger/options';
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
@@ -22,9 +25,11 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 connectDB(process.env.DB_URL);
 
+const swaggerDocs = swaggerJsdoc(options);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(cors());
 
@@ -42,6 +47,7 @@ app.use('/api', authProfessionalRoutes);
 app.use('/api', authAdminRoutes);
 app.use('/api', InterventionRoutes);
 app.use('/api', paymentRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.get('*', (req: Request, res: Response) => {
   res.status(404).json({message: 'Not Found'});
