@@ -17,6 +17,7 @@ interface IClient extends Document {
     payments?: number[];
     emailVerified :boolean;
     verifiedEmailToken?: string;
+    verifiedEmailTokenExpire?: Date,
     resetPasswordToken?: string;
     resetPasswordExpire?: Date;
 
@@ -83,6 +84,7 @@ const clientSchema = new Schema<IClient>({
         default: false
     },
     verifiedEmailToken: String,
+    verifiedEmailTokenExpire: Date,
     resetPasswordToken: String,
     resetPasswordExpire: Date,
 }, { timestamps: true });

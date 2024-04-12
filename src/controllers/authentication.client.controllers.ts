@@ -18,15 +18,67 @@ export const registerClient = async (req: Request, res: Response) => {
     if (clientExist) {
       return res.status(400).json({ Message: "Client already exists" });
     }
+
+    const token = crypto.randomBytes(32).toString("hex");
+    const time = 24 * 60 * 60 * 1000;
+    const currentTime = Date.now();
+    const expiredTime = new Date(time + currentTime);
+
     const newClient = new Client(req.body);
+    newClient.verifiedEmailToken = token;
+    newClient.verifiedEmailTokenExpire = expiredTime;
 
     await newClient.save();
-    res.json({ message: "Client registered successfully" });
+    //verify Email
+
+    const sendMailToclient: any = await sendEmail({
+      email: email,
+      subject: "Verify Your Email",
+      message: `<p>Please Verify your email be aware that it will be expired in one day: click the link below to  Verify your email:</p>
+  <a href="api/auth/verifyEmailClient/:${token}">Click Here ${token}</a>`,
+    });
+    if (sendMailToclient) {
+      res.status(200).json({ Message: "An Email sent to your account please verify" })
+    } else {
+      res.status(400).json({ Message: "An Error occured sending Email  to your account " })
+
+    }
+
+    res.status(200).json({ message: "Client registered successfully" });
   } catch (err) {
     console.error("Error registering user:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+export const verifyEmailClient = async (req: Request, res: Response) => {
+  console.log("verifyEmailClient............")
+
+  try {
+
+    const token = req.params.token;
+    console.log("token............", token)
+    const clientExist = await Client.findOne({
+      verifiedEmailToken: token,
+      verifiedEmailTokenExpire: { $gt: Date.now() },
+    })
+
+    if (clientExist) {
+
+      await Client.findByIdAndUpdate({ _id: clientExist.id, verifiedEmailToken: undefined, verifiedEmailTokenExpire: undefined, emailVerified: true })
+      res.status(200).json({ Messgae: "email verified sucessfully" })
+
+    } else {
+      res.status(404).json({ Messgae: "Invalid link or token has expired" })
+
+    }
+
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" })
+  }
+
+
+}
 
 export const loginClient = async (req: Request, res: Response) => {
   const { email, password } = req.body;
