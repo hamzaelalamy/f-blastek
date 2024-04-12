@@ -52,12 +52,10 @@ export const registerClient = async (req: Request, res: Response) => {
 };
 
 export const verifyEmailClient = async (req: Request, res: Response) => {
-  console.log("verifyEmailClient............")
 
   try {
 
     const token = req.params.token;
-    console.log("token............", token)
     const clientExist = await Client.findOne({
       verifiedEmailToken: token,
       verifiedEmailTokenExpire: { $gt: Date.now() },
@@ -65,7 +63,7 @@ export const verifyEmailClient = async (req: Request, res: Response) => {
 
     if (clientExist) {
 
-      await Client.findByIdAndUpdate({ _id: clientExist.id, verifiedEmailToken: undefined, verifiedEmailTokenExpire: undefined, emailVerified: true })
+      await Client.findByIdAndUpdate( clientExist.id,{ verifiedEmailToken: undefined, verifiedEmailTokenExpire: undefined, emailVerified: true })
       res.status(200).json({ Messgae: "email verified sucessfully" })
 
     } else {

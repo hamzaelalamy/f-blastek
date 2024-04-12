@@ -27,8 +27,8 @@ export const registerProfessional = async (req: Request, res: Response) => {
 
     newProfessional.verifiedEmailToken = token;
     newProfessional.verifiedEmailTokenExpire = expiredTime;
-
     await newProfessional.save();
+
     //verify Email
 
     const sendMailToProfessional: any = await sendEmail({
@@ -43,15 +43,41 @@ export const registerProfessional = async (req: Request, res: Response) => {
       res.status(400).json({ Message: "An Error occured sending Email  to your account " })
 
     }
-
-
-    await newProfessional.save();
     res.json({ message: "Professional registered successfully" });
   } catch (err) {
     console.error("Error registering user:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+export const verifyEmailProfessional = async (req: Request, res: Response) => {
+
+
+  try {
+
+    const token = req.params.token;
+
+    const professionalExist = await Professional.findOne({
+      verifiedEmailToken: token,
+      verifiedEmailTokenExpire: { $gt: Date.now() },
+    })
+
+    if (professionalExist) {
+
+      await Professional.findByIdAndUpdate(professionalExist.id,{ verifiedEmailToken: undefined, verifiedEmailTokenExpire: undefined, emailVerified: true })
+      res.status(200).json({ Messgae: "email verified sucessfully" })
+
+    } else {
+      res.status(404).json({ Messgae: "Invalid link or token has expired" })
+
+    }
+
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" })
+  }
+
+
+}
 
 export const loginProfessional = async (req: Request, res: Response) => {
   const { email, password } = req.body;

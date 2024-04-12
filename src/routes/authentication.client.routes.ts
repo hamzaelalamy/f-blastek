@@ -6,7 +6,7 @@ import loginSanitization from '../utils/login.sanitization'
 const router = express.Router();
 
 router.post('/auth/registerClient',ClientSanitization,validateRequest,registerClient);
-router.post('/auth/verifyEmailClient/:token',verifyEmailClient);
+router.get('/auth/verifyEmailClient/:token',verifyEmailClient);
 router.post('/auth/loginClient',loginSanitization,validateRequest,loginClient);
 router.post('/auth/logoutClient',loginSanitization,validateRequest,logoutClient);
 router.post('/auth/forgotPasswordClient',forgotPasswordClient);
