@@ -38,28 +38,23 @@ export const loginClient = async (req: Request, res: Response) => {
       .then((isMatch: boolean) => {
         if (isMatch) {
           const payload = { id: clientExist.id, user_type_id: "client" };
-          const token = jwt.sign(
-            payload,
-            secret_key,
-            { expiresIn: "7d" },
-            (err, token) => {
-              if (err) {
-                return res
-                  .status(500)
-                  .json({ Message: "Faild to generate token", Error: err });
-              }
-
-              res.cookie("user_token", token, {
-                httpOnly: true,
-                maxAge: maxage,
-              });
-              res.status(200).json({
-                Message: "The client Logged successfully",
-                success: true,
-                token: token,
-              });
+          jwt.sign(payload, secret_key, { expiresIn: "7d" }, (err, token) => {
+            if (err) {
+              return res
+                .status(500)
+                .json({ Message: "Faild to generate token", Error: err });
             }
-          );
+
+            res.cookie("user_token", token, {
+              httpOnly: true,
+              maxAge: maxage,
+            });
+            res.status(200).json({
+              Message: "The client Logged successfully",
+              success: true,
+              token: token,
+            });
+          });
         } else {
           res.status(400).json({ Message: "Email or Password incorrect" });
         }
@@ -104,19 +99,19 @@ export const forgotPasswordClient = async (req: Request, res: Response) => {
         .update(resetToken)
         .digest("hex");
 
-
-
       clientExist.resetPasswordExpire = expiredTime;
 
       await clientExist.save({ validateBeforeSave: false });
 
-      const resetUrl = `${req.protocol}://${req.get('host')}api/auth/resetPasswordClient/${resetToken}`;
+      const resetUrl = `${req.protocol}://${req.get(
+        "host"
+      )}api/auth/resetPasswordClient/${resetToken}`;
 
       const sendMailToclient: any = await sendEmail({
         email: email,
         subject: "Reset Your Password",
         message: `<p>You have requested to reset your password.Please be aware that it wil be expired in 10 minutes: click the link below to reset your password:</p>
-        <a href="${resetUrl}">${resetUrl}</a>`
+        <a href="${resetUrl}">${resetUrl}</a>`,
       });
 
       if (sendMailToclient) {
@@ -136,31 +131,27 @@ export const resetPasswordClient = async (req: Request, res: Response) => {
       .createHash("sha256")
       .update(req.params.token)
       .digest("hex");
-  
 
+    const clientExist = await Client.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpire: { $gt: Date.now() },
+    });
 
-    const clientExist = await Client.findOne({ resetPasswordToken: token, resetPasswordExpire: { $gt: Date.now() } });
-  
     if (clientExist) {
       if (req.body.password === req.body.confirmpassword) {
-
         clientExist.password = req.body.password;
         clientExist.resetPasswordToken = undefined;
         clientExist.resetPasswordExpire = undefined;
         clientExist.save();
 
-        res.status(200).json({message:"Password reset successfully"});
+        res.status(200).json({ message: "Password reset successfully" });
       } else {
-        res.json({ Message: "Confirm pessword and password did not match" })
-
+        res.json({ Message: "Confirm pessword and password did not match" });
       }
-
     } else {
-      res.status(400).json({ Message: "Token is invalid or has expired" })
-
+      res.status(400).json({ Message: "Token is invalid or has expired" });
     }
   } catch (err) {
-    res.status(500).json({ Message: "internal server error" })
+    res.status(500).json({ Message: "internal server error" });
   }
-
 };
