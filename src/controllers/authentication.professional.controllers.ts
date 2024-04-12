@@ -18,7 +18,32 @@ export const registerProfessional = async (req: Request, res: Response) => {
     if (professionalExist) {
       return res.status(400).json({ Message: "Professional already exists" });
     }
+
+    const token = crypto.randomBytes(32).toString("hex");
+    const time = 24 * 60 * 60 * 1000;
+    const currentTime = Date.now();
+    const expiredTime = new Date(time + currentTime);
     const newProfessional = new Professional(req.body);
+
+    newProfessional.verifiedEmailToken = token;
+    newProfessional.verifiedEmailTokenExpire = expiredTime;
+
+    await newProfessional.save();
+    //verify Email
+
+    const sendMailToProfessional: any = await sendEmail({
+      email: email,
+      subject: "Verify Your Email",
+      message: `<p>Please Verify your email be aware that it will be expired in one day: click the link below to  Verify your email:</p>
+  <a href="api/auth/verifyEmailClient/:${token}">Click Here ${token}</a>`,
+    });
+    if (sendMailToProfessional) {
+      res.status(200).json({ Message: "An Email sent to your account please verify" })
+    } else {
+      res.status(400).json({ Message: "An Error occured sending Email  to your account " })
+
+    }
+
 
     await newProfessional.save();
     res.json({ message: "Professional registered successfully" });
