@@ -1,11 +1,10 @@
-import React from 'react';
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <p className='text-white' >Testing</p>
+      <h1 className='flex items-center justify-center h-screen text-black' >Testing</h1>
     </>
   )
 }
