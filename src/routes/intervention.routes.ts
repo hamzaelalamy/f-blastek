@@ -1,4 +1,4 @@
-import {createIntervention} from '../controllers/intervention.controller'
+import {createIntervention,getAllInterventions,updateInterventionById,deleteInterventiontById} from '../controllers/intervention.controller'
 
 import  express  from 'express';
 
@@ -6,5 +6,8 @@ const router = express.Router();
 
 
 
-router.post('/intervention',createIntervention);
+router.post('/createIntervention',createIntervention);
+router.get('/getAllInterventions',getAllInterventions);
+router.put('/updateInterventionById/:id',updateInterventionById);
+router.delete('/deleteInterventiontById/:id',deleteInterventiontById);
 export default router;
