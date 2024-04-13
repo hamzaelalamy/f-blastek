@@ -71,3 +71,14 @@ export const updateReviewById = async (req: Request, res: Response) => {
     }
 };
 
+import getAverageRatingForProfessional from '../services/averageRating';
+
+export const AverageRating = async (req: Request, res: Response) => {
+    const { professionalId } = req.params;
+    try {
+      const averageRating = await getAverageRatingForProfessional(professionalId);
+      res.json({ averageRating });
+    } catch (error) {
+      res.status(500).json({ error: 'Internal server error' });
+    }
+};
