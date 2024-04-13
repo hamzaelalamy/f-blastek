@@ -68,10 +68,33 @@ export const deleteServiceById = async (req: Request, res: Response) => {
   }
 };
 
-export default {
-  createService,
-  getAllServices,
-  getServiceById,
-  updateServiceById,
-  deleteServiceById,
-};
+export const searchService = async (req:Request,res:Response)=>{
+
+  try{
+
+    const keyword = req.query.keyword;
+    const resultSearch = await Service.find({
+      $or: [{ name: keyword }, { description: keyword }],
+    });
+
+    if (resultSearch) {
+      res.status(200).json(resultSearch);
+    } else {
+      res.status(404).json({ error: "Service not found" });
+    }
+
+  }catch(error){
+    console.error("Error searching for service:", error);
+    res.status(500).json({ error: "Error searching for service" })
+  }
+}
+
+
+// export default {
+//   createService,
+//   getAllServices,
+//   getServiceById,
+//   updateServiceById,
+//   deleteServiceById,
+//   searchService,
+// };

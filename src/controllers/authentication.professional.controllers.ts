@@ -18,15 +18,66 @@ export const registerProfessional = async (req: Request, res: Response) => {
     if (professionalExist) {
       return res.status(400).json({ Message: "Professional already exists" });
     }
+
+    const token = crypto.randomBytes(32).toString("hex");
+    const time = 24 * 60 * 60 * 1000;
+    const currentTime = Date.now();
+    const expiredTime = new Date(time + currentTime);
     const newProfessional = new Professional(req.body);
 
+    newProfessional.verifiedEmailToken = token;
+    newProfessional.verifiedEmailTokenExpire = expiredTime;
     await newProfessional.save();
+
+    //verify Email
+
+    const sendMailToProfessional: any = await sendEmail({
+      email: email,
+      subject: "Verify Your Email",
+      message: `<p>Please Verify your email be aware that it will be expired in one day: click the link below to  Verify your email:</p>
+  <a href="api/auth/verifyEmailClient/:${token}">Click Here ${token}</a>`,
+    });
+    if (sendMailToProfessional) {
+      res.status(200).json({ Message: "An Email sent to your account please verify" })
+    } else {
+      res.status(400).json({ Message: "An Error occured sending Email  to your account " })
+
+    }
     res.json({ message: "Professional registered successfully" });
   } catch (err) {
     console.error("Error registering user:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+export const verifyEmailProfessional = async (req: Request, res: Response) => {
+
+
+  try {
+
+    const token = req.params.token;
+
+    const professionalExist = await Professional.findOne({
+      verifiedEmailToken: token,
+      verifiedEmailTokenExpire: { $gt: Date.now() },
+    })
+
+    if (professionalExist) {
+
+      await Professional.findByIdAndUpdate(professionalExist.id,{ verifiedEmailToken: undefined, verifiedEmailTokenExpire: undefined, emailVerified: true })
+      res.status(200).json({ Messgae: "email verified sucessfully" })
+
+    } else {
+      res.status(404).json({ Messgae: "Invalid link or token has expired" })
+
+    }
+
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" })
+  }
+
+
+}
 
 export const loginProfessional = async (req: Request, res: Response) => {
   const { email, password } = req.body;
