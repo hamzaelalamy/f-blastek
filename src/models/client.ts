@@ -1,6 +1,5 @@
 import {Schema, model, Document} from "mongoose";
 import bcrypt from 'bcrypt';
-import crypto from 'crypto';
 
 interface IClient extends Document {
     firstName: string;
@@ -15,6 +14,9 @@ interface IClient extends Document {
     photo?: string;
     password: string;
     payments?: number[];
+    emailVerified :boolean;
+    verifiedEmailToken?: string;
+    verifiedEmailTokenExpire?: Date,
     resetPasswordToken?: string;
     resetPasswordExpire?: Date;
 
@@ -76,6 +78,12 @@ const clientSchema = new Schema<IClient>({
         type: [Number],
         default: []
     },
+    emailVerified : {
+        type: Boolean,
+        default: false
+    },
+    verifiedEmailToken: String,
+    verifiedEmailTokenExpire: Date,
     resetPasswordToken: String,
     resetPasswordExpire: Date,
 }, { timestamps: true });

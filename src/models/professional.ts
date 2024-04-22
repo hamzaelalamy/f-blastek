@@ -22,6 +22,9 @@ interface IProfessional extends Document {
     };
     password: string;
     payments?: number[];
+    emailVerified :boolean;
+    verifiedEmailToken?: string;
+    verifiedEmailTokenExpire?: Date,
     // payments_history: any[];
     passwordResetToken?: string;
     passwordResetTokenExpires?: Date;
@@ -54,7 +57,7 @@ const professionalSchema = new Schema<IProfessional>({
     },
     phoneNumber: { 
         type: String, 
-        match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)'] 
+        // match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)'] 
     },
     city: { 
         type: String, 
@@ -104,6 +107,12 @@ const professionalSchema = new Schema<IProfessional>({
         type: [Number],
         default: []
     },
+    emailVerified : {
+        type: Boolean,
+        default: false
+    },
+    verifiedEmailToken: String,
+    verifiedEmailTokenExpire: Date,
     // payments_history: { type: [Schema.Types.Mixed], required: [true, 'Payments history is required'] },
     passwordResetToken: { type: String },
     passwordResetTokenExpires: { type: Date }
