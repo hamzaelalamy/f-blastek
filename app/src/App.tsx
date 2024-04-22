@@ -1,10 +1,20 @@
 import './App.css'
-
+import LoginForm from './components/common/LoginForm'
+import Header from './components/common/Header'
+//import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DashboardLayout from './layouts/DashboardLayout'
 function App() {
 
   return (
     <>
-      <h1 className='flex items-center justify-center h-screen text-black' >Testing</h1>
+   <Router>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/dashboard" element={<DashboardLayout />} />
+      </Routes>
+    </Router>
+    
     </>
   )
 }
