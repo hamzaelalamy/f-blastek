@@ -123,7 +123,7 @@ export default function Professionals() {
   
     return (
       <>
-        <div className="p-6 px-0 overflow-scroll">
+        <div className="p-6 px-0 mr-10 overflow-auto">
           <table className="w-full mt-4 text-left table-auto min-w-max">
             <thead>
               <tr>
@@ -189,7 +189,7 @@ export default function Professionals() {
                 </th>
                 <th className="p-4 transition-colors cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 hover:bg-blue-gray-50">
                   <p className="flex items-center justify-between gap-2 font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                    Specialization{" "}
+                    Verified{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -209,7 +209,7 @@ export default function Professionals() {
                 </th>
                 <th className="p-4 transition-colors cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 hover:bg-blue-gray-50">
                   <p className="flex items-center justify-between gap-2 font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                    Verified{" "}
+                  Specialization{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"

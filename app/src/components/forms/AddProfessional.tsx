@@ -1,32 +1,31 @@
 import { useState } from 'react';
-import { useAppDispatch, } from '../../hooks/ReduxHooks';
+import { useAppDispatch } from '../../hooks/ReduxHooks';
 import { actPostProfessionals } from '../../slices/professionals/ProfessionalsSlice';
 import { useNavigate } from 'react-router-dom';
 
-
 function CreateProfessional() {
-    const initialFormData = {
-        firstName: '',
-        lastName: '',
-        cin: '',
-        email: '',
-        phoneNumber: '',
-        city: '',
-        address: '',
-        specialization: '',
-        hourlyRate: '',
-        bio: '',
-        backgroundCheckCompleted: false,
-        availability: {
-          days: [],
-          timeslots: []
-        },
-        password: ''
-      };
+  const initialFormData = {
+    firstName: '',
+    lastName: '',
+    cin: null,
+    email: '',
+    phoneNumber: '',
+    city: '',
+    address: '',
+    specialization: '',
+    hourlyRate: '',
+    bio: '',
+    backgroundCheckCompleted: false,
+    availability: {
+      days: [],
+      timeslots: []
+    },
+    password: ''
+  };
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialFormData);
 
-  const handleChange = (e:React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({
       ...formData,
@@ -36,7 +35,7 @@ function CreateProfessional() {
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await dispatch(actPostProfessionals(formData));
@@ -45,166 +44,116 @@ function CreateProfessional() {
     } catch (error) {
       console.error('Error submitting form:', error);
     }
-    
   };
 
-  return (
-    <form onSubmit={handleSubmit} className='pb-40 pl-40 pr-40 ml-40 mr-40 '>
-      <div className="flex flex-col p-4 mt-4 bg-gray-900 rounded-lg shadow-sm">
-        <h2 className="text-lg font-bold text-white">Create Professional</h2>
-        {/* First Name */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="firstName">First Name</label>
-          <input
-            placeholder="First name"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="text"
-            id="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Last Name */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="lastName">Last Name</label>
-          <input
-            placeholder="Last name"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="text"
-            id="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </div>
-        {/* CIN */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="cin">CIN</label>
-          <input
-            placeholder="CIN"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="text"
-            id="cin"
-            value={formData.cin}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Email */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="email">Email</label>
-          <input
-            placeholder="Email"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Phone Number */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="phoneNumber">Phone Number</label>
-          <input
-            placeholder="Phone number"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="text"
-            id="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-          />
-        </div>
-        {/* City */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="city">City</label>
-          <input
-            placeholder="City"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="text"
-            id="city"
-            value={formData.city}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Address */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="address">Address</label>
-          <textarea
-            placeholder="Address"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            id="address"
-            value={formData.address}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        {/* Specialization */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="specialization">Specialization</label>
-          <input
-            placeholder="Specialization"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="text"
-            id="specialization"
-            value={formData.specialization}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Hourly Rate */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="hourlyRate">Hourly Rate</label>
-          <input
-            placeholder="Hourly rate"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="number"
-            id="hourlyRate"
-            value={formData.hourlyRate}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Bio */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="bio">Bio</label>
-          <textarea
-            placeholder="Bio"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            id="bio"
-            value={formData.bio}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        {/* Background Check Completed */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="backgroundCheckCompleted">Background Check Completed</label>
-          <input
-            className="ml-2"
-            type="checkbox"
-            id="backgroundCheckCompleted"
-            checked={formData.backgroundCheckCompleted}
-            onChange={(e) =>
-                setFormData({
-                ...formData,
-                backgroundCheckCompleted: e.target.checked
-                })
-            }
+    return (
+        <section className="max-w-4xl p-3 ml-auto mr-auto text-black bg-white rounded-md shadow-md">
+      <h1 className="text-xl font-bold capitalize">Account settings</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+          <div>
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+            //   value={formData.username}
+              onChange={handleChange}
             />
+          </div>
+
+          <div>
+            <label htmlFor="emailAddress">Email Address</label>
+            <input
+              id="emailAddress"
+              type="email"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+            //   value={formData.emailAddress}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="passwordConfirmation">Password Confirmation</label>
+            <input
+              id="passwordConfirmation"
+              type="password"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+            //   value={formData.passwordConfirmation}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="color">Color</label>
+            <input
+              id="color"
+              type="color"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+            //   value={formData.color}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="city">Select City</label>
+            <select
+              id="city"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+              value={formData.city}
+              onChange={handleChange}
+            >
+              <option value="Surabaya">Surabaya</option>
+              <option value="Jakarta">Jakarta</option>
+              <option value="Tangerang">Tangerang</option>
+              <option value="Bandung">Bandung</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="range">Range</label>
+            <input
+              id="range"
+              type="range"
+              className="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+            //   value={formData.range}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="date">Date</label>
+            <input
+              id="date"
+              type="date"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+            //   value={formData.date}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="textarea">Text Area</label>
+            <textarea
+              id="textarea"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+            //   value={formData.textarea}
+              onChange={handleChange}
+            ></textarea>
+          </div>
         </div>
-        {/* Password */}
-        <div className="mt-4">
-          <label className="text-white" htmlFor="password">Password</label>
-          <input
-            placeholder="Password"
-            className="w-full px-2 py-1 text-white bg-gray-800 border-gray-700 rounded-md"
-            type="password"
-            id="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+
+        <div className="flex justify-end mt-6">
+          <button className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
         </div>
-        {/* Submit button */}
-        <div className="flex justify-end mt-4">
-          <button className="px-4 py-1 text-black transition-all duration-200 bg-white rounded-md hover:bg-blue-500 hover:text-white" type="submit">Submit</button>
-        </div>
-      </div>
-    </form>
-  );
+      </form>
+    </section>      );
 }
 
 export default CreateProfessional;

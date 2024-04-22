@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AdminLayout from "../layouts/AdminLayout";
 import Professional from "../pages/professional/Professional";
+import AddProfessional from "../pages/professional/AddProfessional";
 
 const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
             {
                 path: "professionals",
                 element: <Professional/>
+            },
+            {
+                path: "professionals/create",
+                element: <AddProfessional/>
             }
         ]
     }
