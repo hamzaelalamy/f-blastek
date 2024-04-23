@@ -3,14 +3,14 @@ import {
   actGetProfessionals,
   actDeleteProfessionals,
 } from '../../slices/professionals/ProfessionalsSlice';
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
 export default function Professionals() {
     const dispatch = useAppDispatch();
     const { loading, error, records } = useAppSelector(
-      (state) => state.professionals
+      (state) => state.professional
     );
     useEffect(() => {
       if (!records.length) {
@@ -18,7 +18,7 @@ export default function Professionals() {
       }
     }, [dispatch, records]);
   
-    const handleDelete = (userId) => {
+    const handleDelete = (userId:React.FormEvent<HTMLFormElement>) => {
       dispatch(actDeleteProfessionals(userId))
         .then(() => console.log("User deleted successfully"))
         .catch((err) => console.error("Failed to delete user", err));

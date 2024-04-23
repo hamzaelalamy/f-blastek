@@ -13,8 +13,8 @@ const initialState: IProState = {
     error: null
 };
 
-const proSlice = createSlice({
-    name: "professionals",
+const professionalSlice = createSlice({
+    name: "professionalReducer",
     initialState,
     reducers:{},
     extraReducers: (builder) => {
@@ -82,4 +82,4 @@ const proSlice = createSlice({
 });
 
 export {actGetProfessionals, actPostProfessionals, actPutProfessionals, actDeleteProfessionals};
-export default proSlice.reducer;
+export default professionalSlice.reducer;

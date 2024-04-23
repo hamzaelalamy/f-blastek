@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import professionals from '../slices/professionals/ProfessionalsSlice'
+import professionalReducer from '../slices/professionals/ProfessionalsSlice'
 
 
 export const store = configureStore({
-  reducer: {professionals},
+  reducer:{
+  professional: professionalReducer,
+}
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
