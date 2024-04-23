@@ -5,7 +5,7 @@ import loginSanitization from '../utils/login.sanitization'
 const router = express.Router();
 
 
-router.post('/auth/loginAdmin',loginAdmin);
+router.post('/auth/loginAdmin',loginSanitization,validateRequest,loginAdmin);
 router.post('/auth/logoutAdmin',loginSanitization,validateRequest,logoutAdmin);
 router.post('/auth/forgotPasswordAdmin',forgotPasswordAdmin);
 router.patch('/auth/resetPasswordAdmin/:token',resetPasswordAdmin);

@@ -4,6 +4,7 @@ import Header from './components/common/Header'
 //import { Routes, Route } from 'react-router-dom'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DashboardLayout from './layouts/DashboardLayout'
+import AdminCrud from './components/common/AdminCrud';
 function App() {
 
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/dashboard" element={<DashboardLayout />} />
+        <Route path="/adminCrud" element={<AdminCrud />} />
       </Routes>
     </Router>
     
