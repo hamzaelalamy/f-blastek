@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 export default function Professionals() {
     const dispatch = useAppDispatch();
     const { loading, error, records } = useAppSelector(
-      (state) => state.professional
+      (state) => state.professionals
     );
     useEffect(() => {
       if (!records.length) {

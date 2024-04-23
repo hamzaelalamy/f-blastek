@@ -26,9 +26,9 @@ const initialState : AdminState ={
 };  
 
 export const loginAdmin = createAsyncThunk(
-'/admin/loginAdmin',async(adminCredential:AdminState)=>{
-    console.log(adminCredential);
-const Response = await axios.post(`${LOCAL_URL}api/auth/loginAdmin`,adminCredential.admin)
+'/admins/loginAdmin',async(adminCredential:AdminState)=>{
+    
+const Response = await axios.post(`${LOCAL_URL}/auth/loginAdmin`,adminCredential.admin)
 console.log(Response.data);
 localStorage.setItem('admin',JSON.stringify(Response))
 return Response.data;
@@ -38,7 +38,7 @@ return Response.data;
 );
 
 const adminSlice = createSlice({
-    name:'admin',
+    name:'admins',
     initialState,
     reducers: {
       
