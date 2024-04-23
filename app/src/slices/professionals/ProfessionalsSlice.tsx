@@ -14,7 +14,7 @@ const initialState: IProState = {
 };
 
 const professionalSlice = createSlice({
-    name: "professional",
+    name: "professionalReducer",
     initialState,
     reducers:{},
     extraReducers: (builder) => {
