@@ -1,6 +1,5 @@
 import {Schema, model, Document} from "mongoose";
 import bcrypt from 'bcrypt';
-import crypto from 'crypto';
 
 interface IClient extends Document {
     firstName: string;

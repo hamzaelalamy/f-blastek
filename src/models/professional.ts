@@ -57,7 +57,7 @@ const professionalSchema = new Schema<IProfessional>({
     },
     phoneNumber: { 
         type: String, 
-        match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)'] 
+        // match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)'] 
     },
     city: { 
         type: String, 

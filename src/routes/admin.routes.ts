@@ -11,7 +11,10 @@ import adminAuthMiddleware from '../middleware/authorization';
 
 const router = express.Router();
 
-router.post('/admins', verifyToken, adminAuthMiddleware, createAdmin);
+router.post('/admins', 
+// verifyToken,
+//  adminAuthMiddleware,
+  createAdmin);
 router.get('/admins', verifyToken, adminAuthMiddleware, getAllAdmins);
 router.get('/admins/:id', verifyToken, adminAuthMiddleware, getAdminById);
 router.put('/admins/:id', verifyToken, adminAuthMiddleware, updateAdminById);
