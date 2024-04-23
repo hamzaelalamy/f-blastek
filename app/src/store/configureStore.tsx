@@ -1,16 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit'
+import {configureStore} from "@reduxjs/toolkit"
+import adminReducer  from "../slices/adminSlice"
 import professionalReducer from '../slices/professionals/ProfessionalsSlice'
 
 
 export const store = configureStore({
+<<<<<<< HEAD
   reducer:{
   professionals: professionalReducer,
 }
 })
+=======
+>>>>>>> cb154808865471d28fb28c4e70d74f4fa2ee5f29
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+reducer:{
+    admins : adminReducer, 
+    professionals: professionalReducer,
+
+}
+});
+
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
 
-// export default store
+
+export default store;
