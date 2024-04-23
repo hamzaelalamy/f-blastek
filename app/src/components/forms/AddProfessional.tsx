@@ -73,6 +73,14 @@ function CreateProfessional() {
           <label htmlFor="visitors" className="block mb-2 text-sm font-medium text-gray-900">Hourly Rate</label>
           <input type="number" id="visitors" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required />
         </div>
+        <div>
+          <label htmlFor="specialization" className="block mb-2 text-sm font-medium text-gray-900">Specialization</label>
+          <input type="text" id="specialization" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Babysitter" required />
+        </div>
+        <div>
+          <label htmlFor="cin" className="block mb-2 text-sm font-medium text-gray-900">CIN</label>
+          <input type="text" id="cin" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="AB12345" required />
+        </div>
       </div>
       <div className="mb-6">
         <label htmlFor="specialization" className="block mb-2 text-sm font-medium text-gray-900">Specialization</label>
