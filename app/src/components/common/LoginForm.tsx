@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import { loginAdmin } from "../../slices/adminSlice";
-import {useAppDispatch,useAppSelector} from "../../hooks/reduxHooks"
+import {useAppDispatch,useAppSelector} from "../../hooks/ReduxHooks"
 import { useNavigate  } from "react-router-dom";
 import Header from "./Header";
 
@@ -9,7 +9,7 @@ function LoginForm() {
   const [email,setEmail] =useState('');
   const [password,setPassword] =useState('');
   const {loading, error, admin} = useAppSelector(
-    (state) => state.admin
+    (state) => state.admins
   )
   
   const dispatch = useAppDispatch();

@@ -1,10 +1,14 @@
 import {configureStore} from "@reduxjs/toolkit"
 import adminReducer  from "../slices/adminSlice"
+import professionalReducer from '../slices/professionals/ProfessionalsSlice'
 
-const store = configureStore({
+
+export const store = configureStore({
 
 reducer:{
-    admin : adminReducer,
+    admins : adminReducer, 
+    professionals: professionalReducer,
+
 }
 });
 
