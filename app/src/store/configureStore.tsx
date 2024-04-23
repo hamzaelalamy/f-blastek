@@ -4,7 +4,7 @@ import professionalReducer from '../slices/professionals/ProfessionalsSlice'
 
 export const store = configureStore({
   reducer:{
-  professional: professionalReducer,
+  professionals: professionalReducer,
 }
 })
 
