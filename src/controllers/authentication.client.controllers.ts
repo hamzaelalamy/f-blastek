@@ -87,7 +87,7 @@ export const loginClient = async (req: Request, res: Response) => {
       .compare(password, clientExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {
-          const payload = { id: clientExist.id, user_type_id: "client" };
+          const payload = { id: clientExist.id, role: "client" };
           jwt.sign(payload, secret_key, { expiresIn: "7d" }, (err, token) => {
             if (err) {
               return res

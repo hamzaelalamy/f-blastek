@@ -4,7 +4,7 @@ import Professional from "../pages/professional/Professional";
 import AddProfessional from "../pages/professional/AddProfessional";
 import LoginForm from "../components/common/LoginForm";
 import EditProfessionalPage from "../pages/professional/EditProfessionalPage";
-
+import Dashboard from "../pages/dashboard";
 
 const router = createBrowserRouter([
   {
