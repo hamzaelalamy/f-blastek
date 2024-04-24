@@ -3,6 +3,7 @@ import AdminLayout from "../layouts/AdminLayout";
 import Professional from "../pages/professional/Professional";
 import AddProfessional from "../pages/professional/AddProfessional";
 import LoginForm from "../components/common/LoginForm";
+import Dashboard from "../pages/dashboard";
 
 const router = createBrowserRouter([
     {
@@ -11,8 +12,8 @@ const router = createBrowserRouter([
         errorElement: <div>Not Found</div>,
         children:[
             {
-                index: true,
-                element: <div>Dashboard: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus at placeat porro quidem nihil. Eos quibusdam modi cumque illo corrupti, eum inventore placeat consequatur. Est labore quas ut praesentium voluptatum.</div>
+                path: "dashboard",
+                element: <Dashboard/>
             },
             {
                 path: "professionals",
