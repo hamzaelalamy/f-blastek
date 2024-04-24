@@ -4,6 +4,8 @@ import { createSlice, PayloadAction,createAsyncThunk  } from "@reduxjs/toolkit";
 
 interface AdminState{
     admin:{
+        firstName: string | null;
+        lastName: string | null;
         email:string | null,
         password: string | null
     }
@@ -15,6 +17,8 @@ interface AdminState{
 const initialState : AdminState ={
         loading:false,
         admin:{
+            firstName: null,
+            lastName: null,
             email:  null ,
             password : null
         },

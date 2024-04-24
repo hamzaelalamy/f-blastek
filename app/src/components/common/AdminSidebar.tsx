@@ -6,6 +6,12 @@ export default function AdminSidebar() {
       <div className="overflow-hidden bg-white lg:w-56 md:w-40 sm:w-32 rounded-r-3xl">
         
         <ul className="flex flex-col py-4">
+        <li>
+            <Link to="/backoffice/admins" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
+              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-home"></i></span>
+              <span className="text-sm font-medium">Admins</span>
+            </Link>
+          </li>
           <li>
             <Link to="/backoffice/dashboard" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
               <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-home"></i></span>

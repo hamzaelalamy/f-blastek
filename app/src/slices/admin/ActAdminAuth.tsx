@@ -3,6 +3,7 @@ import axios from "axios";
 import {LOCAL_URL} from '../../constants/Config'
 import  { jwtDecode } from 'jwt-decode'
 import {authAdminState} from '../admin/authSlice'
+
 export const loginAdmin = createAsyncThunk(
     '/admins/loginAdmin',async(adminCredential:authAdminState)=>{
         
