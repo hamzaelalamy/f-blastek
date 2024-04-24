@@ -3,6 +3,7 @@ import AdminLayout from "../layouts/AdminLayout";
 import Professional from "../pages/professional/Professional";
 import AddProfessional from "../pages/professional/AddProfessional";
 import LoginForm from "../components/common/LoginForm";
+import EditProfessionalPage from "../pages/professional/EditProfessionalPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "professionals/create",
         element: <AddProfessional />,
+      },
+      {
+        path: "professionals/edit/:id",
+        element: <EditProfessionalPage />,
       },
     ],
   },

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {actGetProfessionals, actPostProfessionals, actPutProfessionals, actDeleteProfessionals } from "./ActProfessionals.tsx";
+import {actGetProfessionals, actPostProfessionals, actPutProfessionals, actDeleteProfessionals, actGetProfessionalById } from "./ActProfessionals.tsx";
 
 interface IProState {
     records: {id:number, title:string, prefix:string, img:string }[],
@@ -21,13 +21,13 @@ const professionalSlice = createSlice({
         builder.addCase(actGetProfessionals.pending, (state) => {
             state.loading = "pending";
             state.error = null
-        });
-        builder.addCase(actGetProfessionals.fulfilled, (state, action) => {
+        })
+        .addCase(actGetProfessionals.fulfilled, (state, action) => {
             state.loading = "succeeded";
             state.records = action.payload;
             state.error = null
-        });
-        builder.addCase(actGetProfessionals.rejected, (state, action) => {
+        })
+        .addCase(actGetProfessionals.rejected, (state, action) => {
             state.loading = "failed";
             if(action.payload && typeof action.payload == "string") {
                 state.error = action.payload;
@@ -77,9 +77,24 @@ const professionalSlice = createSlice({
             if (action.payload && typeof action.payload == "string") {
                 state.error = action.payload;
             }
+        })
+        .addCase(actGetProfessionalById.pending, (state) => {
+            state.loading = "pending";
+            state.error = null;
+        })
+        .addCase(actGetProfessionalById.fulfilled, (state, action) => {
+            state.loading = "succeeded";
+            state.records = [action.payload];
+            state.error = null;
+        })
+        .addCase(actGetProfessionalById.rejected, (state, action) => {
+            state.loading = "failed";
+            if (action.payload && typeof action.payload == "string") {
+                state.error = action.payload;
+            }
         });
     }
 });
 
-export {actGetProfessionals, actPostProfessionals, actPutProfessionals, actDeleteProfessionals};
+export {actGetProfessionals, actPostProfessionals, actPutProfessionals, actDeleteProfessionals, actGetProfessionalById};
 export default professionalSlice.reducer;

@@ -5,6 +5,8 @@ import {
 } from '../../slices/professionals/ProfessionalsSlice';
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Professionals() {
@@ -19,8 +21,9 @@ export default function Professionals() {
     }, [dispatch, records]);
   
     const handleDelete = (userId:React.FormEvent<HTMLFormElement>) => {
+      toast("User deleted successfully", { type: "success" });
       dispatch(actDeleteProfessionals(userId))
-        .then(() => console.log("User deleted successfully"))
+        .then(() => {console.log("User deleted successfully");})
         .catch((err) => console.error("Failed to delete user", err));
     };
   
@@ -80,6 +83,7 @@ export default function Professionals() {
           </td>
           <td className="p-4 border-b border-blue-gray-50">
             <div className="flex items-center">
+              <Link to={`edit/${record._id}`}>
               <button
                 className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
                 type="button"
@@ -96,6 +100,7 @@ export default function Professionals() {
                   </svg>
                 </span>
               </button>
+              </Link>
               <button
                 className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
                 type="button"

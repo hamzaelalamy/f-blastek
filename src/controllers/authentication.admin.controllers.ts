@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import Admin from "../models/admin";
 import dotenv from "dotenv";
 import crypto from "crypto";
@@ -15,7 +15,7 @@ export const loginAdmin = async (req: Request, res: Response) => {
   const adminExist = await Admin.findOne({ email });
 
   if (adminExist) {
-    bcrypt
+    bcryptjs
       .compare(password, adminExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {

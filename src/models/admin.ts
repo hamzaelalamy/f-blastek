@@ -1,5 +1,5 @@
 import {Schema, model, Document} from "mongoose";
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 interface IAdmin extends Document {
   firstName: string;
@@ -43,7 +43,7 @@ adminSchema.pre<IAdmin>('save', async function (next) {
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(this.password, 10);
+    const hashedPassword = await bcryptjs.hash(this.password, 10);
     this.password = hashedPassword;
     next();
   } catch (error: unknown) {
