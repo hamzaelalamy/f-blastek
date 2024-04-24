@@ -19,7 +19,7 @@ export const loginAdmin = async (req: Request, res: Response) => {
       .compare(password, adminExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {
-          const payload = { id: adminExist.id, user_type_id: "admin" };
+          const payload = { id: adminExist.id, role: "admin" };
           const token = jwt.sign(
             payload,
             secret_key,

@@ -12,8 +12,8 @@ const adminAuthMiddleware = (req: Request, res: Response, next: NextFunction) =>
   if (!user) {
     return res.status(401).json({ message: 'Unauthorized: No token provided' });
   }
-    // Check if user_type_id is admin
-    if (user.user_type_id !== 'admin') {
+    // Check if role is admin
+    if (user.role !== 'admin') {
       return res.status(403).json({ message: 'Forbidden: Not an admin' });
     }
 
