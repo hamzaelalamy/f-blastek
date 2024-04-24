@@ -232,7 +232,7 @@ router.get("/professionals/:id", getProfessionalById);
 
 router.put(
   "/professionals/:id",
-  verifyToken,
+  // verifyToken,
   ProfessionalSanitization,
   validateRequest,
   updateProfessionalById

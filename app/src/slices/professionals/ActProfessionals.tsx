@@ -35,7 +35,7 @@ export const actPostProfessionals = createAsyncThunk("professionals/actPostProfe
 export const actPutProfessionals = createAsyncThunk("professionals/actPutProfessionals",async (data,thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-        const response = await axios.put(LOCAL_URL+"professionals", data);
+        const response = await axios.put(LOCAL_URL+`professionals/${data._id}`, data);
         return response.data;
     } catch (error) {
         if(axios.isAxiosError(error)){
@@ -49,9 +49,22 @@ export const actPutProfessionals = createAsyncThunk("professionals/actPutProfess
 export const actDeleteProfessionals = createAsyncThunk("professionals/actDeleteProfessionals",async (id,thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-        console.log("here");
-        console.log(id);
         const response = await axios.delete(LOCAL_URL+`professionals/${id}`);
+        return response.data;
+    } catch (error) {
+        if(axios.isAxiosError(error)){
+            return rejectWithValue(error.response?.data.message || error.message);
+        } else {
+            return rejectWithValue("I Think Something went wrong!");
+        }
+    }
+});
+
+export const actGetProfessionalById = createAsyncThunk("professionals/actGetProfessionalById",async (id,thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+        const response = await axios.get(LOCAL_URL+`professionals/${id}`);
+        console.log(response.data)
         return response.data;
     } catch (error) {
         if(axios.isAxiosError(error)){

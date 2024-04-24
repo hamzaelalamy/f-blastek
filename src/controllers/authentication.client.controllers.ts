@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import Client from "../models/client";
 import dotenv from "dotenv";
 import crypto from "crypto";
@@ -83,7 +83,7 @@ export const loginClient = async (req: Request, res: Response) => {
   const clientExist = await Client.findOne({ email });
 
   if (clientExist) {
-    bcrypt
+    bcryptjs
       .compare(password, clientExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {
