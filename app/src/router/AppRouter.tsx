@@ -4,6 +4,7 @@ import Professional from "../pages/professional/Professional";
 import AddProfessional from "../pages/professional/AddProfessional";
 import LoginForm from "../components/common/LoginForm";
 import EditProfessionalPage from "../pages/professional/EditProfessionalPage";
+import Dashboard from "../pages/dashboard/index.tsx";
 
 
 const router = createBrowserRouter([
@@ -13,8 +14,8 @@ const router = createBrowserRouter([
     errorElement: <div>Not Found</div>,
     children: [
       {
-                path: "dashboard",
-                element: <Dashboard/>
+        path: "dashboard",
+        element: <Dashboard/>
        },
       {
         path: "professionals",
@@ -34,11 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: "services/create",
-        element: <div>Categories</div>,
+        element: <div>Create Service</div>,
       },
       {
         path: "services/edit/:id",
-        element: <div>Categories</div>,
+        element: <div>edit service</div>,
       }
     ],
   },

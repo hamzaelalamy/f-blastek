@@ -22,9 +22,9 @@ export default function Professionals() {
   
     const handleDelete = (userId:React.FormEvent<HTMLFormElement>) => {
       toast("User deleted successfully", { type: "success" });
-      dispatch(actDeleteProfessionals(userId))
-        .then(() => {console.log("User deleted successfully");})
-        .catch((err) => console.error("Failed to delete user", err));
+      // dispatch(actDeleteProfessionals(userId))
+      //   .then(() => {console.log("User deleted successfully");})
+      //   .catch((err) => console.error("Failed to delete user", err));
     };
   
     const professionals =
@@ -106,6 +106,7 @@ export default function Professionals() {
                 type="button"
                 onClick={() => handleDelete(record._id)}
               >
+                <ToastContainer />
                 <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
