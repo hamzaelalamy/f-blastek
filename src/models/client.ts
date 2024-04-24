@@ -1,5 +1,5 @@
 import {Schema, model, Document} from "mongoose";
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 interface IClient extends Document {
     firstName: string;
@@ -94,7 +94,7 @@ clientSchema.pre<IClient>('save', async function (next) {
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(this.password, 10);
+        const hashedPassword = await bcryptjs.hash(this.password, 10);
         this.password = hashedPassword;
         next();
     } catch (error) {

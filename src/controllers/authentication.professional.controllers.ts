@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import Professional from "../models/professional";
 import {sendEmail} from "../utils/email";
 import crypto from "crypto"
@@ -84,7 +84,7 @@ export const loginProfessional = async (req: Request, res: Response) => {
   const professionalExist = await Professional.findOne({ email });
 
   if (professionalExist) {
-    bcrypt
+    bcryptjs
       .compare(password, professionalExist.password)
       .then((isMatch: boolean) => {
         if (isMatch) {

@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction,createAsyncThunk  } from "@reduxjs/toolkit";
 import {LOCAL_URL} from '../constants/Config'
 import axios from "axios";
-import { Response } from 'express';
-
 
 
 interface AdminState{
