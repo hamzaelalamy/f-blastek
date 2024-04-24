@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {loginAdmin} from './AdminAuthApi'
+import {loginAdmin} from './ActAdminAuth'
 
  export interface authAdminState{
     admin:{

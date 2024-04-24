@@ -11,9 +11,9 @@ const AdminLayout = () => {
         <Outlet />
         </div>
       </div>
-      <div className="footer">
+      {/* <div className="footer">
         <footer className="h-10 text-center bg-blue-500" >Footer</footer>
-     </div>
+     </div> */}
     </div>
   );
 };

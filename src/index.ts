@@ -19,6 +19,7 @@ import authProfessionalRoutes from "./routes/authentication.professional.ts.rout
 import authAdminRoutes from "./routes/authentication.admin.routes";
 import paymentRoutes from "./routes/payment.routes"
 import InterventionRoutes from "./routes/intervention.routes";
+import categoryRoutes from "./routes/categories.routes";
 dotenv.config();
 
 const app: Express = express();
@@ -48,6 +49,7 @@ app.use('/api', authAdminRoutes);
 app.use('/api', InterventionRoutes);
 app.use('/api', paymentRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api', categoryRoutes);
 
 app.get('*', (req: Request, res: Response) => {
   res.status(404).json({message: 'Not Found'});
