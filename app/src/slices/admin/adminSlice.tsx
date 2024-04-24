@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction,createAsyncThunk  } from "@reduxjs/toolkit";
 import {LOCAL_URL} from '../../constants/Config'
 import axios from "axios";
-import { Response } from 'express';
+import jwt_decode from 'jwt-decode'
 
 
 
@@ -29,7 +29,7 @@ export const loginAdmin = createAsyncThunk(
 '/admins/loginAdmin',async(adminCredential:AdminState)=>{
     
 const Response = await axios.post(`${LOCAL_URL}/auth/loginAdmin`,adminCredential.admin)
-console.log(Response.data);
+console.log(Response.data.token);
 localStorage.setItem('admin',JSON.stringify(Response))
 return Response.data;
 
