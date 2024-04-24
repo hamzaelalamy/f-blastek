@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 
 export default function AdminSidebar() {
   return (
-    <div className="flex flex-row min-h-screen mr-20 bg-gray-100">
+    <div className="flex flex-row min-h-screen mr-[1rem] bg-gray-100">
       <div className="overflow-hidden bg-white lg:w-56 md:w-40 sm:w-32 rounded-r-3xl">
         
         <ul className="flex flex-col py-4">
           <li>
-            <Link to="/dashboard" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
+            <Link to="/backoffice/dashboard" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
               <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-home"></i></span>
               <span className="text-sm font-medium">Dashboard</span>
             </Link>
