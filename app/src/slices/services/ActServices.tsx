@@ -59,7 +59,7 @@ export const actDeleteServices = createAsyncThunk("services/actDeleteServices",a
     }
 });
 
-export const GetCategoryById = createAsyncThunk("services/GetCategoryById",async (id,thunkAPI) => {
+export const actGetCategoryById = createAsyncThunk("services/GetCategoryById",async (id,thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
         const response = await axios.get(LOCAL_URL+`categories/${id}`);
@@ -71,4 +71,4 @@ export const GetCategoryById = createAsyncThunk("services/GetCategoryById",async
             return rejectWithValue("I Think Something went wrong!");
         }
     }
-}
+});
