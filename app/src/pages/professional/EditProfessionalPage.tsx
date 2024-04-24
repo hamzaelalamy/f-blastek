@@ -1,4 +1,4 @@
-import EditProfessional from "../../components/forms/EditProfessional"
+import EditProfessional from "../../components/professionals/forms/EditProfessional"
 
 function EditProfessionalPage() {
   return (

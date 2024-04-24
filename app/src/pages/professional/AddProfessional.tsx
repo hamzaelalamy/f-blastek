@@ -1,4 +1,4 @@
-import CreateProfessional from "../../components/forms/AddProfessional"
+import CreateProfessional from "../../components/professionals/forms/AddProfessional"
 
 function AddProfessional() {
   return (

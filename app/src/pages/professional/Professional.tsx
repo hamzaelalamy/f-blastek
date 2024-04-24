@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Professionals from "../../components/tables/Professionals";
+import Professionals from "../../components/professionals/tables/Professionals";
 
 function Professional() {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { actPutProfessionals, actGetProfessionalById } from '../../slices/professionals/ProfessionalsSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks/ReduxHooks';
+import { actPutProfessionals } from '../../../slices/professionals/ProfessionalsSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function EditProfessional() {

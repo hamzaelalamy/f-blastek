@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from '../../hooks/ReduxHooks';
-import { actPostProfessionals } from '../../slices/professionals/ProfessionalsSlice';
+import { useAppDispatch } from '../../../hooks/ReduxHooks';
+import { actPostProfessionals } from '../../../slices/professionals/ProfessionalsSlice';
 import { useNavigate } from 'react-router-dom';
 
 function CreateProfessional() {

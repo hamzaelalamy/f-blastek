@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/ReduxHooks";
 import {
   actGetProfessionals,
   actDeleteProfessionals,
-} from '../../slices/professionals/ProfessionalsSlice';
+} from '../../../slices/professionals/ProfessionalsSlice';
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -83,7 +83,7 @@ export default function Professionals() {
           </td>
           <td className="p-4 border-b border-blue-gray-50">
             <div className="flex items-center">
-              <Link to={`edit/${record._id}`}>
+              <Link to={`edit/${record._id}`} >
               <button
                 className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
                 type="button"

@@ -34,6 +34,18 @@ const router = createBrowserRouter([
         path: "professionals/edit/:id",
         element: <EditProfessionalPage />,
       },
+      {
+        path: "services",
+        element: <div>Services</div>,
+      },
+      {
+        path: "services/create",
+        element: <div>Categories</div>,
+      },
+      {
+        path: "services/edit/:id",
+        element: <div>Categories</div>,
+      }
     ],
   },
   {
