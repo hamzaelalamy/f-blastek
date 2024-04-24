@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { loginAdmin } from "../../slices/adminSlice";
+import { loginAdmin } from "../../slices/admin/adminSlice";
 import {useAppDispatch,useAppSelector} from "../../hooks/ReduxHooks"
 import { useNavigate  } from "react-router-dom";
 import Header from "./Header";

@@ -1,5 +1,5 @@
 import {configureStore} from "@reduxjs/toolkit"
-import adminReducer  from "../slices/adminSlice"
+import adminReducer  from "../slices/admin/adminSlice"
 import professionalReducer from '../slices/professionals/ProfessionalsSlice'
 
 
