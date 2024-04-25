@@ -41,43 +41,12 @@ export default function AdminList() {
           </div>
         </div>
       </td>
-      <td className="p-4 border-b border-blue-gray-50">
-        {/* <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-        {record.cin}
-        </p> */}
-      </td>
+    
       <td className="p-4 border-b border-blue-gray-50">
         <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
         {record.email}
         </p>
       </td>
-         {/*  {
-    admin.backgroundCheckCompleted ? (
-      <td className="p-4 border-b border-blue-gray-50">
-        <div className="w-max">
-          <div
-            className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-600 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20"
-            style={{ opacity: 1 }}
-          >
-            <span className="">{String(admin.backgroundCheckCompleted)}</span>
-          </div>
-        </div>
-      </td>
-    ) : (
-      <td className="p-4 border-b border-blue-gray-50">
-        <div className="w-max">
-          <div className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-red-700 uppercase rounded-md select-none whitespace-nowrap bg-red-500/20" style={{ opacity: 1 }}>
-            <span className="">{String(admin.backgroundCheckCompleted)}</span>
-          </div>
-        </div>
-      </td>
-    )
-  } */}
-          <td className="p-4 border-b border-blue-gray-50">
-            {/* <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-            {admin.specialization}
-            </p> */}
-          </td>
           <td className="p-4 border-b border-blue-gray-50">
             <div className="flex items-center">
               <Link to={`edit/${record._id}`} >
@@ -149,26 +118,7 @@ export default function AdminList() {
                     </svg>
                   </p>
                 </th>
-                <th className="p-4 transition-colors cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 hover:bg-blue-gray-50">
-                  <p className="flex items-center justify-between gap-2 font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                    CIN{" "}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="w-4 h-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-                      ></path>
-                    </svg>
-                  </p>
-                </th>
+               
                 <th className="p-4 transition-colors cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 hover:bg-blue-gray-50">
                   <p className="flex items-center justify-between gap-2 font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                     Email{" "}
@@ -189,46 +139,7 @@ export default function AdminList() {
                     </svg>
                   </p>
                 </th>
-                <th className="p-4 transition-colors cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 hover:bg-blue-gray-50">
-                  <p className="flex items-center justify-between gap-2 font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                    Verified{" "}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="w-4 h-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-                      ></path>
-                    </svg>
-                  </p>
-                </th>
-                <th className="p-4 transition-colors cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 hover:bg-blue-gray-50">
-                  <p className="flex items-center justify-between gap-2 font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                  Specialization{" "}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                      className="w-4 h-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-                      ></path>
-                    </svg>
-                  </p>
-                </th>
+               
                 <th className="p-4 transition-colors cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 hover:bg-blue-gray-50">
                   <p className="flex items-center justify-between gap-2 font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                     Actions{" "}
@@ -252,7 +163,7 @@ export default function AdminList() {
               </tr>
             </thead>
             <tbody>
-               {admins}
+              {admins} 
             </tbody>
           </table>
         </div>
