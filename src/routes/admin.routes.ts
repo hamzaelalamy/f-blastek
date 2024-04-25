@@ -15,7 +15,9 @@ router.post('/admins',
 // verifyToken,
 //  adminAuthMiddleware,
   createAdmin);
-router.get('/admins', verifyToken, adminAuthMiddleware, getAllAdmins);
+router.get('/admins', 
+//verifyToken, adminAuthMiddleware, 
+getAllAdmins);
 router.get('/admins/:id', verifyToken, adminAuthMiddleware, getAdminById);
 router.put('/admins/:id', verifyToken, adminAuthMiddleware, updateAdminById);
 router.delete('/admins/:id', verifyToken, adminAuthMiddleware, deleteAdminById);

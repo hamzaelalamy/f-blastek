@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {actGetProfessionals, actPostProfessionals, actPutProfessionals, actDeleteProfessionals, actGetProfessionalById } from "./ActProfessionals.tsx";
 
 interface IProState {
-    records: {id:number, title:string, prefix:string, img:string }[],
+    records: {"id:number", title:string, prefix:string, img:string }[],
     loading: "idle" | "pending" | "succeeded" | "failed",
     error: string | null
 }

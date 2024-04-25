@@ -5,7 +5,7 @@ import AddProfessional from "../pages/professional/AddProfessional";
 import LoginForm from "../components/common/LoginForm";
 import EditProfessionalPage from "../pages/professional/EditProfessionalPage";
 import Dashboard from "../pages/dashboard";
-
+import AdminList from "../components/admins/tables/AdminList"
 const router = createBrowserRouter([
   {
     path: "/backoffice",
@@ -13,9 +13,13 @@ const router = createBrowserRouter([
     errorElement: <div>Not Found</div>,
     children: [
       {
-                path: "dashboard",
-                element: <Dashboard/>
-       },
+        path: "dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "admins",
+        element: <AdminList />,
+      },
       {
         path: "professionals",
         element: <Professional />,
@@ -39,14 +43,13 @@ const router = createBrowserRouter([
       {
         path: "services/edit/:id",
         element: <div>Categories</div>,
-      }
+      },
     ],
   },
   {
     path: "/login",
     element: <LoginForm />,
   },
-
 ]);
 
 const AppRouter = () => {
