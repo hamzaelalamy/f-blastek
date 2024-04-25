@@ -21,10 +21,10 @@ export default function Professionals() {
     }, [dispatch, records]);
   
     const handleDelete = (userId:React.FormEvent<HTMLFormElement>) => {
-      toast("User deleted successfully", { type: "success" });
       dispatch(actDeleteProfessionals(userId))
-        .then(() => {console.log("User deleted successfully");})
-        .catch((err) => console.error("Failed to delete user", err));
+      .then(() => {console.log("User deleted successfully");})
+      .catch((err) => console.error("Failed to delete user", err));
+      toast("User deleted successfully", { type: "success" });
     };
   
     const professionals =
