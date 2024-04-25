@@ -1,69 +1,99 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { BsArrowLeftCircle } from 'react-icons/bs';
+import { AiFillPieChart } from 'react-icons/ai';
+import { SiFuturelearn } from 'react-icons/si';
+import { SiOpenaccess } from 'react-icons/si';
+import { CgProfile } from 'react-icons/cg';
+import { FaInbox } from "react-icons/fa";
+import { MdOutlineHomeRepairService } from "react-icons/md";
+import { IoBookOutline } from "react-icons/io5";
+import HamburgerButton from './HamburgerMenuButton/HamburgerButton'
 
-export default function AdminSidebar() {
+const Sidebar = () => {
+  const [open, setOpen] = useState(true);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const location = useLocation();
+
+  const Menus = [
+    { title: 'Dashboard', path: '/backoffice/dashboard', src: <AiFillPieChart /> },
+    { title: 'Clients', path: '/backoffice/clients', src: <CgProfile /> },
+    { title: 'Professionals', path: '/backoffice/Professionals', src: <CgProfile /> },
+    { title: 'Admins', path: '/backoffice/admins', src: <CgProfile /> },
+    { title: 'Servies', path: '/backoffice/services', src: <MdOutlineHomeRepairService /> },
+    { title: 'Interventions', path: '/backoffice/interventions', src: <IoBookOutline />},
+    { title: 'Inbox', path: '/backoffice/inbox', src: <FaInbox /> },
+    { title: 'Logout', path: '/login', src: <SiOpenaccess />, gap: 'true' },
+  ];
+
   return (
-    <div className="flex flex-row min-h-screen mr-[1rem] bg-gray-100">
-      <div className="overflow-hidden bg-white lg:w-56 md:w-40 sm:w-32 rounded-r-3xl">
-        
-        <ul className="flex flex-col py-4">
-       
-          <li>
-            <Link to="/backoffice/dashboard" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-home"></i></span>
-              <span className="text-sm font-medium">Dashboard</span>
+    <>
+      <div
+        className={`${open ? 'w-60' : 'w-fit'} hidden sm:block relative h-screen duration-300 bg-gray-100 border-r border-gray-200 p-5`}
+      >
+        <BsArrowLeftCircle
+          className={`${
+            !open && 'rotate-180'
+          } absolute text-3xl bg-white fill-slate-800 rounded-full cursor-pointer top-9 -right-4`}
+          onClick={() => setOpen(!open)}
+        />
+        <Link to='/'>
+          <div className={`flex ${open && 'gap-x-4'} items-center`}>
+            {open && (
+              <span className='text-xl font-medium whitespace-nowrap'>
+                F'blastek
+              </span>
+            )}
+          </div>
+        </Link>
+
+        <ul className='pt-6'>
+          {Menus.map((menu, index) => (
+            <Link to={menu.path} key={index}>
+              <li
+                className={`flex items-center gap-x-6 p-3 text-base font-normal rounded-lg cursor-pointer hover:bg-gray-200 ${
+                  menu.gap ? 'mt-9' : 'mt-2'
+                } ${location.pathname === menu.path && 'bg-gray-200'}`}
+              >
+                <span className='text-2xl'>{menu.src}</span>
+                <span className={`${!open && 'hidden'}`}>{menu.title}</span>
+              </li>
             </Link>
-          </li>
-          <li>
-            <Link to="/backoffice/admins" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-home"></i></span>
-              <span className="text-sm font-medium">Admins</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/music" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-music"></i></span>
-              <span className="text-sm font-medium">Clients</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/drink" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-drink"></i></span>
-              <span className="text-sm font-medium">Professionals</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/shopping" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-shopping-bag"></i></span>
-              <span className="text-sm font-medium">Services</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/chat" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-chat"></i></span>
-              <span className="text-sm font-medium">Chat</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/profile" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-user"></i></span>
-              <span className="text-sm font-medium">Profile</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/notifications" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-bell"></i></span>
-              <span className="text-sm font-medium">Notifications</span>
-              {/* <span className="px-3 py-px ml-auto mr-6 text-sm text-red-500 bg-red-100 rounded-full">5</span> */}
-            </Link>
-          </li>
-          <li>
-            <Link to="/logout" className="flex flex-row items-center h-12 text-gray-500 transition-transform duration-200 ease-in transform hover:translate-x-2 hover:text-gray-800">
-              <span className="inline-flex items-center justify-center w-12 h-12 text-lg text-gray-400"><i className="bx bx-log-out"></i></span>
-              <span className="text-sm font-medium">Logout</span>
-            </Link>
-          </li>
+          ))}
         </ul>
       </div>
-    </div>
+      {/* Mobile Menu */}
+      <div className="pt-3">
+        <HamburgerButton
+          setMobileMenu={setMobileMenu}
+          mobileMenu={mobileMenu}
+        />
+      </div>
+      <div className="sm:hidden">
+        <div
+          className={`${
+            mobileMenu ? 'flex' : 'hidden'
+          } absolute z-50 flex-col items-center self-end py-8 mt-16 space-y-6 font-bold sm:w-auto left-6 right-6`}
+        >
+          {Menus.map((menu, index) => (
+            <Link
+              to={menu.path}
+              key={index}
+              onClick={() => setMobileMenu(false)}
+            >
+              <span
+                className={`${
+                  location.pathname === menu.path && 'bg-gray-200'
+                } p-2 rounded-xl hover:bg-gray-200`}
+              >
+                {menu.title}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </>
   );
-}
+};
+
+export default Sidebar;
