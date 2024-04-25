@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BsArrowLeftCircle } from 'react-icons/bs';
 import { AiFillPieChart } from 'react-icons/ai';
@@ -8,6 +8,7 @@ import { CgProfile } from 'react-icons/cg';
 import { FaInbox } from "react-icons/fa";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { IoBookOutline } from "react-icons/io5";
+import HamburgerButton from './HamburgerMenuButton/HamburgerButton'
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -63,10 +64,10 @@ const Sidebar = () => {
       </div>
       {/* Mobile Menu */}
       <div className="pt-3">
-        {/* <HamburgerButton
+        <HamburgerButton
           setMobileMenu={setMobileMenu}
           mobileMenu={mobileMenu}
-        /> */}
+        />
       </div>
       <div className="sm:hidden">
         <div
