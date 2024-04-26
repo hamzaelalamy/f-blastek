@@ -61,6 +61,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginForm />,
   },
+  
 ]);
 
 const AppRouter = () => {

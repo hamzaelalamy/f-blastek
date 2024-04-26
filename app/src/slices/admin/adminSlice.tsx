@@ -1,22 +1,23 @@
 import { createSlice, PayloadAction,createAsyncThunk  } from "@reduxjs/toolkit";
-import {actGetAdmins,actPostAdmins,actPutAdmins,actDeleteAdmins,actGetAdminById} from "../admin/ActAdmin"
-
+import {LOCAL_URL} from '../../constants/Config'
+import axios from "axios";
+import {actGetAdmins,actPostAdmins,actPutAdmins,actDeleteAdmins,actGetAdminById} from '../../slices/admin/ActAdmin'
 
 interface AdminState{
     records:{
         id:number,
         firstName: string | null,
-        lastName: string | null,
+       lastName: string  | null,
         email:string | null,
         password: string | null
     }[],
-    loading:null|string,
+    loading:"idle" | "pending" | "succeeded" | "failed",
     error:null|string,
 
 }
 
 const initialState : AdminState ={
-        loading:null,
+        loading:"idle" ,
         records:[],
         error:null
     
@@ -82,7 +83,7 @@ const adminSlice = createSlice({
         })
         .addCase(actDeleteAdmins.fulfilled, (state, action) => {
             state.loading = "succeeded";
-            state.records = state.records.filter(professional => professional.id !== action.payload.id);
+            state.records = state.records.filter(admin => admin.id !== action.payload.id);
             state.error = null;
         })
         .addCase(actDeleteAdmins.rejected, (state, action) => {
@@ -108,7 +109,6 @@ const adminSlice = createSlice({
         });
     }
 });
-
 
 
 export default adminSlice.reducer;
