@@ -142,7 +142,7 @@ const router = Router();
 
 router.post(
   "/professionals",
-  ProfessionalSanitization,
+  // ProfessionalSanitization,
   validateRequest,
   createProfessional
 );
@@ -168,7 +168,7 @@ router.post(
  *         description: Internal server error
  */
 
-router.get("/professionals", getAllProfessionals);
+router.get("/professionals", verifyToken, getAllProfessionals);
 
 /**
  * @swagger
