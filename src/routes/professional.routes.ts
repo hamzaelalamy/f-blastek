@@ -168,7 +168,7 @@ router.post(
  *         description: Internal server error
  */
 
-router.get("/professionals", verifyToken, getAllProfessionals);
+router.get("/professionals", getAllProfessionals);
 
 /**
  * @swagger
