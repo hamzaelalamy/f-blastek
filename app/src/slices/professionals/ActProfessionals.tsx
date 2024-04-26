@@ -4,8 +4,17 @@ import { LOCAL_URL } from "../../constants/Config";
 
 export const actGetProfessionals = createAsyncThunk("professionals/actGetProfessionals",async (_,thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
+    // Retrieve the response string from local storage
+    const responseString = localStorage.getItem('admin');
+    const data = JSON.parse(responseString);
+    const token = data.data.token;
+
     try {
-        const response = await axios.get(LOCAL_URL+"professionals");
+        const response = await axios.get(LOCAL_URL + "professionals", {
+            headers: {
+                Authorization: `Bearer ${token}` // Add authorization header with token
+            }
+        });
         const data = response.data;
         return data;
     } catch (error) {
@@ -64,7 +73,7 @@ export const actGetProfessionalById = createAsyncThunk("professionals/actGetProf
     const { rejectWithValue } = thunkAPI;
     try {
         const response = await axios.get(LOCAL_URL+`professionals/${id}`);
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
     } catch (error) {
         if(axios.isAxiosError(error)){

@@ -24,8 +24,10 @@ export default function Professionals() {
       dispatch(actDeleteProfessionals(userId))
       .then(() => {console.log("User deleted successfully");})
       .catch((err) => console.error("Failed to delete user", err));
-      toast("User deleted successfully", { type: "success" });
-    };
+      toast("User deleted successfully", {
+        type: "success",
+        position: "bottom-center",
+      });    };
   
     const professionals =
       records.length > 0

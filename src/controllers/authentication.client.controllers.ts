@@ -95,10 +95,10 @@ export const loginClient = async (req: Request, res: Response) => {
                 .json({ Message: "Faild to generate token", Error: err });
             }
 
-            res.cookie("user_token", token, {
-              httpOnly: true,
-              maxAge: maxage,
-            });
+            // res.cookie("user_token", token, {
+            //   httpOnly: true,
+            //   maxAge: maxage,
+            // });
             res.status(200).json({
               Message: "The client Logged successfully",
               success: true,
