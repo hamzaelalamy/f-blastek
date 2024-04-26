@@ -19,7 +19,11 @@ router.get('/admins',
 //verifyToken, adminAuthMiddleware, 
 getAllAdmins);
 router.get('/admins/:id', verifyToken, adminAuthMiddleware, getAdminById);
-router.put('/admins/:id', verifyToken, adminAuthMiddleware, updateAdminById);
-router.delete('/admins/:id', verifyToken, adminAuthMiddleware, deleteAdminById);
+router.put('/admins/:id', 
+//verifyToken, adminAuthMiddleware, 
+updateAdminById);
+router.delete('/admins/:id',
+// verifyToken, adminAuthMiddleware,
+ deleteAdminById);
 
 export default router;

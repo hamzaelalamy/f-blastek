@@ -21,10 +21,17 @@ export default function AdminList() {
       }, [dispatch, records]);
   
     const handleDelete = (userId:React.FormEvent<HTMLFormElement>) => {
-      toast("User deleted successfully", { type: "success" });
-      dispatch(actDeleteAdmins(userId))
-        .then(() => {console.log("User deleted successfully");})
-        .catch((err) => console.error("Failed to delete user", err));
+      const confirmDelete = window.confirm("Are you sure you want to delete this admin?");
+      if (confirmDelete) {
+        toast("User deleted successfully", { type: "success" });
+        dispatch(actDeleteAdmins(userId))
+          .then(() => {console.log("User deleted successfully");})
+          .catch((err) => console.error("Failed to delete user", err));
+      } else {
+        // User canceled the deletion
+        console.log("Deletion canceled ");
+      }
+      
     };
   
     const admins =
