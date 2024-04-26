@@ -9,6 +9,8 @@ import { FaInbox } from "react-icons/fa";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { IoBookOutline } from "react-icons/io5";
 import HamburgerButton from './HamburgerMenuButton/HamburgerButton'
+import { GrUserAdmin } from "react-icons/gr";
+import { GrUserWorker } from "react-icons/gr";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -18,8 +20,8 @@ const Sidebar = () => {
   const Menus = [
     { title: 'Dashboard', path: '/backoffice/dashboard', src: <AiFillPieChart /> },
     { title: 'Clients', path: '/backoffice/clients', src: <CgProfile /> },
-    { title: 'Professionals', path: '/backoffice/Professionals', src: <CgProfile /> },
-    { title: 'Admins', path: '/backoffice/admins', src: <CgProfile /> },
+    { title: 'Professionals', path: '/backoffice/Professionals', src: <GrUserWorker /> },
+    { title: 'Admins', path: '/backoffice/admins', src: <GrUserAdmin /> },
     { title: 'Servies', path: '/backoffice/services', src: <MdOutlineHomeRepairService /> },
     { title: 'Interventions', path: '/backoffice/interventions', src: <IoBookOutline />},
     { title: 'Inbox', path: '/backoffice/inbox', src: <FaInbox /> },
@@ -29,7 +31,7 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className={`${open ? 'w-60' : 'w-fit'} hidden sm:block relative h-screen duration-300 bg-gray-100 border-r border-gray-200 p-5`}
+        className={`${open ? 'w-60' : 'w-fit'} hidden sm:block relative h-screen duration-300 bg-[#e9f8f3] border-r border-gray-200 p-5`}
       >
         <BsArrowLeftCircle
           className={`${

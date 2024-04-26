@@ -142,7 +142,7 @@ const router = Router();
 
 router.post(
   "/professionals",
-  ProfessionalSanitization,
+  // ProfessionalSanitization,
   validateRequest,
   createProfessional
 );
