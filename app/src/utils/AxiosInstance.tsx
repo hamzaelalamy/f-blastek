@@ -11,7 +11,7 @@ const httpClient = axios.create({
   baseURL: LOCAL_URL,
   timeout: 10000,
   headers: {
-    'Authorization': `Bearer ${token}` // Set the authorization header with the token
+    'authorization': `Bearer ${token}` // Set the authorization header with the token
   }
 });
 

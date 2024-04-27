@@ -26,7 +26,7 @@ function LoginForm() {
         error:null,
       }
       dispatch(loginAdmin(adminCredentials));
-      console.log("error:",error)
+     // console.log("error:",error)
     // navigate("/adminCrud")
     }catch(err){
       console.log(err)
