@@ -1,23 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import { LOCAL_URL } from "../../constants/Config";
-
+import httpClient from '../../utils/AxiosInstance'
 
 export const actGetAdmins = createAsyncThunk("admins/actGetAdmins",async (_,thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-
-    const admindata = localStorage.getItem('admin');
-      
-        const adminJson = JSON.parse(admindata);
-        const token =adminJson.data.token
-        
-     
+    const { rejectWithValue } = thunkAPI;     
     try { 
-        const response = await axios.get(LOCAL_URL+"admins",{
-            headers: {
-                authorization: `Bearer ${token}` // Add authorization header with token
-            }
-        });
+        const response = await httpClient.get("admins");
         const data = response.data;
         return data;
     } catch (error) {
