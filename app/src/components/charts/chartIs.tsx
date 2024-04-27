@@ -1,56 +1,61 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from "react";
 import { Line } from 'react-chartjs-2';
+import { ChartData, ChartOptions } from 'chart.js';
+import Chart from 'chart.js/auto';
 
-const CustomChart: React.FC = () => {
-  const chartRef = useRef<HTMLCanvasElement | null>(null); // Ref for the chart canvas element
-
-  useEffect(() => {
-    let chartInstance: Chart | null = null;
-
-    // Function to create or update the chart
-    const renderChart = () => {
-      if (chartRef.current) {
-        // Ensure that any existing chart instance is destroyed before creating a new one
-        if (chartInstance) {
-          chartInstance.destroy();
+const ChartIs: React.FC = () => {
+    const generateMonthLabels = (count: number): string[] => {
+        const labels: string[] = [];
+        const currentDate = new Date();
+        for (let i = count - 1; i >= 0; i--) {
+            const date = new Date(currentDate);
+            date.setMonth(date.getMonth() - i);
+            labels.push(date.toLocaleString('default', { month: 'long' }));
         }
+        return labels;
+    };
+    
+    const labels: string[] = generateMonthLabels(7);
+    const data: ChartData<"line"> = {
+        labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
 
-        // Create a new chart instance
-        chartInstance = new Chart(chartRef.current.getContext('2d'), {
-          type: 'line',
-          data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-            datasets: [
-              {
-                label: "First dataset",
-                data: [33, 53, 85, 41, 44, 65],
-                fill: true,
-                backgroundColor: "rgba(75,192,192,0.2)",
-                borderColor: "rgba(75,192,192,1)"
-              },
-              {
-                label: "Second dataset",
-                data: [33, 25, 35, 51, 54, 76],
-                fill: false,
-                borderColor: "#742774"
-              }
-            ]
-          },
+    const options: ChartOptions<"line"> = {
+        scales: {
+            y: {
+                type: 'linear', // Specify the scale type explicitly
+                beginAtZero: true
+            }
+        }
+    };
+
+    useEffect(() => {
+        const chartInstance = new Chart(document.getElementById('myChart'), {
+            type: 'line',
+            data: data,
+            options: options
         });
-      }
-    };
 
-    renderChart(); // Initial rendering of the chart
+        // Cleanup function
+        return () => {
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+        };
+    }, [data, options]);
 
-    // Cleanup function to destroy the chart instance when the component unmounts
-    return () => {
-      if (chartInstance) {
-        chartInstance.destroy();
-      }
-    };
-  }, []); // Empty dependency array ensures this effect runs only once on mount
-
-  return <canvas ref={chartRef} />;
+    return (
+        <>
+            <canvas id="myChart" />
+        </>
+    );
 };
 
-export default CustomChart;
+export default ChartIs;
