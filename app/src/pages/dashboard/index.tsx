@@ -1,5 +1,6 @@
 import React from 'react';
 import DashboardCard from '../../components/cards/dashboardCard';
+import CustomChart from '../../components/charts/chartIs';
 
 const Dashboard = () => {
   return (
