@@ -25,7 +25,7 @@ function CreateProfessional() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialFormData);
 
-  const handleChange = (e) => {
+  const handleChange = (e ) => {
     const { id, value } = e.target;
     setFormData({
       ...formData,

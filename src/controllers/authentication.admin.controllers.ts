@@ -35,6 +35,7 @@ export const loginAdmin = async (req: Request, res: Response) => {
                 httpOnly: true,
                 maxAge: maxage,
               });
+              console.log(req.cookies.user_token);
               res.status(200).json({
                 Message: "The Admin Logged successfully",
                 success: true,
