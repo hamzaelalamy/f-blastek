@@ -8,6 +8,9 @@ import Dashboard from "../pages/dashboard/index.tsx";
 import AdminList from "../pages/admin/AdminList.tsx"
 import AddAdmin from "../pages/admin/AddAdmin.tsx";
 import EditAdmin from "../pages/admin/EditAdmin.tsx";
+import AddIntervention from "../pages/intervention/AddIntervention.tsx";
+import InterventionList from "../pages/intervention/InterventionList.tsx";
+import EditIntervention from "../pages/intervention/EditIntervention.tsx";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +57,18 @@ const router = createBrowserRouter([
       {
         path: "services/edit/:id",
         element: <div>edit service</div>,
+      },
+      {
+        path: "interventions",
+        element: <InterventionList />,
+      },
+      {
+        path: "interventions/create",
+        element: <AddIntervention />,
+      },
+      {
+        path: "interventions/edit/:id",
+        element: <EditIntervention/>,
       }
     ],
   },

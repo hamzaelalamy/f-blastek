@@ -1,6 +1,5 @@
-import { createSlice, PayloadAction,createAsyncThunk  } from "@reduxjs/toolkit";
-import {LOCAL_URL} from '../../constants/Config'
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
+
 import {actGetAdmins,actPostAdmins,actPutAdmins,actDeleteAdmins,actGetAdminById} from '../../slices/admin/ActAdmin'
 
 interface AdminState{
