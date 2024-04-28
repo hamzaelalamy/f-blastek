@@ -8,7 +8,7 @@ import Header from "./Header";
 function LoginForm() {
   const [email,setEmail] =useState('');
   const [password,setPassword] =useState('');
-  const {loading, error, admin} = useAppSelector(
+  const {loading, error,authenticated, admin} = useAppSelector(
     (state) => state.adminAuth
   )
   
@@ -18,6 +18,7 @@ function LoginForm() {
     e.preventDefault();
     try{
       let adminCredentials={
+        authenticated :false,
         admin:{
   email:email,
   password:password

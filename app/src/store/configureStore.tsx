@@ -1,8 +1,8 @@
 import {configureStore} from "@reduxjs/toolkit"
-import adminReducer  from "../slices/admin/adminSlice"
+import adminReducer  from "../slices/admin/AdminSlice"
 import professionalReducer from '../slices/professionals/ProfessionalsSlice'
 import servicesReducer from '../slices/services/ServicesSlice'
-import adminAuthReducer from '../slices/admin/authSlice'
+import adminAuthReducer from '../slices/admin/AuthSlice'
 import interventionReducer from '../slices/intervention/InterventionSlice'
 export const store = configureStore({
 
