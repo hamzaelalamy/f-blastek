@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { actGetServices, actPostServices, actPutServices, actDeleteService } from "./ActServices";
+import { actGetServices, actPostServices, actPutServices, actDeleteService, actGetCategories } from "./ActServices";
 
 interface IServicesState {
-    records: {id:number, title:string, prefix:string, img:string }[],
+    records: {id:number, name:string, description:string, categoryId:object }[],
     loading: "idle" | "pending" | "succeded" | "failed",
     error: string | null
 }
@@ -72,8 +72,19 @@ const servicesSlice = createSlice({
             state.loading = "failed";
             state.error = action.payload as string;
         });
+        builder.addCase(actGetCategories.pending, (state) => {
+            state.loading = "pending";
+        });
+        builder.addCase(actGetCategories.fulfilled, (state, action) => {
+            state.loading = "succeded";
+            state.records = action.payload;
+        });
+        builder.addCase(actGetCategories.rejected, (state, action) => {
+            state.loading = "failed";
+            state.error = action.payload as string;
+        });
     }
 });
 
 export default servicesSlice.reducer;
-export {actGetServices, actPostServices, actPutServices, actDeleteService};
+export {actGetServices, actPostServices, actPutServices, actDeleteService, actGetCategories};
