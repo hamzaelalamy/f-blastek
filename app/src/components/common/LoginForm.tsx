@@ -18,7 +18,7 @@ function LoginForm() {
     e.preventDefault();
     try{
       let adminCredentials={
-        authenticated :false,
+      //  authenticated :false,
         admin:{
   email:email,
   password:password
@@ -26,9 +26,9 @@ function LoginForm() {
         loading:true,
         error:null,
       }
-      dispatch(loginAdmin(adminCredentials));
-     // console.log("error:",error)
-    // navigate("/adminCrud")
+     dispatch(loginAdmin(adminCredentials));
+     console.log("authenticated",authenticated)
+     authenticated? navigate('/backoffice/dashboard'):navigate('/login')
     }catch(err){
       console.log(err)
     }

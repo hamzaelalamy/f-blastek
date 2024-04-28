@@ -8,7 +8,7 @@ export const loginAdmin = createAsyncThunk(
     '/admins/loginAdmin',async(adminCredential:authAdminState)=>{
         
     const Response = await axios.post(`${LOCAL_URL}auth/loginAdmin`,adminCredential.admin)
-    console.log(jwtDecode(Response.data.token));
+    console.log("Response.data.token:",jwtDecode(Response.data.token));
     localStorage.setItem('admin',JSON.stringify(Response))
     return Response.data;
     
