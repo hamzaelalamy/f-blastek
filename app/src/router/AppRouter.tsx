@@ -11,6 +11,7 @@ import EditAdmin from "../pages/admin/EditAdmin.tsx";
 import AddIntervention from "../pages/intervention/AddIntervention.tsx";
 import InterventionList from "../pages/intervention/InterventionList.tsx";
 import EditIntervention from "../pages/intervention/EditIntervention.tsx";
+import Service from "../pages/service/Services.tsx";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "services",
-        element: <div>Services</div>,
+        element: <Service/>,
       },
       {
         path: "services/create",

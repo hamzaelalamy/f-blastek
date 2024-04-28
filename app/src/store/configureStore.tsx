@@ -10,7 +10,7 @@ reducer:{
     adminAuth : adminAuthReducer,
     admins : adminReducer, 
     professionals: professionalReducer,
-    Services: servicesReducer,
+    services: servicesReducer,
     interventions :interventionReducer,
 
 }
