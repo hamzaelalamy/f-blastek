@@ -1,4 +1,3 @@
-import React from 'react'
 import EditService from '../../components/Services/forms/EditService'
 
 function EditServicePage() {

@@ -14,6 +14,7 @@ import EditIntervention from "../pages/intervention/EditIntervention.tsx";
 import Service from "../pages/service/Services.tsx";
 import AddService from "../pages/service/AddService.tsx";
 import EditServicePage from "../pages/service/EditService.tsx";
+import AdminRoute from "./AdminRoute.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,56 +23,59 @@ const router = createBrowserRouter([
     errorElement: <div>Not Found</div>,
     children: [
       {
-                path: "dashboard",
-                element: <Dashboard/>
-       },
+        path: "dashboard",
+        element: <AdminRoute> <Dashboard/></AdminRoute> 
+       },{
+        path: "clients",
+        element:<AdminRoute><div>Client List</div></AdminRoute> ,
+      },
        {
         path: "admins",
-        element: <AdminList />,
+        element:<AdminRoute><AdminList /></AdminRoute> ,
       },
       {
         path: "admins/create",
-        element: <AddAdmin />,
+        element:<AdminRoute><AddAdmin /></AdminRoute> ,
       },
       {
         path: "admins/edit/:id",
-        element: <EditAdmin />,
+        element:<AdminRoute><EditAdmin /></AdminRoute> ,
       },
       {
         path: "professionals",
-        element: <Professional />,
+        element: <AdminRoute><Professional /></AdminRoute>,
       },
       {
         path: "professionals/create",
-        element: <AddProfessional />,
+        element:<AdminRoute><AddProfessional /></AdminRoute> ,
       },
       {
         path: "professionals/edit/:id",
-        element: <EditProfessionalPage />,
+        element: <AdminRoute><EditProfessionalPage /></AdminRoute>,
       },
       {
         path: "services",
-        element: <Service/>,
+        element: <AdminRoute><Service/></AdminRoute>,
       },
       {
         path: "services/create",
-        element: <AddService />,
+        element: <AdminRoute><AddService /></AdminRoute>,
       },
       {
         path: "services/edit/:id",
-        element: <EditServicePage/>,
+        element: <AdminRoute><EditServicePage/></AdminRoute>,
       },
       {
         path: "interventions",
-        element: <InterventionList />,
+        element:<AdminRoute><InterventionList /></AdminRoute> ,
       },
       {
         path: "interventions/create",
-        element: <AddIntervention />,
+        element:<AdminRoute><AddIntervention /></AdminRoute> ,
       },
       {
         path: "interventions/edit/:id",
-        element: <EditIntervention/>,
+        element:<AdminRoute><EditIntervention/></AdminRoute> ,
       }
     ],
   },
