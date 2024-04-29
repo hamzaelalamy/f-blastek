@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/ReduxHooks';
-import { actPostServices, actGetCategories } from '../../../slices/services/ServicesSlice';
+import { actPostServices } from '../../../slices/services/ServicesSlice';
+import { actGetCategories } from '../../../slices/categories/CategoriesSlice';
 import { useNavigate } from 'react-router-dom';
 
 interface Service {
@@ -37,7 +38,7 @@ const CreateService: React.FC = () => {
     dispatch(actPostServices(service));
   };
 
-  const categories = useAppSelector((state) => state.services.records);
+  const categories = useAppSelector((state) => state.categories.records);
 
   const categoryOptions = categories.map((category) => (
     <option key={category._id} value={category._id}>
@@ -100,7 +101,7 @@ const CreateService: React.FC = () => {
       >
         Submit
       </button>
-      <button className='text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ml-1' onClick={navigate("/backoffice/services")} >Cancel</button>
+      <button className='text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ml-1' onClick={()=>navigate("/backoffice/services")} >Cancel</button>
     </form>
   );
 };

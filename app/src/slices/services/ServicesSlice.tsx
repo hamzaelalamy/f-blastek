@@ -72,19 +72,8 @@ const servicesSlice = createSlice({
             state.loading = "failed";
             state.error = action.payload as string;
         });
-        builder.addCase(actGetCategories.pending, (state) => {
-            state.loading = "pending";
-        });
-        builder.addCase(actGetCategories.fulfilled, (state, action) => {
-            state.loading = "succeded";
-            state.records = action.payload;
-        });
-        builder.addCase(actGetCategories.rejected, (state, action) => {
-            state.loading = "failed";
-            state.error = action.payload as string;
-        });
     }
 });
 
 export default servicesSlice.reducer;
-export {actGetServices, actPostServices, actPutServices, actDeleteService, actGetCategories};
+export {actGetServices, actPostServices, actPutServices, actDeleteService};

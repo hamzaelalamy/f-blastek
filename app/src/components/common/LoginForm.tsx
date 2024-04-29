@@ -27,7 +27,7 @@ function LoginForm() {
       }
       dispatch(loginAdmin(adminCredentials));
      // console.log("error:",error)
-    // navigate("/adminCrud")
+    navigate("/backoffice/dashboard")
     }catch(err){
       console.log(err)
     }
@@ -65,7 +65,7 @@ function LoginForm() {
       <button
         className="w-full px-4 py-2 my-5 text-black bg-green-300 rounded md:w-100 hover:bg-green-400 h-13 focus:outline-none focus:shadow-outline"
         type="submit"
-        onClick={()=>navigate("/backoffice/dashboard")}
+        // onClick={()=>navigate("/backoffice/dashboard")}
       >
         {loading ? 'Loading ...' : 'Sign In'}
       </button>
