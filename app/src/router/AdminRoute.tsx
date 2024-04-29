@@ -5,10 +5,14 @@ import { RootState } from '../store/configureStore'
 import { Console } from 'console'
 
 const AdminRoute= ({ children }: { children: React.ReactNode }) => {
-  const { authenticated }: { authenticated: boolean } = useAppSelector((store: RootState) => store.adminAuth);
-  console.log("hello form routeadmin......",authenticated)
+  
+  const responseString = localStorage.getItem("admin");
 
-  return authenticated ? <>{children}</> : <Navigate to="/login" />;
+  const data = JSON.parse(responseString);
+  const token = data?.data?.token;
+
+
+  return token ? <>{children}</> : <Navigate to="/login" />;
 }
 
 // ({children}) =>{
