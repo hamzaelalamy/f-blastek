@@ -22,7 +22,10 @@ const router = createBrowserRouter([
       {
                 path: "dashboard",
                 element: <AdminRoute> <Dashboard/></AdminRoute> 
-       },
+       },{
+        path: "clients",
+        element:<AdminRoute><div>Client List</div></AdminRoute> ,
+      },
        {
         path: "admins",
         element:<AdminRoute><AdminList /></AdminRoute> ,

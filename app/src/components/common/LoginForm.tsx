@@ -17,7 +17,6 @@ function LoginForm() {
     e.preventDefault();
     try {
       let adminCredentials = {
-        authenticated: false,
         admin: {
           email: email,
           password: password,
@@ -30,7 +29,7 @@ function LoginForm() {
 
       const data = JSON.parse(responseString);
       const token = data?.data?.token;
-      console.log("authenticated", authenticated);
+      
       token ? navigate("/backoffice/dashboard") : navigate("/login");
     } catch (err) {
       console.log(err);
