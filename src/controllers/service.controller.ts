@@ -14,7 +14,7 @@ export const createService = async (req: Request, res: Response) => {
 
 export const getAllServices = async (req: Request, res: Response) => {
   try {
-    const services = await Service.find();
+    const services = await Service.find().populate('categoryId');
     res.status(200).json(services);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });

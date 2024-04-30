@@ -38,18 +38,18 @@ function LoginForm() {
   return (
     <div>
       <Header />
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex items-center justify-center h-screen">
         <form
-          className="w-full max-w-md md:max-w-sm bg-white rounded px-8 pt-6 pb-8 mb-4"
+          className="w-full max-w-md px-8 pt-6 pb-8 mb-4 bg-white rounded md:max-w-sm"
           onSubmit={handelLoginEvent}
         >
-          <h2 className="text-center text-xl font-bold mb-6">Login</h2>
-          <h6 className="text-center text-xs mb-6">
+          <h2 className="mb-6 text-xl font-bold text-center">Login</h2>
+          <h6 className="mb-6 text-xs text-center">
             Please log in with your email address
           </h6>
           <div className="mb-4">
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-100 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-gray-100 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               id="email"
               type="email"
               placeholder="Email Address"
@@ -60,7 +60,7 @@ function LoginForm() {
           </div>
           <div className="mb-6">
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-100 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-gray-100 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="Password"
@@ -71,7 +71,7 @@ function LoginForm() {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="bg-green-300 w-full md:w-100 hover:bg-green-400 text-black h-13 my-5 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="w-full px-4 py-2 my-5 text-black bg-green-300 rounded md:w-100 hover:bg-green-400 h-13 focus:outline-none focus:shadow-outline"
               type="submit"
             >
               {loading ? "Loading ..." : "Sign In"}
@@ -84,7 +84,7 @@ function LoginForm() {
           </div>
           <div>
             <a
-              className="inline-block align-baseline font-bold text-sm ml-4 md:ml-44 text-blue-800 hover:underline"
+              className="inline-block ml-4 text-sm font-bold text-blue-800 align-baseline md:ml-44 hover:underline"
               href="#"
             >
               Forgot Password?
