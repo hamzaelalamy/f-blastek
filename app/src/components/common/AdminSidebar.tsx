@@ -22,7 +22,7 @@ const Sidebar = () => {
     { title: 'Clients', path: '/backoffice/clients', src: <CgProfile /> },
     { title: 'Professionals', path: '/backoffice/Professionals', src: <GrUserWorker /> },
     { title: 'Admins', path: '/backoffice/admins', src: <GrUserAdmin /> },
-    { title: 'Servies', path: '/backoffice/services', src: <MdOutlineHomeRepairService /> },
+    { title: 'Services', path: '/backoffice/services', src: <MdOutlineHomeRepairService /> },
     { title: 'Interventions', path: '/backoffice/interventions', src: <IoBookOutline />},
     { title: 'Inbox', path: '/backoffice/inbox', src: <FaInbox /> },
     { title: 'Logout', path: '/login', src: <SiOpenaccess />, gap: 'true' },

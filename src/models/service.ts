@@ -16,6 +16,7 @@ const servicesSchema = new Schema<IService>({
   categoryId: {
     type: Schema.Types.ObjectId,
     required: [true, 'Category ID is required'],
+    ref: 'Category',
   },
   description: {
     type: String,

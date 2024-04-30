@@ -11,6 +11,9 @@ import EditAdmin from "../pages/admin/EditAdmin.tsx";
 import AddIntervention from "../pages/intervention/AddIntervention.tsx";
 import InterventionList from "../pages/intervention/InterventionList.tsx";
 import EditIntervention from "../pages/intervention/EditIntervention.tsx";
+import Service from "../pages/service/Services.tsx";
+import AddService from "../pages/service/AddService.tsx";
+import EditServicePage from "../pages/service/EditService.tsx";
 import AdminRoute from "./AdminRoute.tsx";
 
 const router = createBrowserRouter([
@@ -20,8 +23,8 @@ const router = createBrowserRouter([
     errorElement: <div>Not Found</div>,
     children: [
       {
-                path: "dashboard",
-                element: <AdminRoute> <Dashboard/></AdminRoute> 
+        path: "dashboard",
+        element: <AdminRoute> <Dashboard/></AdminRoute> 
        },{
         path: "clients",
         element:<AdminRoute><div>Client List</div></AdminRoute> ,
@@ -52,15 +55,15 @@ const router = createBrowserRouter([
       },
       {
         path: "services",
-        element:<AdminRoute><div>Services</div></AdminRoute> ,
+        element: <AdminRoute><Service/></AdminRoute>,
       },
       {
         path: "services/create",
-        element:<AdminRoute><div>Create Service</div></AdminRoute> ,
+        element: <AdminRoute><AddService /></AdminRoute>,
       },
       {
         path: "services/edit/:id",
-        element:<AdminRoute><div>edit service</div></AdminRoute> ,
+        element: <AdminRoute><EditServicePage/></AdminRoute>,
       },
       {
         path: "interventions",

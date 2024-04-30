@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../../hooks/ReduxHooks';
 import { actPostProfessionals } from '../../../slices/professionals/ProfessionalsSlice';
 import { useNavigate } from 'react-router-dom';
 
-function CreateProfessional() {
+function CreateProfessional():React.FC {
   const initialFormData = {
     firstName: '',
     lastName: '',
@@ -25,7 +25,7 @@ function CreateProfessional() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialFormData);
 
-  const handleChange = (e ) => {
+  const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({
       ...formData,
