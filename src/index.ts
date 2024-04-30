@@ -8,6 +8,7 @@ import cors from 'cors';
 import {options} from './swagger/options';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { app, server } from "./socket/socket";
 
 import adminRoutes from './routes/admin.routes';
 import clientRoutes from './routes/client.routes';
@@ -22,7 +23,7 @@ import InterventionRoutes from "./routes/intervention.routes";
 import categoryRoutes from "./routes/categories.routes";
 dotenv.config();
 
-const app: Express = express();
+// const app: Express = express();
 const port = process.env.PORT || 3000;
 connectDB(process.env.DB_URL);
 
@@ -56,6 +57,6 @@ app.get('*', (req: Request, res: Response) => {
 } )
 
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
