@@ -2,41 +2,41 @@ import React from "react";
 
 function Header() {
   return (
-    <div>
-      <nav className="bg-white p-4 border-black">
+    <div className=" z-50 fixed top-0 left-0 w-full  ">
+      <nav className="bg-white  p-4 border-black backdrop-blur-sm	 bg-opacity-35 bg-transparent hidden md:block">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-          <div className="text-green-300 text-xl font-bold mb-4 md:mb-0">F'Blastek</div>
-          <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+          <div className="text-[#20B486] text-xl font-bold mb-4 md:mb-0">F'Blastek</div>
+          <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 z-50">
             <li>
-              <a href="#" className="text-black text-xs hover:text-gray-300">
+              <a href="#" className="text-white text-xs hover:text-[#F98C60]">
                 Home
               </a>
             </li>
             <li>
-              <a href="#" className="text-black text-xs hover:text-gray-300">
+              <a href="#" className="text-white  text-xs hover:text-[#F98C60]">
                 About
               </a>
             </li>
             <li>
-              <a href="#" className="text-black text-xs hover:text-gray-300">
+              <a href="#" className="text-white text-xs hover:text-[#F98C60]">
                 Services
               </a>
             </li>
             <li>
-              <a href="#" className="text-black text-xs hover:text-gray-300">
+              <a href="#" className="text-white text-xs hover:text-[#F98C60]">
                 Contact
               </a>
             </li>
           </ul>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <button
-              className="bg-green-300 hover:bg-green-400 text-xs text-white py-1 px-4 mb-2 md:mb-0 md:mr-1"
+              className="bg-[#20B486] hover:bg-green-400 text-xs text-white py-1 px-4 mb-2 md:mb-0 md:mr-1"
               type="submit"
             >
               Sign In
             </button>
             <button
-              className="bg-orange-400 hover:bg-orange-500 text-xs text-white py-1 px-4"
+              className="bg-[#F98C60] hover:bg-orange-500 text-xs text-white py-1 px-4"
               type="submit"
             >
               Sign Up

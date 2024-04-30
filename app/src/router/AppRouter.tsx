@@ -12,6 +12,7 @@ import AddIntervention from "../pages/intervention/AddIntervention.tsx";
 import InterventionList from "../pages/intervention/InterventionList.tsx";
 import EditIntervention from "../pages/intervention/EditIntervention.tsx";
 import AdminRoute from "./AdminRoute.tsx";
+import HeroSection from "../components/landingPage/HeroSection.tsx";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +81,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginForm />,
   },
-  
+  {
+    path: "/HeroSection",
+    element: <HeroSection />,
+  },
 ]);
 
 const AppRouter = () => {
