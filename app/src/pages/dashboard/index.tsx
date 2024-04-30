@@ -2,6 +2,7 @@ import React from 'react';
 import { Chart } from 'chart.js';
 import DashboardCard from '../../components/cards/dashboardCard';
 import ChartIs from '../../components/charts/chartIs';
+// import CustomBarChart from '../../components/charts/chartFs';
 
 const Dashboard = () => {
     return (
@@ -15,10 +16,14 @@ const Dashboard = () => {
                     <DashboardCard title="First Card" number={10} percentage={24234} color='green' />
                     <DashboardCard title="First Card" number={10} percentage={22434} color='green' />
                 </div>
-                <ChartIs />
+                <div className="flex col-span-2 p-5 mt-3  ">
+                    <ChartIs />
+                </div>
+                {/* <div className='bg-green-500'>
+                <CustomBarChart />
+                </div> */}
             </div>
-            <div className="col-span-1 0 p-4 w-[320px] h-screen">
-                <span>
+            <div className="col-span-1  flex  p-4 w-[320px] h-screen ">
                     <div className="w-full max-w-md p-4 ml-5 bg-gray-100 border border-gray-200 rounded-lg shadow sm:p-8">
                         <div className="flex items-center justify-between mb-4">
                             <h5 className="text-xl font-bold leading-none text-gray-900">Latest Customers</h5>
@@ -103,7 +108,6 @@ const Dashboard = () => {
                             </ul>
                         </div>
                     </div>
-                </span>
             </div>
         </div>
     );
