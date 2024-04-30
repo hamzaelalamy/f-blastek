@@ -7,7 +7,7 @@ import Header from "./Header";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { loading, error, authenticated, admin } = useAppSelector(
+  const { loading, error, admin } = useAppSelector(
     (state) => state.adminAuth
   );
 
