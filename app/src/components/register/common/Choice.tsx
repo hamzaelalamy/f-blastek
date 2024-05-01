@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 
 function Choice() {
@@ -15,8 +16,8 @@ function Choice() {
                             Une baby-sitter, nounou, femme de ménage, prof particulier, aide à domicile, ...
                         </p>
                     </div>
-                    <div className="p-6 pt-0">
-                        <a href="#" className="inline-block">
+                    <div className="flex justify-center p-6 pt-0"> {/* Added justify-center */}
+                        <Link to="/register/professional" className="inline-block">
                             <button
                                 className="flex items-center gap-2 px-4 py-2 font-sans text-xs font-bold text-center text-white bg-[#fa9856] uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-[#d07f49] active:bg-[#d07f49]"
                                 type="button">
@@ -26,7 +27,7 @@ function Choice() {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
                                 </svg>
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="relative flex flex-col mt-6 ml-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
@@ -39,8 +40,8 @@ function Choice() {
                             En tant que baby-sitter, nounou, femme de ménage, pet-sitter, aide à domicile, prof, ...
                         </p>
                     </div>
-                    <div className="p-6 pt-0">
-                        <a href="#" className="inline-block">
+                    <div className="flex justify-center p-6 pt-0"> {/* Added justify-center */}
+                        <Link to="/register/client" className="inline-block">
                             <button
                                 className="flex items-center gap-2 px-4 py-2 font-sans text-xs font-bold text-center text-white uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-[#d07f49] active:bg-[#d07f49] bg-[#fa9856]"
                                 type="button">
@@ -50,11 +51,12 @@ function Choice() {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
                                 </svg>
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
         </div>
+
 
 
     )
