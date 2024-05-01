@@ -15,6 +15,9 @@ export const createIntervention = async (req: Request, res: Response) => {
 export const getAllInterventions = async (req:Request,res:Response)=>{
 try{
 const interventions = await Intervention.find();
+if (interventions.length === 0) {
+  return res.status(404).json({ error: "No interventions found" });
+}
 res.status(200).json(interventions);
 } catch (error) {
   res.status(500).json({ error: "Internal server error" });

@@ -4,15 +4,17 @@ import professionalReducer from '../slices/professionals/ProfessionalsSlice'
 import servicesReducer from '../slices/services/ServicesSlice'
 import adminAuthReducer from '../slices/admin/authSlice'
 import interventionReducer from '../slices/intervention/InterventionSlice'
+import categoriesReducer from '../slices/categories/CategoriesSlice';
+
 export const store = configureStore({
 
 reducer:{
     adminAuth : adminAuthReducer,
     admins : adminReducer, 
     professionals: professionalReducer,
-    Services: servicesReducer,
+    services: servicesReducer,
     interventions :interventionReducer,
-
+    categories: categoriesReducer
 }
 });
 

@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Professionals() {
     const dispatch = useAppDispatch();
-    const { loading, error, records } = useAppSelector(
+    const { records } = useAppSelector(
       (state) => state.professionals
     );
     useEffect(() => {

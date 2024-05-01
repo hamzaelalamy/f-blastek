@@ -8,7 +8,6 @@ const secret_key: String | any = process.env.SECRET_KEY;
 const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     // Get the token from cookies or headers
     const token:any = req.headers['authorization']?.split(' ')[1];
-    // console.log(token.split(' ')[1]);
     
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized: No token provided' });
