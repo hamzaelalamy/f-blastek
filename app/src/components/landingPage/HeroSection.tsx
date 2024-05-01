@@ -13,9 +13,7 @@ const [mobileMenu,setMobileMenu]=useState(false)
 
     <div className="relative bg-cover bg-center h-[400px] lg:h-[600px] xl:h-[700px] ">
     <Header />
-    {mobileMenu && <MobileHeader/>
-          
-          }
+    {mobileMenu && <MobileHeader/>}
     <HamburgerButton mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
 
 

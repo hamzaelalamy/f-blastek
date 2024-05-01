@@ -15,7 +15,7 @@ import Service from "../pages/service/Services.tsx";
 import AddService from "../pages/service/AddService.tsx";
 import EditServicePage from "../pages/service/EditService.tsx";
 import AdminRoute from "./AdminRoute.tsx";
-import HeroSection from "../components/landingPage/HeroSection.tsx";
+import LandingPage from "../pages/LandingPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -85,8 +85,8 @@ const router = createBrowserRouter([
     element: <LoginForm />,
   },
   {
-    path: "/HeroSection",
-    element: <HeroSection />,
+    path: "/Home",
+    element: <LandingPage />,
   },
 ]);
 
