@@ -12,7 +12,7 @@ function UserLayout() {
                 </div>
             </div>
             <div className="footer">
-                <footer className="h-10 text-center bg-blue-500" >Footer</footer>
+                <footer className="h-10 mt-10 text-center bg-blue-500" >Footer</footer>
             </div>
         </div>
     )
