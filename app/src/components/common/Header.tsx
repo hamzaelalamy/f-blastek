@@ -30,13 +30,13 @@ function Header() {
           </ul>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <button
-              className="bg-[#20B486] hover:bg-green-400 text-xs text-white py-1 px-4 mb-2 md:mb-0 md:mr-1"
+              className="bg-[#20B486] hover:bg-green-400 text-xs text-white py-1 px-4 mb-2 md:mb-0 md:mr-1 rounded-sm"
               type="submit"
             >
               Sign In
             </button>
             <button
-              className="bg-[#F98C60] hover:bg-orange-500 text-xs text-white py-1 px-4"
+              className="bg-[#F98C60] hover:bg-orange-500 text-xs text-white py-1 px-4 rounded-sm"
               type="submit"
             >
               Sign Up
