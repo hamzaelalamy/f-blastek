@@ -16,6 +16,7 @@ import AddService from "../pages/service/AddService.tsx";
 import EditServicePage from "../pages/service/EditService.tsx";
 import AdminRoute from "./AdminRoute.tsx";
 import Error from "../pages/Error.tsx";
+import UserLayout from "../layouts/UserLayout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,26 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginForm />,
+  },
+  {
+    path: "/",
+    element: <UserLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/register",
+        element: <div>Register</div>,
+      },
+      {
+        path: "Applicant",
+        element: <div>Applicant</div>,
+      }
+    ]
+  },
+
+  {
+    path: "*",
+    element: <Error />,
   },
 
 ]);
