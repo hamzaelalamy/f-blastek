@@ -17,6 +17,7 @@ import EditServicePage from "../pages/service/EditService.tsx";
 import AdminRoute from "./AdminRoute.tsx";
 import Error from "../pages/Error.tsx";
 import UserLayout from "../layouts/UserLayout.tsx";
+import UserTypeChoicePage from "../pages/register/UserTypeChoicePage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -91,11 +92,15 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
+        path: "/choice",
+        element: <UserTypeChoicePage />,
+      },
+      {
         path: "/register",
         element: <div>Register</div>,
       },
       {
-        path: "Applicant",
+        path: "/Applicant",
         element: <div>Applicant</div>,
       }
     ]
