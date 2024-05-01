@@ -1,4 +1,3 @@
-import React from 'react'
 import './HamburgerButton.css'
 
 const HamburgerButton = ({ mobileMenu, setMobileMenu }) => {
