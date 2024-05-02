@@ -6,7 +6,7 @@ function Choice() {
         <div className="flex flex-col items-center">
             <h1 className="mt-10 text-5xl text-[#20B486] font-bold outline-8">Que cherchez vous ?</h1>
             <div className="flex justify-center mt-6">
-                <div className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
+                <div className="relative flex flex-col mt-6 text-gray-700 bg-[#82F2A7] shadow-md bg-clip-border rounded-xl w-96">
                     <div className="flex flex-col items-center p-6">
                         <img src="https://static.yoopies.com/_nuxt/images/market/default/component/registration/applicant.svg" alt="applicant" />
                         <h5 className="mb-2 font-sans text-xl font-semibold leading-snug text-blue-gray-900">
@@ -30,7 +30,7 @@ function Choice() {
                         </Link>
                     </div>
                 </div>
-                <div className="relative flex flex-col mt-6 ml-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
+                <div className="relative flex flex-col mt-6 ml-6 text-gray-700 bg-[#82F2A7] shadow-md bg-clip-border rounded-xl w-96">
                     <div className="flex flex-col items-center p-6">
                         <img src="https://static.yoopies.com/_nuxt/images/market/default/component/registration/employer.svg" alt="client" />
                         <h5 className="mt-3 mb-2 font-sans text-xl font-semibold leading-snug text-blue-gray-900">
