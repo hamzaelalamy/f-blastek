@@ -18,6 +18,9 @@ import AdminRoute from "./AdminRoute.tsx";
 import Error from "../pages/Error.tsx";
 import UserLayout from "../layouts/UserLayout.tsx";
 import UserTypeChoicePage from "../pages/register/UserTypeChoicePage.tsx";
+import HelpLayout from "../layouts/HelpLayout.tsx";
+import Faq from "../pages/help/Faq.tsx";
+import Contact from "../pages/help/Contact.tsx";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +105,20 @@ const router = createBrowserRouter([
       {
         path: "/Applicant",
         element: <div>Applicant</div>,
+      },
+      {
+        path: "/help",
+        element: <HelpLayout />,
+        children: [
+          {
+            path: "faq",
+            element: <Faq />,
+          },
+          {
+            path: "contact",
+            element: <Contact />,
+          },
+        ],
       }
     ]
   },
