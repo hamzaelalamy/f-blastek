@@ -18,7 +18,7 @@ function ServiceSection() {
           <div className="flex flex-col justify-center items-center lg:w-1/2 order-1">
             <h3 className="text-[#EBB016] font-bold mt-5 justify-center ">BABY SITTING</h3>
 
-            <p className="text-[#7E7E7E] text-[8px] w-60  lg:text-[14px] text-center">
+            <p className="text-[#7E7E7E] text-xs w-60  lg:text-[14px] text-center">
               Among over 1 million qualified and trustworthy professionals, find
               the babysitter, school support teacher, personal assistant, or
               pet-sitter that meets your needs.
@@ -35,7 +35,7 @@ function ServiceSection() {
           <div className="flex flex-col justify-center items-center lg:w-1/2 ">
             <h3 className="text-[#EBB016] font-bold mt-5 justify-center">SOUTIEN SCOLAIRE</h3>
 
-            <p className="text-[#7E7E7E] text-[8px] w-60  lg:text-[14px] text-center">
+            <p className="text-[#7E7E7E] text-xs w-60  lg:text-[14px] text-center">
               Among over 1 million qualified and trustworthy professionals, find
               the babysitter, school support teacher, personal assistant, or
               pet-sitter that meets your needs.
@@ -52,7 +52,7 @@ function ServiceSection() {
           <div className="flex flex-col justify-center items-center lg:w-1/2 ">
             <h3 className="text-[#EBB016] font-bold mt-5 justify-center">AIDE LA PERSONNE</h3>
 
-            <p className="text-[#7E7E7E] text-[8px] w-60  lg:text-[14px] text-center">
+            <p className="text-[#7E7E7E] text-xs w-60  lg:text-[14px] text-center">
               Among over 1 million qualified and trustworthy professionals, find
               the babysitter, school support teacher, personal assistant, or
               pet-sitter that meets your needs.
@@ -69,7 +69,7 @@ function ServiceSection() {
           <div className="flex flex-col justify-center items-center lg:w-1/2 ">
             <h3 className="text-[#EBB016] font-bold mt-5 justify-center">MENAGE</h3>
 
-            <p className="text-[#7E7E7E] text-[8px] w-60  lg:text-[14px] text-center">
+            <p className="text-[#7E7E7E] text-xs w-60  lg:text-[14px] text-center">
               Among over 1 million qualified and trustworthy professionals, find
               the babysitter, school support teacher, personal assistant, or
               pet-sitter that meets your needs.

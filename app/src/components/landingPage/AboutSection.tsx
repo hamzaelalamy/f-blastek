@@ -15,10 +15,11 @@ function AboutSection() {
     <button className='flex items-center  bg-[#FF5C1A] text-white   rounded-3xl  mt-5 p-2  '><span className="mr-auto flex-grow text-[10px] lg:text-l lg:font-bold"> Join Us</span>  <svg className="rtl:rotate-180 w-3 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 </svg></button>
-</div>
+</div >
 
-<div>
-
+<div className='md:grid md:grid-rows-2 md:w-full w-1/2 flex mt-3 gap-2 bg-[#F2F2F2]'>
+<img className=' md:mr-20 md:mx-auto md:col-start-2 flex-1' src="../../../landingPage/about1.png" alt="" />
+<img className=' md:ml-20 md:mx-auto md:col-end-1 float-end' src="../../../landingPage/about2.png" alt="" />
 
 </div>
         </div>
