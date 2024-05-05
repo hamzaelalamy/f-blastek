@@ -34,10 +34,10 @@ const [mobileMenu,setMobileMenu]=useState(false)
       <p className=" lg:text-lg text-xs lg:block font-bold hidden  text-[#11033A]">  Care Assistance - Empowering Lives, One Service at a Time!</p>
    {/* <h3 className='mt-10 mb-5 lg:mt-20  lg:text-xl text font-bold text-[#f39237ed]'>I am looking  </h3> */}
    <div className='flex justify-start  lg:mt-10'>
-   <button className='flex items-center  bg-[#20B486] text-white   lg:ml-40 lg:w-52 lg:p-4 lg:pr-10 rounded-md ml-6 mt-7 p-2  w-40'><span className="mr-auto flex-grow text-[10px] lg:text-l lg:font-bold"> I am looking For a job</span>  <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+   <button className='flex items-center  bg-[#20B486] text-white   lg:ml-40 lg:w-52 lg:p-4 lg:pr-10 rounded-md ml-6 mt-7 p-2 md:w-40 w-30'><span className="mr-auto flex-grow text-[10px] lg:text-l lg:font-bold"> I am looking For a job</span>  <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 </svg></button>
-   <button className='flex items-center  bg-[#20B486] text-white  lg:ml-24 lg:w-52 lg:p-4 rounded-md mt-7 ml-2 p-2  w-40'> <span className="mr-auto flex-grow text-[10px] lg:text-l lg:font-bold"> I am looking For home help</span> <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+   <button className='flex items-center  bg-[#20B486] text-white  lg:ml-24 lg:w-52 lg:p-4 rounded-md mt-7 ml-2 p-2 md:w-40 w-30'> <span className="mr-auto flex-grow text-[10px] lg:text-l lg:font-bold"> I am looking For home help</span> <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 </svg></button>
    </div>

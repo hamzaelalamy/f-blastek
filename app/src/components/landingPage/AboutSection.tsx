@@ -17,9 +17,9 @@ function AboutSection() {
 </svg></button>
 </div >
 
-<div className='md:grid md:grid-rows-2 md:w-full w-1/2 flex mt-3 gap-2 bg-[#F2F2F2]'>
-<img className=' md:mr-20 md:mx-auto md:col-start-2 flex-1' src="../../../landingPage/about1.png" alt="" />
-<img className=' md:ml-20 md:mx-auto md:col-end-1 float-end' src="../../../landingPage/about2.png" alt="" />
+<div className='md:grid md:grid-rows-2 md:w-2/3 lg:w-full w-1/2 flex mt-3 gap-2 bg-[#F2F2F2]'>
+<img className=' lg:mr-20 lg:mx-auto lg:col-start-2 flex-1' src="../../../landingPage/about1.png" alt="" />
+<img className=' lg:ml-20 lg:mx-auto lg:col-end-1 float-end' src="../../../landingPage/about2.png" alt="" />
 
 </div>
         </div>

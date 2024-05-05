@@ -15,7 +15,7 @@ function TestimonialSection() {
 
                         <h2 className="font-bold lg:text-2xl mt-5">What People Are Saying</h2>
                     </div>
-                    <blockquote className="rounded-lg bg-gray-50 p-6 border border-solid shadow-2xl sm:p-8 ">
+                    <blockquote className="rounded-lg bg-gray-50 p-6 border border-solid shadow-xl sm:p-8 ">
 
 
                         <div className="flex items-center gap-4">
@@ -90,7 +90,7 @@ function TestimonialSection() {
 
                     </blockquote>
 
-                    <blockquote className="rounded-lg bg-gray-50 p-6 border border-solid shadow-2xl sm:p-8">
+                    <blockquote className="rounded-lg bg-gray-50 p-6 border border-solid shadow-xl sm:p-8">
                         <div className="flex items-center gap-4">
                             <img
                                 alt=""
