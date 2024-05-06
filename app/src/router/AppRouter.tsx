@@ -91,38 +91,39 @@ const router = createBrowserRouter([
     element: <LoginForm />,
   },
   {
-    path: "/register",
+    path: "/",
     element: <UserLayout />,
     errorElement: <Error />,
     children: [
       {
-        path: "",
+        path: "register",
         element: <UserTypeChoicePage />,
       },
       {
-        path: "interest",
+        path: "/register/interest",
         element: <InterestSelectionPage />
       },
       {
-        path: "Applicant",
+        path: "register/applicant",
         element: <div>Applicant</div>,
+      },
+      {
+        path: "help",
+        element: <HelpLayout />,
+        children: [
+          {
+            path: "faq",
+            element: <Faq />,
+          },
+          {
+            path: "contact",
+            element: <Contact />,
+          },
+        ],
       },
     ]
   },
-  {
-    path: "/help",
-    element: <HelpLayout />,
-    children: [
-      {
-        path: "faq",
-        element: <Faq />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
-    ],
-  },
+
   {
     path: "*",
     element: <Error />,
