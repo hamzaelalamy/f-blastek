@@ -2,41 +2,41 @@ import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
-    <div>
-      <nav className="p-4 bg-white border-black">
-        <div className="container flex flex-col items-center justify-between mx-auto md:flex-row">
-          <div className="mb-4 text-xl font-bold text-green-300 md:mb-0">F'Blastek</div>
-          <ul className="flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+    <div className=" z-50 fixed top-0 left-0 w-full  ">
+      <nav className="bg-white  p-4 border-black backdrop-blur-sm	 bg-opacity-35 bg-transparent hidden md:block">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+          <div className="text-[#20B486] text-xl font-bold mb-4 md:mb-0">F'Blastek</div>
+          <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 z-50">
             <li>
-              <a href="#" className="text-xs text-black hover:text-gray-300">
+              <a href="#" className="text-white text-xs hover:text-[#F98C60]">
                 Home
               </a>
             </li>
             <li>
-              <a href="#" className="text-xs text-black hover:text-gray-300">
+              <a href="#" className="text-white  text-xs hover:text-[#F98C60]">
                 About
               </a>
             </li>
             <li>
-              <a href="#" className="text-xs text-black hover:text-gray-300">
+              <a href="#" className="text-white text-xs hover:text-[#F98C60]">
                 Services
               </a>
             </li>
             <li>
-              <Link to="/help" className="text-xs text-black hover:text-gray-300">
-                Help
-              </Link>
+              <a href="#" className="text-white text-xs hover:text-[#F98C60]">
+                Contact
+              </a>
             </li>
           </ul>
           <div className="flex flex-col items-center justify-between md:flex-row">
             <button
-              className="px-4 py-1 mb-2 text-xs text-white bg-green-300 hover:bg-green-400 md:mb-0 md:mr-1"
+              className="bg-[#20B486] hover:bg-green-400 text-xs text-white py-1 px-4 mb-2 md:mb-0 md:mr-1 rounded-sm"
               type="submit"
             >
               Sign In
             </button>
             <button
-              className="px-4 py-1 text-xs text-white bg-orange-400 hover:bg-orange-500"
+              className="bg-[#F98C60] hover:bg-orange-500 text-xs text-white py-1 px-4 rounded-sm"
               type="submit"
             ><NavLink to={"/register"}>
                 Sign Up

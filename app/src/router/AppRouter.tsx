@@ -15,6 +15,8 @@ import Service from "../pages/service/Services.tsx";
 import AddService from "../pages/service/AddService.tsx";
 import EditServicePage from "../pages/service/EditService.tsx";
 import AdminRoute from "./AdminRoute.tsx";
+import LandingPage from "../pages/LandingPage.tsx";
+import About from "../pages/About.tsx";
 import Error from "../pages/Error.tsx";
 import UserLayout from "../layouts/UserLayout.tsx";
 import UserTypeChoicePage from "../pages/register/UserTypeChoicePage.tsx";
@@ -129,6 +131,14 @@ const router = createBrowserRouter([
     element: <Error />,
   },
 
+  {
+    path: "/Home",
+    element: <LandingPage />,
+  },
+  {
+    path: "/About",
+    element: <About />,
+  },
 ]);
 
 const AppRouter = () => {
