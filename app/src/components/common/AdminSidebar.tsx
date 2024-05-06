@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BsArrowLeftCircle } from 'react-icons/bs';
 import { AiFillPieChart } from 'react-icons/ai';
-import { SiFuturelearn } from 'react-icons/si';
 import { SiOpenaccess } from 'react-icons/si';
 import { CgProfile } from 'react-icons/cg';
 import { FaInbox } from "react-icons/fa";

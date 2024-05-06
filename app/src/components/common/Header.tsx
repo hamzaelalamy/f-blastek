@@ -28,7 +28,7 @@ function Header() {
               </a>
             </li>
           </ul>
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col items-center justify-between md:flex-row">
             <button
               className="bg-[#20B486] hover:bg-green-400 text-xs text-white py-1 px-4 mb-2 md:mb-0 md:mr-1 rounded-sm"
               type="submit"
