@@ -10,7 +10,7 @@ interface props {
 
 function InterestSelectionCard(props: React.PropsWithChildren<props>) {
     return (
-        <div className="relative flex flex-col mt-6 text-gray-700 bg-[#82F2A7] shadow-md bg-clip-border rounded-xl max-w-xs mx-2">
+        <div className="relative flex flex-col mt-6 text-gray-700 bg-[#bfffd3] shadow-md bg-clip-border rounded-xl max-w-xs mx-2">
             <div className="flex flex-col items-center p-6">
                 <img src={props.icon} alt="applicant" className="w-24 h-24 bg-white rounded-full" />
                 <h5 className="mb-2 font-sans text-xl font-semibold leading-snug text-blue-gray-900">

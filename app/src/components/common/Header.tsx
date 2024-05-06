@@ -2,11 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
-    <div className=" z-50 fixed top-0 left-0 w-full  ">
-      <nav className="bg-white  p-4 border-black backdrop-blur-sm	 bg-opacity-35 bg-transparent hidden md:block">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+    <div className="fixed top-0 left-0 z-50 w-full mb-5 ">
+      <nav className="hidden p-4 bg-transparent bg-white border-black backdrop-blur-sm bg-opacity-35 md:block">
+        <div className="container flex flex-col items-center justify-between mx-auto md:flex-row">
           <div className="text-[#20B486] text-xl font-bold mb-4 md:mb-0">F'Blastek</div>
-          <ul className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 z-50">
+          <ul className="z-50 flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-4">
             <li>
               <a href="#" className="text-white text-xs hover:text-[#F98C60]">
                 Home
