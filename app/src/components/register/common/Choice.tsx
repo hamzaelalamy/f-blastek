@@ -16,7 +16,7 @@ function Choice() {
                             Une baby-sitter, nounou, femme de ménage, prof particulier, aide à domicile, ...
                         </p>
                     </div>
-                    <div className="flex justify-center p-6 pt-0"> {/* Added justify-center */}
+                    <div className="flex justify-center p-6 pt-0">
                         <Link to="/register/professional" className="inline-block">
                             <button
                                 className="flex items-center gap-2 px-4 py-2 font-sans text-xs font-bold text-center text-white bg-[#fa9856] uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-[#d07f49] active:bg-[#d07f49]"
@@ -41,7 +41,7 @@ function Choice() {
                         </p>
                     </div>
                     <div className="flex justify-center p-6 pt-0"> {/* Added justify-center */}
-                        <Link to="/register/client" className="inline-block">
+                        <Link to="/register/interest" className="inline-block">
                             <button
                                 className="flex items-center gap-2 px-4 py-2 font-sans text-xs font-bold text-center text-white uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-[#d07f49] active:bg-[#d07f49] bg-[#fa9856]"
                                 type="button">

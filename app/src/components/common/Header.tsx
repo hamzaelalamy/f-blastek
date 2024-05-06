@@ -1,4 +1,4 @@
-import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -23,9 +23,9 @@ function Header() {
               </a>
             </li>
             <li>
-              <a href="#" className="text-xs text-black hover:text-gray-300">
-                Contact
-              </a>
+              <Link to="/help" className="text-xs text-black hover:text-gray-300">
+                Help
+              </Link>
             </li>
           </ul>
           <div className="flex flex-col items-center justify-between md:flex-row">
@@ -38,8 +38,9 @@ function Header() {
             <button
               className="px-4 py-1 text-xs text-white bg-orange-400 hover:bg-orange-500"
               type="submit"
-            >
-              Sign Up
+            ><NavLink to={"/register"}>
+                Sign Up
+              </NavLink>
             </button>
           </div>
         </div>
