@@ -3,9 +3,9 @@ import { Form, redirect, useActionData } from 'react-router-dom';
 export default function Contact() {
 
     return (
-        <section className="mt-10">
+        <section className="">
             <div className="p-8">
-                <div className="p-4 py-8 mt-12 rounded-lg shadow-xl">
+                <div className="p-4 py-8 rounded-lg shadow-xl">
                     <div className="max-w-screen-md px-4 py-8 mx-auto lg:py-16">
                         <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-center text-gray-900">Contact Us</h2>
                         <p className="mb-8 font-light text-center text-gray-500 lg:mb-16 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>

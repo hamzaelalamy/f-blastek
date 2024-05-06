@@ -2,7 +2,7 @@ export default function Faq() {
     return (
         <div className="p-8">
             <div className="p-4 py-8 mt-12 rounded-lg shadow-xl">
-                <h4 className="text-4xl font-bold tracking-widest text-center text-gray-800 uppercase">FAQ</h4>
+                <h4 className="text-4xl font-extrabold tracking-tight text-center text-gray-900">FAQ</h4>
                 <p className="mt-2 text-sm text-center text-gray-600">Here are some of the frequently asked questions</p>
                 <div className="px-2 mt-12 space-y-12 xl:px-16">
                     <div className="flex mt-4">

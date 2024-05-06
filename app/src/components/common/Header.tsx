@@ -1,4 +1,4 @@
-import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -38,8 +38,9 @@ function Header() {
             <button
               className="bg-[#F98C60] hover:bg-orange-500 text-xs text-white py-1 px-4 rounded-sm"
               type="submit"
-            >
-              Sign Up
+            ><NavLink to={"/register"}>
+                Sign Up
+              </NavLink>
             </button>
           </div>
         </div>
