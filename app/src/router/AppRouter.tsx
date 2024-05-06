@@ -21,6 +21,7 @@ import UserTypeChoicePage from "../pages/register/UserTypeChoicePage.tsx";
 import HelpLayout from "../layouts/HelpLayout.tsx";
 import Faq from "../pages/help/Faq.tsx";
 import Contact from "../pages/help/Contact.tsx";
+import InterestSelectionPage from "../pages/register/InterestSelectionPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -90,39 +91,38 @@ const router = createBrowserRouter([
     element: <LoginForm />,
   },
   {
-    path: "/",
+    path: "/register",
     element: <UserLayout />,
     errorElement: <Error />,
     children: [
       {
-        path: "/choice",
+        path: "",
         element: <UserTypeChoicePage />,
       },
       {
-        path: "/register",
-        element: <div>Register</div>,
+        path: "interest",
+        element: <InterestSelectionPage />
       },
       {
-        path: "/Applicant",
+        path: "Applicant",
         element: <div>Applicant</div>,
       },
-      {
-        path: "/help",
-        element: <HelpLayout />,
-        children: [
-          {
-            path: "faq",
-            element: <Faq />,
-          },
-          {
-            path: "contact",
-            element: <Contact />,
-          },
-        ],
-      }
     ]
   },
-
+  {
+    path: "/help",
+    element: <HelpLayout />,
+    children: [
+      {
+        path: "faq",
+        element: <Faq />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+    ],
+  },
   {
     path: "*",
     element: <Error />,
