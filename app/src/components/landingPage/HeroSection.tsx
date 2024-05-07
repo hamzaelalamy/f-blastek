@@ -23,10 +23,10 @@ function HeroSection() {
             <p className="lg:text-lg text-[8px] font-bold lg:mt-10 text-[#02033B]">Your Trusted Platform for Exceptional Services: Babysitting, Household Help, Personal Assistance,, School Support </p>
             <p className="lg:text-lg text-xs lg:block font-bold hidden text-[#11033A]">  Care Assistance - Empowering Lives, One Service at a Time!</p>
             <div className="flex justify-start lg:mt-10">
-              <button className="flex items-center bg-[#20B486] text-white lg:ml-40 lg:w-52 lg:p-4 lg:pr-5 rounded-md ml-6 mt-7 p-2 md:w-40 w-30"><span className="mr-auto flex-grow text-[10px] lg:text-[13px] lg:font-bold"> I am looking For a job</span>  <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+              <button className="flex items-center bg-[#20B486] text-white lg:ml-40 lg:w-52 lg:p-4 lg:pr-5 rounded-md ml-6 mt-7 p-2 md:w-40 w-30"><span className="mr-auto flex-grow text-[10px] lg:text-[13px] "> I am looking For a job</span>  <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
               </svg></button>
-              <button className="flex items-center bg-[#20B486] text-white lg:ml-24 lg:w-52 lg:p-2 rounded-md mt-7 ml-2 p-2 md:w-40 w-30"> <span className="mr-auto flex-grow text-[10px] lg:text-[13px] lg:font-bold"> I am looking For home help</span> <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+              <button className="flex items-center bg-[#20B486] text-white lg:ml-24 lg:w-52 lg:p-2 rounded-md mt-7 ml-2 p-2 md:w-40 w-30"> <span className="mr-auto flex-grow text-[10px] lg:text-[13px] "> I am looking For home help</span> <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
               </svg></button>
             </div>
