@@ -16,9 +16,9 @@ function HeroSection() {
         <div className="absolute inset-0 bg-black opacity-55"></div>
         <div className="absolute inset-0 flex items-center justify-center -mt-20">
           <div className="text-white text-center">
-            <h1 className="md:text-3xl lg:text-6xl font-bold mt-32 mb-4 text-[20px]"><span className="text-[#20B486]">Empowering</span> Lives, </h1>
+            <h1 className="md:text-3xl lg:text-6xl font-bold mt-32 mb-4 text-[20px]"><span className="text-[#20B486]   drop-shadow-[0_1px_0px_rgba(255,255,255,1)]  ">Empowering</span> Lives, </h1>
             <h1 className="md:text-3xl lg:text-6xl font-bold mb-4 text-[20px]"> One Service at a Time</h1>
-            <h1 className="md:text-3xl lg:text-6xl font-bold mb-4 text-[20px]">Nurturing, <span className="text-[#20B486]">Caring</span>, Supporting!</h1>
+            <h1 className="md:text-3xl lg:text-6xl font-bold mb-4 text-[20px]">Nurturing, <span className="text-[#20B486] drop-shadow-[0_1.95px_0px_rgba(255,255,255,1)]">Caring</span>, Supporting!</h1>
             <h1 className="md:text-3xl lg:text-6xl font-bold mb-4 text-xl"></h1>
             <p className="lg:text-lg text-[8px] font-bold lg:mt-10 text-[#02033B]">Your Trusted Platform for Exceptional Services: Babysitting, Household Help, Personal Assistance,, School Support </p>
             <p className="lg:text-lg text-xs lg:block font-bold hidden text-[#11033A]">  Care Assistance - Empowering Lives, One Service at a Time!</p>
