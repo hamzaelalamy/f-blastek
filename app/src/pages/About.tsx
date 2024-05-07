@@ -6,40 +6,40 @@ function About() {
         <div className="">
             <Header />
 
-            <section className="overflow-hidden pt-10 pb-12 lg:pt-[120px] lg:pb-[90px] ">
+            <section className="overflow-hidden pt-10 pb-12 lg:pt-[120px] lg:pb-[80px] ">
                 <div className="container mx-auto">
-                    <div className="flex flex-wrap items-center justify-between -mx-4">
+                    <div className="flex flex-wrap items-center  -mx-5">
                         <div className="w-full px-4 lg:w-6/12">
                             <div className="flex items-center -mx-3 sm:-mx-4">
-                                <div className="w-full px-3 sm:px-4 xl:w-1/2">
-                                    <div className="py-3 sm:py-4">
+                                <div className="w-full px-3 sm:px-4  xl:w-1/2">
+                                    <div className="py-20 pl-1  sm:py-4">
                                         <img
                                             src="../../../aboutPage/about4.png"
                                             alt=""
-                                            className="w-full rounded-2xl h-96"
+                                            className="w-70  mx-auto rounded-2xl h-96 "
                                         />
                                     </div>
-                                    <div className="py-3 sm:py-4">
+                                    <div className=" pl-1  sm:py-4">
                                         <img
                                             src="../../../aboutPage/about1.png"
                                             alt=""
-                                            className="w-full rounded-2xl h-96"
+                                            className="w-70 mx-auto rounded-2xl h-96"
                                         />
                                     </div>
                                 </div>
-                                <div className="w-full px-3 sm:px-4 xl:w-1/2">
+                                <div className="w-full pr-5 sm:px-4 xl:w-1/2">
                                     <div className="relative z-10 my-4">
                                         <img
                                             src="../../../aboutPage/about2.png"
                                             alt=""
-                                            className="w-full rounded-2xl h-96"
+                                            className="w-70 rounded-2xl h-96"
                                         />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="w-full px-10 md:px-0 lg:w-1/2 xl:w-5/12">
-                            <div className="mt-10  lg:mt-0">
+                            <div className="mt-10 md:ml-8 lg:mt-0">
                                 <span className="block mb-8 text-lg text-[#FF5C1A] md:text-4xl font-semibold text-primary">
                                     Why Choose Us
                                 </span>
@@ -77,7 +77,7 @@ function About() {
                 </span>
                 <div className=" w-full  flex flex-col gap-10 md:gap-20 mt-3">
                     <div className="  mx-auto  w-full md:w-3/4 lg:w-1/2 rounded-3xl p-10 shadow-md ">
-                        <p className=" text-center">
+                        <p className=" md:text-center">
                             we offer a comprehensive range of services tailored to meet your
                             needs. Whether you're seeking reliable babysitting services for your
                             little ones, dedicated home schooling assistance to support your
