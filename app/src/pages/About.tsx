@@ -14,14 +14,14 @@ function About() {
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                   <div className="py-3 sm:py-4">
                     <img
-                      src="../../../public/aboutPage/about4.png"
+                      src="../../../aboutPage/about4.png"
                       alt=""
                       className="w-full rounded-2xl"
                     />
                   </div>
                   <div className="py-3 sm:py-4">
                     <img
-                      src="../../../public/aboutPage/about1.png"
+                      src="../../../aboutPage/about1.png"
                       alt=""
                       className="w-full rounded-2xl"
                     />
@@ -30,7 +30,7 @@ function About() {
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                   <div className="relative z-10 my-4">
                     <img
-                      src="../../../public/aboutPage/about2.png"
+                      src="../../../aboutPage/about2.png"
                       alt=""
                       className="w-full rounded-2xl"
                     />
