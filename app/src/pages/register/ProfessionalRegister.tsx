@@ -1,8 +1,8 @@
-import React from 'react'
+import ProfessionalRegisterForm from "../../components/register/Professional/ProfessionalRegisterForm"
 
 function ProfessionalRegister() {
     return (
-        <div>ProfessionalRegister</div>
+        <ProfessionalRegisterForm />
     )
 }
 
