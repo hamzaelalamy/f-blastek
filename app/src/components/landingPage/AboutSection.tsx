@@ -13,7 +13,7 @@ function AboutSection() {
     </p>
     <p> <span className='text-[#9DB2BF]'>F’Blastek</span> automatise toutes vos démarches et vous permet de profiter d'un acompagnement administratif et juridique personnalisé.</p>
     <button className='flex items-center  bg-[#FF5C1A] text-white   rounded-3xl  mt-5 p-2  '><span className="mr-auto flex-grow text-[10px] lg:text-l lg:font-bold"> Join Us</span>  <svg className="rtl:rotate-180 w-3 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 </svg></button>
 </div >
 
