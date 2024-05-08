@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -7,23 +7,23 @@ function Header() {
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="text-[#20B486] text-xl font-bold mb-4 md:mb-0">F'Blastek</div>
           <ul className="flex flex-col md:flex-row justify-between items-center md:space-x-4 z-50">
-            <li className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] ">
-              <NavLink to="/Home" replace>
+            <li>
+              <NavLink className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] " to="/Home" replace>
                 Home
               </NavLink>
             </li>
-            <li className="text-white text-lg hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
-              <NavLink to="/About" replace>
+            <li>
+              <NavLink className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] " to="/About" replace>
                 About
               </NavLink>
             </li>
-            <li className="text-white text-lg hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
-              <NavLink to="#" replace>
+            <li>
+              <NavLink className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] " to="#" replace>
                 Services
               </NavLink>
             </li>
-            <li className="text-white text-lg hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
-              <NavLink to="/help" replace>
+            <li>
+              <NavLink className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] " to="/help" replace>
                 Help
               </NavLink>
             </li>
