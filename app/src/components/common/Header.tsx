@@ -7,25 +7,25 @@ function Header() {
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
           <div className="text-[#20B486] text-xl font-bold mb-4 md:mb-0">F'Blastek</div>
           <ul className="flex flex-col md:flex-row justify-between items-center md:space-x-4 z-50">
-            <li className="text-white text-sm hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] ">
-              <Link to="/Home" replace>
+            <li className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] ">
+              <NavLink to="/Home" replace>
                 Home
-              </Link>
+              </NavLink>
             </li>
-            <li className="text-white text-sm hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
-              <Link to="/About" replace>
+            <li className="text-white text-lg hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
+              <NavLink to="/About" replace>
                 About
-              </Link>
+              </NavLink>
             </li>
-            <li className="text-white text-sm hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
-              <Link to="#" replace>
+            <li className="text-white text-lg hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
+              <NavLink to="#" replace>
                 Services
-              </Link>
+              </NavLink>
             </li>
-            <li className="text-white text-sm hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
-              <Link to="/contact" replace>
-                Contact
-              </Link>
+            <li className="text-white text-lg hover:text-[#F98C60] drop-shadow-[0_1px_0px_rgba(0,0,0,1)]">
+              <NavLink to="/help" replace>
+                Help
+              </NavLink>
             </li>
           </ul>
           <div className="flex flex-col items-center justify-between md:flex-row">
