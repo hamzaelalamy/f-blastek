@@ -8,7 +8,7 @@ function Header() {
           <div className="text-[#20B486] text-xl font-bold mb-4 md:mb-0">F'Blastek</div>
           <ul className="flex flex-col md:flex-row justify-between items-center md:space-x-4 z-50">
             <li>
-              <NavLink className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] " to="/Home" replace>
+              <NavLink className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] " to="/" replace>
                 Home
               </NavLink>
             </li>

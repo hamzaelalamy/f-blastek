@@ -9,9 +9,7 @@ function HeroSection() {
   return (
     <>
       <div className="relative bg-cover bg-center h-[400px] lg:h-[600px] xl:h-[700px] ">
-        <Header />
-        {mobileMenu && <MobileHeader />}
-        <HamburgerButton mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
+       
         <img className="absolute inset-0 w-full h-full object-cover " src="../../../landingPage/hero6.png" alt="Hero Image" />
         <div className="absolute inset-0 bg-black opacity-55"></div>
         <div className="absolute inset-0 flex items-center justify-center -mt-20">
