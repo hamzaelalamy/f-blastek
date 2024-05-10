@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function Choice() {
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pt-20">
             <h1 className="mt-10 text-5xl text-[#20B486] font-bold outline-8">Que cherchez vous ?</h1>
             <div className="flex justify-center mt-6">
                 <div className="relative flex flex-col mt-6 text-gray-700 bg-[#82F2A7] shadow-md bg-clip-border rounded-xl w-96">

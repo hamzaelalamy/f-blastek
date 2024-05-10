@@ -2,7 +2,7 @@ import { Outlet, NavLink } from 'react-router-dom';
 
 function HelpLayout() {
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pt-20">
             <h2 className='self-start mt-20 ml-20 text-5xl font-bold'>Website help</h2>
             <p className='self-start mt-4 ml-20'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, quibusdam!</p>
 
