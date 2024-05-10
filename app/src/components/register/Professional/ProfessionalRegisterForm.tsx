@@ -1,56 +1,127 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { z } from 'zod';
-
-const signupSchema = z.object({
-    firstname: z.string().min(3).max(255),
-    lastname: z.string().min(3).max(255),
-    specialization: z.string().min(3).max(255),
-    city: z.string().min(3).max(255),
-    email: z.string().email(),
-    password: z.string().min(6).max(255),
-    confirmPassword: z.string().min(6).max(255)
-});
-
-type TFormInput = {
-    firstname: string,
-    lastname: string,
-    specialization: string,
-    city: string,
-    email: string,
-    password: string,
-    confirmPassword: string
-}
-
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ProfessionalSignupType, signupSchema } from '../../../validation/ProfessionalSignupSchema';
+import { FormInput } from '../../form/index';
+import { Link } from 'react-router-dom';
 
 function ProfessionalRegisterForm() {
 
-    const { register, handleSubmit } = useForm<TFormInput>();
-    const submitForm: SubmitHandler<TFormInput> = (data) => {
+    const {
+        register,
+        handleSubmit,
+        getFieldState,
+        trigger,
+        formState: { errors }
+    } = useForm<ProfessionalSignupType>({
+        mode: 'onBlur',
+        resolver: zodResolver(signupSchema)
+    });
+    const submitForm: SubmitHandler<ProfessionalSignupType> = (data) => {
         console.log(data)
     };
 
+    const emailOnBlurHandler = async (e: React.FocusEvent<HTMLInputElement>) => {
+        await trigger("email");
+        const value = e.target.value;
+        const { isDirty, invalid } = getFieldState('email');
+        if (isDirty && !invalid) {
+            console.log("Email is valid")
+        }
+    };
+
     return (
-        <div>
-            <h1>Professional Register Form</h1>
-            <form onSubmit={handleSubmit(submitForm)}>
-                <label htmlFor="firstname" className="mr-2">First Name</label>
-                <input type="text" placeholder="First Name" {...register("firstname")} /><br />
-                <label htmlFor="lastname" className="mr-2">Last Name</label>
-                <input type="text" placeholder="Last Name" {...register("lastname")} /><br />
-                <label htmlFor="specialization" className="mr-2">Specialization</label>
-                <input type="text" placeholder="Specialization" {...register("specialization")} /><br />
-                <label htmlFor="city" className="mr-2">City</label>
-                <input type="text" placeholder="City" {...register("city")} /><br />
-                <label htmlFor="email" className="mr-2">Email</label>
-                <input type="email" placeholder="Email" {...register("email")} /><br />
-                <label htmlFor="password" className="mr-2">Password</label>
-                <input type="password" placeholder="Password" {...register("password")} />
-                <label htmlFor="confirmPassword" className="mr-2">Confirm Password</label>
-                <input type="password" placeholder="Confirm Password" {...register("confirmPassword")} /><br />
-                <button type="submit">Register</button>
-            </form>
+        <div className="mx-auto max-w-[500px] bg-white border border-gray-200 shadow-sm mt-7 rounded-xl ">
+            <div className="p-4 sm:p-7">
+                <div className="text-center">
+                    <h1 className="block text-2xl font-bold text-gray-800">Sign up</h1>
+                    <p className="mt-2 text-sm text-gray-600">
+                        Already have an account?{' '}
+                        <Link
+                            to="/login/applicant"
+                            className="font-medium text-[#20B486] decoration-2 hover:underline"
+                        >
+                            Sign in here
+                        </Link>
+                    </p>
+                </div>
+
+                <div className="mt-5">
+                    <form onSubmit={handleSubmit(submitForm)} className="grid gap-y-4">
+                        <FormInput
+                            label="First Name"
+                            name="firstname"
+                            register={register}
+                            placeholder="John"
+                            error={errors.firstname?.message}
+                        />
+                        <FormInput
+                            label="Last Name"
+                            name="lastname"
+                            register={register}
+                            placeholder="Doe"
+                            error={errors.lastname?.message}
+                        />
+                        <FormInput
+                            label="Email"
+                            type="email"
+                            name="email"
+                            register={register}
+                            placeholder="email"
+                            error={errors.email?.message}
+                            onBlur={emailOnBlurHandler}
+                        />
+                        <FormInput
+                            label="Password"
+                            name="password"
+                            type="password"
+                            register={register}
+                            placeholder="Password"
+                            error={errors.password?.message}
+                        />
+                        <FormInput
+                            label="Confirm Password"
+                            name="confirmPassword"
+                            type="password"
+                            register={register}
+                            placeholder="Confirm Password"
+                            error={errors.confirmPassword?.message}
+                        />
+
+                        <div className="flex items-center">
+                            <div className="flex">
+                                <input
+                                    id="remember-me"
+                                    name="remember-me"
+                                    type="checkbox"
+                                    className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500"
+                                />
+                            </div>
+                            <div className="ms-3">
+                                <label htmlFor="remember-me" className="text-sm">
+                                    I accept the{' '}
+                                    <a
+                                        href="#"
+                                        className="font-medium text-blue-600 decoration-2 hover:underline"
+                                    >
+                                        Terms and Conditions
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full px-4 py-3 text-sm font-semibold text-white bg-[#20B486] border border-transparent rounded-lg mt-4 hover:bg-[#318665] disabled:opacity-50 disabled:pointer-events-none"
+                        >
+                            Sign up
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
+
     )
 }
 
 export default ProfessionalRegisterForm
+

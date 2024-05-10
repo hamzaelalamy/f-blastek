@@ -1,7 +1,8 @@
+import ProfessionalLoginForm from "../../../components/Login/ProfessionalLoginForm"
 
 function ProfessionalLoginPage() {
     return (
-        <div></div>
+        <ProfessionalLoginForm />
     )
 }
 
