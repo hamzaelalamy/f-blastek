@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import {actGetAdmins,actPostAdmins,actPutAdmins,actDeleteAdmins,actGetAdminById} from '../../slices/admin/ActAdmin'
+import {actGetAdmins,actPostAdmins,actPutAdmins,actDeleteAdmins,actGetAdminById} from './ActAdmin'
 
 interface AdminState{
     records:{

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BsArrowLeftCircle } from 'react-icons/bs';
 import { AiFillPieChart } from 'react-icons/ai';
-import { SiFuturelearn } from 'react-icons/si';
 import { SiOpenaccess } from 'react-icons/si';
 import { CgProfile } from 'react-icons/cg';
 import { FaInbox } from "react-icons/fa";
@@ -17,15 +16,19 @@ const Sidebar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const location = useLocation();
 
+  function Logout() {
+    localStorage.removeItem('admin');
+  }
+
   const Menus = [
     { title: 'Dashboard', path: '/backoffice/dashboard', src: <AiFillPieChart /> },
     { title: 'Clients', path: '/backoffice/clients', src: <CgProfile /> },
     { title: 'Professionals', path: '/backoffice/Professionals', src: <GrUserWorker /> },
     { title: 'Admins', path: '/backoffice/admins', src: <GrUserAdmin /> },
-    { title: 'Servies', path: '/backoffice/services', src: <MdOutlineHomeRepairService /> },
-    { title: 'Interventions', path: '/backoffice/interventions', src: <IoBookOutline />},
+    { title: 'Services', path: '/backoffice/services', src: <MdOutlineHomeRepairService /> },
+    { title: 'Interventions', path: '/backoffice/interventions', src: <IoBookOutline /> },
     { title: 'Inbox', path: '/backoffice/inbox', src: <FaInbox /> },
-    { title: 'Logout', path: '/login', src: <SiOpenaccess />, gap: 'true' },
+    { title: 'Logout', path: '/login', src: <SiOpenaccess />, gap: 'true', onClick: () => Logout() },
   ];
 
   return (
@@ -34,9 +37,8 @@ const Sidebar = () => {
         className={`${open ? 'w-60' : 'w-fit'} hidden sm:block relative h-screen duration-300 bg-[#e9f8f3] border-r border-gray-200 p-5`}
       >
         <BsArrowLeftCircle
-          className={`${
-            !open && 'rotate-180'
-          } absolute text-3xl bg-white fill-slate-800 rounded-full cursor-pointer top-9 -right-4`}
+          className={`${!open && 'rotate-180'
+            } absolute text-3xl bg-white fill-slate-800 rounded-full cursor-pointer top-9 -right-4`}
           onClick={() => setOpen(!open)}
         />
         <Link to='/'>
@@ -51,11 +53,12 @@ const Sidebar = () => {
 
         <ul className='pt-6'>
           {Menus.map((menu, index) => (
-            <Link to={menu.path} key={index}>
+            <Link to={menu.path} key={index}
+              onClick={menu.onClick}
+            >
               <li
-                className={`flex items-center gap-x-6 p-3 text-base font-normal rounded-lg cursor-pointer hover:bg-gray-200 ${
-                  menu.gap ? 'mt-9' : 'mt-2'
-                } ${location.pathname === menu.path && 'bg-gray-200'}`}
+                className={`flex items-center gap-x-6 p-3 text-base font-normal rounded-lg cursor-pointer hover:bg-gray-200 ${menu.gap ? 'mt-9' : 'mt-2'
+                  } ${location.pathname === menu.path && 'bg-gray-200'}`}
               >
                 <span className='text-2xl'>{menu.src}</span>
                 <span className={`${!open && 'hidden'}`}>{menu.title}</span>
@@ -73,9 +76,8 @@ const Sidebar = () => {
       </div>
       <div className="sm:hidden">
         <div
-          className={`${
-            mobileMenu ? 'flex' : 'hidden'
-          } absolute z-50 flex-col items-center self-end py-8 mt-16 space-y-6 font-bold sm:w-auto left-6 right-6`}
+          className={`${mobileMenu ? 'flex' : 'hidden'
+            } absolute z-50 flex-col items-center self-end py-8 mt-16 space-y-6 font-bold sm:w-auto left-6 right-6`}
         >
           {Menus.map((menu, index) => (
             <Link
@@ -84,9 +86,8 @@ const Sidebar = () => {
               onClick={() => setMobileMenu(false)}
             >
               <span
-                className={`${
-                  location.pathname === menu.path && 'bg-gray-200'
-                } p-2 rounded-xl hover:bg-gray-200`}
+                className={`${location.pathname === menu.path && 'bg-gray-200'
+                  } p-2 rounded-xl hover:bg-gray-200`}
               >
                 {menu.title}
               </span>

@@ -11,64 +11,80 @@ import EditAdmin from "../pages/admin/EditAdmin.tsx";
 import AddIntervention from "../pages/intervention/AddIntervention.tsx";
 import InterventionList from "../pages/intervention/InterventionList.tsx";
 import EditIntervention from "../pages/intervention/EditIntervention.tsx";
+import Service from "../pages/service/Services.tsx";
+import AddService from "../pages/service/AddService.tsx";
+import EditServicePage from "../pages/service/EditService.tsx";
+import AdminRoute from "./AdminRoute.tsx";
+import LandingPage from "../pages/LandingPage.tsx";
+import About from "../pages/About.tsx";
+import Error from "../pages/Error.tsx";
+import UserLayout from "../layouts/UserLayout.tsx";
+import UserTypeChoicePage from "../pages/register/UserTypeChoicePage.tsx";
+import HelpLayout from "../layouts/HelpLayout.tsx";
+import Faq from "../pages/help/Faq.tsx";
+import Contact from "../pages/help/Contact.tsx";
+import InterestSelectionPage from "../pages/register/InterestSelectionPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/backoffice",
     element: <AdminLayout />,
-    errorElement: <div>Not Found</div>,
+    errorElement: <Error />,
     children: [
       {
-                path: "dashboard",
-                element: <Dashboard/>
-       },
-       {
+        path: "dashboard",
+        element: <AdminRoute> <Dashboard /></AdminRoute>
+      }, {
+        path: "clients",
+        element: <AdminRoute><div>Client List</div></AdminRoute>,
+      },
+      {
         path: "admins",
-        element: <AdminList />,
+        element: <AdminRoute><AdminList /></AdminRoute>,
       },
       {
         path: "admins/create",
-        element: <AddAdmin />,
+        element: <AdminRoute><AddAdmin /></AdminRoute>,
       },
       {
         path: "admins/edit/:id",
-        element: <EditAdmin />,
+        element: <AdminRoute><EditAdmin /></AdminRoute>,
       },
       {
         path: "professionals",
-        element: <Professional />,
+        element: <AdminRoute><Professional /></AdminRoute>,
       },
       {
         path: "professionals/create",
-        element: <AddProfessional />,
+        element: <AdminRoute><AddProfessional /></AdminRoute>,
       },
       {
         path: "professionals/edit/:id",
-        element: <EditProfessionalPage />,
+        element: <AdminRoute><EditProfessionalPage /></AdminRoute>,
       },
       {
         path: "services",
-        element: <div>Services</div>,
+        element: <AdminRoute><Service /></AdminRoute>,
       },
       {
         path: "services/create",
-        element: <div>Create Service</div>,
+        element: <AdminRoute><AddService /></AdminRoute>,
       },
       {
         path: "services/edit/:id",
-        element: <div>edit service</div>,
+        element: <AdminRoute><EditServicePage /></AdminRoute>,
       },
       {
         path: "interventions",
-        element: <InterventionList />,
+        element: <AdminRoute><InterventionList /></AdminRoute>,
       },
       {
         path: "interventions/create",
-        element: <AddIntervention />,
+        element: <AdminRoute><AddIntervention /></AdminRoute>,
       },
       {
         path: "interventions/edit/:id",
-        element: <EditIntervention/>,
+        element: <AdminRoute><EditIntervention /></AdminRoute>,
       }
     ],
   },
@@ -76,7 +92,52 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginForm />,
   },
-  
+  {
+    path: "/",
+    element: <UserLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <LandingPage />,
+      },
+      {
+        path: "/About",
+        element: <About />,
+      },
+      {
+        path: "register",
+        element: <UserTypeChoicePage />,
+      },
+      {
+        path: "/register/interest",
+        element: <InterestSelectionPage />
+      },
+      {
+        path: "register/applicant",
+        element: <div>Applicant</div>,
+      },
+      {
+        path: "help",
+        element: <HelpLayout />,
+        children: [
+          {
+            path: "faq",
+            element: <Faq />,
+          },
+          {
+            path: "contact",
+            element: <Contact />,
+          },
+        ],
+      },
+    ]
+  },
+
+  {
+    path: "*",
+    element: <Error />,
+  },
 ]);
 
 const AppRouter = () => {
