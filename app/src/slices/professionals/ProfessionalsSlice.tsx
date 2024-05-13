@@ -2,7 +2,27 @@ import { createSlice } from "@reduxjs/toolkit";
 import { actGetProfessionals, actPostProfessionals, actPutProfessionals, actDeleteProfessionals, actGetProfessionalById } from "./ActProfessionals.tsx";
 
 interface IProState {
-    records: { id: number, _id: string, firstName: string, lastName: string, cin: string, email: string, backgroundCheckCompleted: boolean, specialization: string }[],
+    records: { id: number,
+         _id: string,
+        firstName : string,
+        lastName : string,
+        cin?: string,
+        email: string,
+        phoneNumber?: string,
+        city: string,
+        address?: string,
+        geolocation?: any,
+        scannedCin?: string,
+        photo?: string,
+        specialization: string,
+        hourlyRate?: number,
+        bio?: string,
+        experiences?: string[],
+        backgroundCheckCompleted: boolean,
+        availability?: {
+            days?: string[],
+            timeslots?: string[],
+        };}[],
     loading: "idle" | "pending" | "succeeded" | "failed",
     error: string | null
 }
@@ -84,7 +104,7 @@ const professionalSlice = createSlice({
             })
             .addCase(actGetProfessionalById.fulfilled, (state, action) => {
                 state.loading = "succeeded";
-                state.records = [action.payload];
+                state.records = action.payload;
                 state.error = null;
             })
             .addCase(actGetProfessionalById.rejected, (state, action) => {

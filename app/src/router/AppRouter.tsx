@@ -26,6 +26,7 @@ import Contact from "../pages/help/Contact.tsx";
 import InterestSelectionPage from "../pages/register/InterestSelectionPage.tsx";
 import ProfessionalRegister from "../pages/register/ProfessionalRegister.tsx";
 import ProfessionalLoginPage from "../pages/auth/professional/ProfessionalLoginPage.tsx";
+import ProfessionalDetails from "../components/frontOffice/ProfessionalDetails.tsx";
 
 const router = createBrowserRouter([
   {
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "professional/details/:id",
+        element: <ProfessionalDetails />,
       },
       {
         path: "help",
