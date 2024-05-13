@@ -5,14 +5,22 @@ import AboutSection from '../components/landingPage/AboutSection'
 import TestimonialSection from '../components/landingPage/TestimonialSection'
 import ContactSection from '../components/landingPage/ContactSection'
 function LandingPage() {
+  // const [mobileMenu, setMobileMenu] = useState(false);
+
   return (
     <div>
-      <HeroSection />
-      <JobSection />
-      <ServiceSection />
-      <AboutSection />
-      <TestimonialSection />
-      <ContactSection />
+
+       {/* <Header />
+        {mobileMenu && <MobileHeader />}
+        <HamburgerButton mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} /> */}
+<HeroSection/>
+<JobSection/>
+<ServiceSection/>
+<AboutSection/>
+<TestimonialSection/>
+<ContactSection/>
+{/* <Footer/> */}
+
     </div>
   )
 }

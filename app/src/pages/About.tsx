@@ -4,7 +4,7 @@ import Footer from "../components/common/Footer";
 function About() {
     return (
         <div className="">
-            <Header />
+            {/* <Header /> */}
 
             <section className="overflow-hidden pt-10 pb-12 lg:pt-[120px] lg:pb-[80px] ">
                 <div className="container mx-auto">
@@ -215,7 +215,7 @@ function About() {
             {/* </div>
             </section> */}
 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

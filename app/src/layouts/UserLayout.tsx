@@ -1,20 +1,23 @@
 import { Outlet } from 'react-router-dom'
 import Header from '../components/common/Header'
-import Footer from '../components/common/Footer'
 
+import { useState } from 'react'
+import { HamburgerButton } from '../components/common/HamburgerMenuButton'
+import MobileHeader from '../components/common/HamburgerMenuButton/MobileHeader'
+
+import Footer from '../components/common/Footer'
 function UserLayout() {
+    const [mobileMenu, setMobileMenu] = useState(false)
     return (
-        <div className="flex flex-col h-screen">
-            <Header />
-            <div className="flex flex-1">
-                {/* <aside>Sidebar</aside> */}
-                <div className="flex-1 mt-16 ml-0">
-                    <Outlet />
-                </div>
-            </div>
-            <div className="footer">
-                <Footer />
-            </div>
+        
+        <div className="">
+           
+           <Header />
+        {mobileMenu && <MobileHeader />}
+        <HamburgerButton mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
+        <Outlet/>
+        <Footer/>
+        
         </div>
     )
 }

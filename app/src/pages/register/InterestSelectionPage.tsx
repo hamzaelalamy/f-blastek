@@ -6,7 +6,7 @@ import aide from "../../assets/aide.png"
 
 function InterestSelectionPage() {
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pt-20">
             <h1 className="text-[#FF5C1A] text-5xl font-bold">Bienvenue !</h1>
             <h1 className="mt-10 text-4xl text-[#20B486] font-semibold outline-8">Quel service vous intéresse en priorité ?</h1>
             <div className="flex justify-center mt-6">
