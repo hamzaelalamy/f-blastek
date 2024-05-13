@@ -1,27 +1,37 @@
 import httpClient from "../utils/AxiosInstance";
 import { useState } from "react";
-import axios from "axios";
-import e from "express";
-import { set } from "react-hook-form";
 
-type TStatus = "idle" | "checking" | "availbale" | "notAvailbale" | "failed";
+type TStatus = "idle" | "checking" | "available" | "notAvailable" | "failed";
 
 const useCheckEmailAvailability = () => {
     const [emailAvailabilityStatus, setEmailAvailabilityStatus] = useState<TStatus>("idle");
 
     const [enteredEmail, setEnteredEmail] = useState<string | null>(null);
 
-    const checkEmailAvailability = (email: string) => {
+    const checkEmailAvailability = async (email: string) => {
+
         setEnteredEmail(email);
-        setEmailAvailabilityStatus("checking");
+        setEmailAvailabilityStatus("failed");
+
         try {
-            const response = httpClient.get("professionals")
-        } catch (error) {
+            const response = await httpClient.get(`/professionals/check-email-availability/${email}`)
+            // console.log(response.data.isEmailAvailable);
+            if (response.data.isEmailAvailable === true) {
+                setEmailAvailabilityStatus("available");
+            } else {
+                setEmailAvailabilityStatus("notAvailable");
+            }
+        } catch (err) {
             setEmailAvailabilityStatus("failed");
         }
-    };
+    }
 
+    const resetCheckEmailAvailability = () => {
+        setEmailAvailabilityStatus("idle");
+        setEnteredEmail(null);
+    }
 
+    return { emailAvailabilityStatus, enteredEmail, checkEmailAvailability, resetCheckEmailAvailability };
 };
 
 export default useCheckEmailAvailability;

@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfessionalSignupType, signupSchema } from '../../../validation/ProfessionalSignupSchema';
 import { FormInput } from '../../form/index';
 import { Link } from 'react-router-dom';
+import useCheckEmailAvailability from '../../../hooks/useCheckEmailAvailability';
 
 function ProfessionalRegisterForm() {
 
@@ -20,12 +21,21 @@ function ProfessionalRegisterForm() {
         console.log(data)
     };
 
+    const { emailAvailabilityStatus, enteredEmail, checkEmailAvailability, resetCheckEmailAvailability } = useCheckEmailAvailability();
+
     const emailOnBlurHandler = async (e: React.FocusEvent<HTMLInputElement>) => {
         await trigger("email");
         const value = e.target.value;
-        const { isDirty, invalid } = getFieldState('email');
-        if (isDirty && !invalid) {
-            console.log("Email is valid")
+        console.log(value);
+        const { isDirty, invalid } = getFieldState("email");
+
+        if (isDirty && !invalid && enteredEmail !== value) {
+            // checking
+            checkEmailAvailability(value);
+        }
+
+        if (isDirty && invalid && enteredEmail) {
+            resetCheckEmailAvailability();
         }
     };
 
@@ -66,9 +76,27 @@ function ProfessionalRegisterForm() {
                             type="email"
                             name="email"
                             register={register}
-                            placeholder="email"
-                            error={errors.email?.message}
                             onBlur={emailOnBlurHandler}
+                            placeholder="email"
+                            error={
+                                errors.email?.message
+                                    ? errors.email?.message
+                                    : emailAvailabilityStatus === "notAvailable"
+                                        ? "This email is already in use."
+                                        : emailAvailabilityStatus === "failed"
+                                            ? "Error from the server."
+                                            : ""
+                            }
+                            formText={
+                                emailAvailabilityStatus === "checking"
+                                    ? "We're currently checking the availability of this email address. Please wait a moment."
+                                    : ""
+                            }
+                            success={
+                                emailAvailabilityStatus === "available"
+                                    ? "This email is available for use."
+                                    : ""
+                            }
                         />
                         <FormInput
                             label="Password"

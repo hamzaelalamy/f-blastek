@@ -9,9 +9,11 @@ type FormInputProps<TFieldValue extends FieldValues> = {
     placeholder: string;
     error?: string;
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+    formText?: string;
+    success?: string;
 }
 
-function FormInput<TFieldValues extends FieldValues>({ label, type = "text", register, name, error, onBlur }: FormInputProps<TFieldValues>) {
+function FormInput<TFieldValues extends FieldValues>({ label, type = "text", register, name, error, onBlur, formText, success }: FormInputProps<TFieldValues>) {
     const obBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
         if (onBlur) {
             onBlur(e);
@@ -36,6 +38,16 @@ function FormInput<TFieldValues extends FieldValues>({ label, type = "text", reg
                 {error && (
                     <div className="absolute right-0 pr-3 mt-1 text-sm text-red-600 top-full">
                         {error}
+                    </div>
+                )}
+                {formText && (
+                    <div className="absolute right-0 pr-3 mt-1 text-sm text-red-600 top-full">
+                        {formText}
+                    </div>
+                )}
+                {success && (
+                    <div className="absolute right-0 pr-3 mt-1 text-sm text-green-600 top-full">
+                        {success}
                     </div>
                 )}
             </div>
