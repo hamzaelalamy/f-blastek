@@ -5,6 +5,7 @@ import {
   getProfessionalById,
   updateProfessionalById,
   deleteProfessionalById,
+  checkProfessionalEmail,
 } from "../controllers/professional.controller";
 import ProfessionalSanitization from "../utils/professional.sanitization";
 import validateRequest from "../middleware/validationMiddleware";
@@ -232,7 +233,7 @@ router.get("/professionals/:id", getProfessionalById);
 
 router.put(
   "/professionals/:id",
- //verifyToken,
+  //verifyToken,
   ProfessionalSanitization,
   validateRequest,
   updateProfessionalById
@@ -261,5 +262,32 @@ router.put(
  */
 
 router.delete("/professionals/:id", deleteProfessionalById);
+
+/**
+ * @swagger
+ * /professionals/check-email-availability/{email}:
+ *   get:
+ *     summary: Check if an email is available
+ *     tags: [Professionals]
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Email address to check
+ *     responses:
+ *       '200':
+ *         description: Email is available
+ *       '404':
+ *         description: Email is not available
+ *       '500':
+ *         description: Internal server error
+ */
+
+router.get(
+  "/professionals/check-email-availability/:email",
+  checkProfessionalEmail
+);
 
 export default router;
