@@ -3,6 +3,8 @@ import bcryptjs from 'bcryptjs';
 interface IProfessional extends Document {
     firstName : string;
     lastName : string;
+    gender? : string;
+    birthDay? : Date;
     cin?: string;
     email: string;
     phoneNumber?: string;
@@ -39,6 +41,15 @@ const professionalSchema = new Schema<IProfessional>({
     lastName: {
         type: String,
         required: [true, 'Last name is required'],
+        lowercase: true
+    },
+    gender: {
+        type: String,
+        required: [true, 'gender name is required'],
+        lowercase: true
+    },
+    birthDay: {
+        type: Date,
         lowercase: true
     },
     cin: { 
