@@ -15,31 +15,40 @@ import Service from "../pages/service/Services.tsx";
 import AddService from "../pages/service/AddService.tsx";
 import EditServicePage from "../pages/service/EditService.tsx";
 import AdminRoute from "./AdminRoute.tsx";
+import LandingPage from "../pages/LandingPage.tsx";
+import About from "../pages/About.tsx";
+import Error from "../pages/Error.tsx";
+import UserLayout from "../layouts/UserLayout.tsx";
+import UserTypeChoicePage from "../pages/register/UserTypeChoicePage.tsx";
+import HelpLayout from "../layouts/HelpLayout.tsx";
+import Faq from "../pages/help/Faq.tsx";
+import Contact from "../pages/help/Contact.tsx";
+import InterestSelectionPage from "../pages/register/InterestSelectionPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/backoffice",
     element: <AdminLayout />,
-    errorElement: <div>Not Found</div>,
+    errorElement: <Error />,
     children: [
       {
         path: "dashboard",
-        element: <AdminRoute> <Dashboard/></AdminRoute> 
-       },{
+        element: <AdminRoute> <Dashboard /></AdminRoute>
+      }, {
         path: "clients",
-        element:<AdminRoute><div>Client List</div></AdminRoute> ,
+        element: <AdminRoute><div>Client List</div></AdminRoute>,
       },
-       {
+      {
         path: "admins",
-        element:<AdminRoute><AdminList /></AdminRoute> ,
+        element: <AdminRoute><AdminList /></AdminRoute>,
       },
       {
         path: "admins/create",
-        element:<AdminRoute><AddAdmin /></AdminRoute> ,
+        element: <AdminRoute><AddAdmin /></AdminRoute>,
       },
       {
         path: "admins/edit/:id",
-        element:<AdminRoute><EditAdmin /></AdminRoute> ,
+        element: <AdminRoute><EditAdmin /></AdminRoute>,
       },
       {
         path: "professionals",
@@ -47,7 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: "professionals/create",
-        element:<AdminRoute><AddProfessional /></AdminRoute> ,
+        element: <AdminRoute><AddProfessional /></AdminRoute>,
       },
       {
         path: "professionals/edit/:id",
@@ -55,7 +64,7 @@ const router = createBrowserRouter([
       },
       {
         path: "services",
-        element: <AdminRoute><Service/></AdminRoute>,
+        element: <AdminRoute><Service /></AdminRoute>,
       },
       {
         path: "services/create",
@@ -63,19 +72,19 @@ const router = createBrowserRouter([
       },
       {
         path: "services/edit/:id",
-        element: <AdminRoute><EditServicePage/></AdminRoute>,
+        element: <AdminRoute><EditServicePage /></AdminRoute>,
       },
       {
         path: "interventions",
-        element:<AdminRoute><InterventionList /></AdminRoute> ,
+        element: <AdminRoute><InterventionList /></AdminRoute>,
       },
       {
         path: "interventions/create",
-        element:<AdminRoute><AddIntervention /></AdminRoute> ,
+        element: <AdminRoute><AddIntervention /></AdminRoute>,
       },
       {
         path: "interventions/edit/:id",
-        element:<AdminRoute><EditIntervention/></AdminRoute> ,
+        element: <AdminRoute><EditIntervention /></AdminRoute>,
       }
     ],
   },
@@ -83,7 +92,52 @@ const router = createBrowserRouter([
     path: "/login",
     element: <LoginForm />,
   },
-  
+  {
+    path: "/",
+    element: <UserLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <LandingPage />,
+      },
+      {
+        path: "/About",
+        element: <About />,
+      },
+      {
+        path: "register",
+        element: <UserTypeChoicePage />,
+      },
+      {
+        path: "/register/interest",
+        element: <InterestSelectionPage />
+      },
+      {
+        path: "register/applicant",
+        element: <div>Applicant</div>,
+      },
+      {
+        path: "help",
+        element: <HelpLayout />,
+        children: [
+          {
+            path: "faq",
+            element: <Faq />,
+          },
+          {
+            path: "contact",
+            element: <Contact />,
+          },
+        ],
+      },
+    ]
+  },
+
+  {
+    path: "*",
+    element: <Error />,
+  },
 ]);
 
 const AppRouter = () => {
