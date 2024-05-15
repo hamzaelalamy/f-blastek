@@ -3,19 +3,21 @@ import { actProfessionalLogin, actProfessionalRegister } from "./ActProfessional
 
 
 interface IProfessionalAuthState {
-    professional?: {
+    proAuth?: {
         id: number;
         email: string;
         firstName: string;
         lastName: string;
         password: string;
     } | null;
+    accessToken?: string | null;
     loading: "idle" | "pending" | "succeeded" | "failed";
     error: string | null;
 }
 
 const initialState: IProfessionalAuthState = {
-    professional: null,
+    proAuth: null,
+    accessToken: null,
     loading: "idle",
     error: null,
 };
@@ -31,11 +33,11 @@ const professionalAuthSlice = createSlice({
             })
             .addCase(actProfessionalLogin.fulfilled, (state, action) => {
                 state.loading = "succeeded";
-                state.professional = action.payload;
+                state.accessToken = action.payload.token;
             })
             .addCase(actProfessionalLogin.rejected, (state, action) => {
                 state.loading = "failed";
-                if (isString(action.payload)) {
+                if (action.payload && typeof action.payload == "string") {
                     state.error = action.payload;
                 }
             })
@@ -45,15 +47,17 @@ const professionalAuthSlice = createSlice({
             })
             .addCase(actProfessionalRegister.fulfilled, (state, action) => {
                 state.loading = "succeeded";
-                state.professional = action.payload;
+                state.proAuth = action.payload;
             })
             .addCase(actProfessionalRegister.rejected, (state, action) => {
                 state.loading = "failed";
-                state.error = action.payload as string;
+                if (action.payload && typeof action.payload == "string") {
+                    state.error = action.payload;
+                }
             });
     }
 })
 
-export { actProfessionalRegister };
+export { actProfessionalRegister, actProfessionalLogin };
 
 export default professionalAuthSlice.reducer;

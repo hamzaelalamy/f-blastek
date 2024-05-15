@@ -1,11 +1,19 @@
+import { useAppDispatch } from '../../hooks/ReduxHooks';
+import { actProfessionalLogin } from '../../slices/auth/professional/ProfessionalAuthSlice';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfessionalSigninType, signinSchema } from '../../validation/ProfessionalSigninSchema';
 import { FormInput } from '../form/index';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function ProfessionalLoginForm() {
 
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    // toast("Account created successfully", { type: "success" });
     const {
         register,
         handleSubmit,
@@ -15,7 +23,13 @@ function ProfessionalLoginForm() {
         resolver: zodResolver(signinSchema)
     });
     const submitForm: SubmitHandler<ProfessionalSigninType> = (data) => {
-        console.log(data)
+        const { email, password } = data;
+        dispatch(actProfessionalLogin({ email, password })).unwrap().then(() => {
+            navigate('/professional/dashboard');
+            toast("Login successful", { type: "success", position: "top-center" });
+        }).catch((error) => {
+            toast(`${error}`, { type: "error", position: "top-center" });
+        });
     };
 
     return (

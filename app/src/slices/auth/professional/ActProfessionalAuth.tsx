@@ -9,13 +9,19 @@ type TFormData = {
     password: string;
 };
 
+type TProfessionalAuth = {
+    email: string;
+    password: string;
+};
+
 export const actProfessionalLogin = createAsyncThunk(
     "auth/professional/actProfessionalLogin",
-    async (formData: TFormData, thunkAPI) => {
+    async (formData: TProfessionalAuth, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            const response = await httpClient.post("auth/loginProfessional", formData);
+            const response = await httpClient.post("auth/loginProfessional", { email: formData.email, password: formData.password });
             const resData = response.data;
+            console.log(resData);
             return resData;
         } catch (error) {
             if (axios.isAxiosError(error)) {

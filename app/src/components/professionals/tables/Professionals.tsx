@@ -21,14 +21,17 @@ export default function Professionals() {
     }
   }, [dispatch, records]);
 
-  const handleDelete = (userId: React.FormEvent<HTMLFormElement>) => {
-    dispatch(actDeleteProfessionals(userId))
-      .then(() => { console.log("User deleted successfully"); })
-      .catch((err) => console.error("Failed to delete user", err));
-    toast("User deleted successfully", {
-      type: "success",
-      position: "bottom-center",
-    });
+  const handleDelete = (professionalId: React.FormEvent<HTMLFormElement>) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this professional?");
+    if (confirmDelete) {
+      toast("Professional deleted successfully", { type: "success" });
+      dispatch(actDeleteProfessionals(professionalId))
+        .then(() => { console.log("Professional deleted successfully"); })
+        .catch((err) => console.error("Failed to delete admin", err));
+    } else {
+      // User canceled the deletion
+      console.log("Deletion canceled ");
+    }
   };
 
   const professionals =

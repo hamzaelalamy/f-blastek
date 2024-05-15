@@ -98,7 +98,7 @@ export const loginProfessional = async (req: Request, res: Response) => {
                   .json({ Message: "Faild to generate token", Error: err });
               }
               res.json({
-                Messege: "The professional Loged successfully",
+                Message: "The professional Logged in successfully",
                 success: true,
                 token: token,
               });
@@ -117,7 +117,9 @@ export const loginProfessional = async (req: Request, res: Response) => {
         });
       });
   } else {
-    return res.status(404).json({ message: "The professional does not exist" });
+    return res
+      .status(404)
+      .json({ message: "The email or password is incorrect" });
   }
 };
 
