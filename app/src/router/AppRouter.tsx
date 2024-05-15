@@ -125,7 +125,10 @@ const router = createBrowserRouter([
         path: "about",
         element: <About />,
       },
-      
+      {
+        path: "professionals",
+        element: <ProfessionalsProfile />,
+      },
       {
         path: "professional/details/:id",
         element: <ProfessionalDetails />,
@@ -151,10 +154,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <Error />,
   },
-  {
-    path: "professionals",
-    element: <ProfessionalsProfile />,
-  },
+  
 ]);
 
 const AppRouter = () => {

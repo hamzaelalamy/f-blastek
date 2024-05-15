@@ -1,21 +1,40 @@
 import React,{useEffect} from 'react'
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
-import {actGetProfessionalById,actGetProfessionals} from "../../slices/professionals/ActProfessionals"
+import {actGetProfessionalById,actGetProfessionals} from "../../slices/professionals/ProfessionalsSlice"
 import { useNavigate, useParams } from 'react-router-dom';
 
 
 import Header from '../common/Header'
+import { Console } from 'console';
 function ProfessionalDetails() {
     const { id } = useParams();
     const dispatch = useAppDispatch();
-    const { loading, error, records } = useAppSelector(
+    const { loading, error, records,record } = useAppSelector(
         (state) => state.professionals
       );
       useEffect(() => {
-          if (!records.length) {
+        
+          
+            console.log("records:",records);
+            dispatch(actGetProfessionals())
             dispatch(actGetProfessionalById(id));
-          }
-        }, [dispatch]);
+            console.log("record:",record);
+
+          
+        }, []); 
+
+
+
+       const similarProfiles = records.length != 0
+       ? records.slice(0, 4).map((record) =>(<div className="">
+       <div className="text-center my-2">
+           <img className="h-16 w-16 rounded-full mx-auto"
+               src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
+               alt=""/>
+           <a href="#" className="text-main-color">{record.firstName}</a>
+       </div>
+      
+   </div>) ):" No Professional available";
 
   return (
     
@@ -58,19 +77,21 @@ function ProfessionalDetails() {
                     </div>
                     <img className="w-44 h-44 rounded-full  mx-auto " src="../../../landingPage/profile1.png" alt="" />
 
-                    <h1 className="text-gray-900 font-bold text-center text-xl leading-8 my-1">{ records.firstName } {records.lastName}</h1>
-                    <h3 className="text-gray-600 font-lg text-center font-bold leading-6">{ records.specialization }</h3>
-                    <p className="text-sm text-gray-500 mt-5 hover:text-gray-600 leading-6">{records.bio}</p>
+                    <h1 className="text-gray-900 font-bold text-center text-xl leading-8 my-1">{ record.firstName } {record.lastName}</h1>
+                    <h3 className="text-gray-600 font-lg text-center font-bold leading-6">{ record.specialization }</h3>
+                    <p className="text-sm text-gray-500 mt-5 hover:text-gray-600 leading-6">{record.bio}</p>
                     <ul
                         className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li className="flex items-center py-3">
                             <span>Status</span>
-                            <span className="ml-auto"><span
-                                    className="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
+                            {record.backgroundCheckCompleted?(<span className="ml-auto"><span
+                                    className="bg-green-500 py-1 px-2 rounded text-white text-sm">Back ground checked</span></span>):
+                                    (<span className="ml-auto"><span
+                                    className="bg-red-500 py-1 px-2 rounded text-white text-sm">Back ground not checked</span></span>)}
                         </li>
                         <li className="flex items-center py-3">
                             <span>Member since</span>
-                            <span className="ml-auto">Nov 07, 2016</span>
+                            <span className="ml-auto"> Nov 07, 2016</span>
                         </li>
                     </ul>
                 </div>
@@ -88,31 +109,9 @@ function ProfessionalDetails() {
                         </span>
                         <span>Similar Profiles</span>
                     </div>
-                    <div className="grid grid-cols-3">
-                        <div className="text-center my-2">
-                            <img className="h-16 w-16 rounded-full mx-auto"
-                                src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
-                                alt=""/>
-                            <a href="#" className="text-main-color">Kojstantin</a>
-                        </div>
-                        <div className="text-center my-2">
-                            <img className="h-16 w-16 rounded-full mx-auto"
-                                src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
-                                alt=""/>
-                            <a href="#" className="text-main-color">James</a>
-                        </div>
-                        <div className="text-center my-2">
-                            <img className="h-16 w-16 rounded-full mx-auto"
-                                src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
-                                alt=""/>
-                            <a href="#" className="text-main-color">Natie</a>
-                        </div>
-                        <div className="text-center my-2">
-                            <img className="h-16 w-16 rounded-full mx-auto"
-                                src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
-                                alt=""/>
-                            <a href="#" className="text-main-color">Casey</a>
-                        </div>
+                    <div className='flex gap-4  justify-center'>
+                    {similarProfiles}
+
                     </div>
                 </div>
                 {/* <!-- End of friends card --> */}
@@ -136,11 +135,11 @@ function ProfessionalDetails() {
                         <div className="grid md:grid-cols-2 text-sm">
                             <div className="grid grid-cols-2">
                                 <div className="px-4 py-2 font-semibold">First Name</div>
-                                <div className="px-4 py-2">{records.firstName}</div>
+                                <div className="px-4 py-2">{record.firstName}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className="px-4 py-2 font-semibold">Last Name</div>
-                                <div className="px-4 py-2">{records.lastName}</div>
+                                <div className="px-4 py-2">{record.lastName}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className="px-4 py-2 font-semibold">Gender</div>
@@ -148,20 +147,20 @@ function ProfessionalDetails() {
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className="px-4 py-2 font-semibold">Contact No.</div>
-                                <div className="px-4 py-2">{records.phoneNumber}</div>
+                                <div className="px-4 py-2">{record.phoneNumber}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className="px-4 py-2 font-semibold">Current Address</div>
-                                <div className="px-4 py-2">{records.address}</div>
+                                <div className="px-4 py-2">{record.address}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className="px-4 py-2 font-semibold">Specialization</div>
-                                <div className="px-4 py-2">{records.specialization}</div>
+                                <div className="px-4 py-2">{record.specialization}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className="px-4 py-2 font-semibold">Email.</div>
                                 <div className="px-4 py-2">
-                                    <a className="text-blue-800" href="mailto:jane@example.com">{records.email}</a>
+                                    <a className="text-blue-800" href="mailto:jane@example.com">{record.email}</a>
                                 </div>
                             </div>
                             <div className="grid grid-cols-2">
@@ -193,7 +192,7 @@ function ProfessionalDetails() {
                                 </span>
                                 <span className="tracking-wide">Experiences</span>
                             </div>
-                            <ul className="list-inside space-y-2">
+                            {/* <ul className="list-inside space-y-2">
                                 <li>
                                     <div className="text-teal-600">Owner at Her Company Inc.</div>
                                     <div className="text-gray-500 text-xs">March 2020 - Now</div>
@@ -210,7 +209,7 @@ function ProfessionalDetails() {
                                     <div className="text-teal-600">Owner at Her Company Inc.</div>
                                     <div className="text-gray-500 text-xs">March 2020 - Now</div>
                                 </li>
-                            </ul>
+                            </ul> */}
                         </div>
                         <div>
                             <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
@@ -226,7 +225,7 @@ function ProfessionalDetails() {
                                 </span>
                                 <span className="tracking-wide">Education</span>
                             </div>
-                            <ul className="list-inside space-y-2">
+                            {/* <ul className="list-inside space-y-2">
                                 <li>
                                     <div className="text-teal-600">Masters Degree in Oxford</div>
                                     <div className="text-gray-500 text-xs">March 2020 - Now</div>
@@ -235,7 +234,7 @@ function ProfessionalDetails() {
                                     <div className="text-teal-600">Bachelors Degreen in LPU</div>
                                     <div className="text-gray-500 text-xs">March 2020 - Now</div>
                                 </li>
-                            </ul>
+                            </ul> */}
                         </div>
                     </div>
                     {/* <!-- End of Experience and education grid --> */}
