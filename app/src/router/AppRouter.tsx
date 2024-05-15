@@ -24,6 +24,8 @@ import HelpLayout from "../layouts/HelpLayout.tsx";
 import Faq from "../pages/help/Faq.tsx";
 import Contact from "../pages/help/Contact.tsx";
 import InterestSelectionPage from "../pages/register/InterestSelectionPage.tsx";
+import ProfessionalRegister from "../pages/register/ProfessionalRegister.tsx";
+import ProfessionalLoginPage from "../pages/auth/professional/ProfessionalLoginPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -102,20 +104,24 @@ const router = createBrowserRouter([
         element: <LandingPage />,
       },
       {
-        path: "/About",
-        element: <About />,
-      },
-      {
         path: "register",
         element: <UserTypeChoicePage />,
       },
       {
-        path: "/register/interest",
+        path: "register/interest",
         element: <InterestSelectionPage />
       },
       {
         path: "register/applicant",
-        element: <div>Applicant</div>,
+        element: <ProfessionalRegister />,
+      },
+      {
+        path: "login/applicant",
+        element: <ProfessionalLoginPage />,
+      },
+      {
+        path: "about",
+        element: <About />,
       },
       {
         path: "help",
