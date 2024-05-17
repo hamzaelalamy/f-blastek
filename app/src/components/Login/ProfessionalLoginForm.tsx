@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/ReduxHooks';
-import { actProfessionalLogin } from '../../slices/auth/professional/ProfessionalAuthSlice';
+import { actProfessionalLogin, resetUI } from '../../slices/auth/professional/ProfessionalAuthSlice';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfessionalSigninType, signinSchema } from '../../validation/ProfessionalSigninSchema';
@@ -12,7 +13,7 @@ function ProfessionalLoginForm() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    // const [searchParams, setSearchParams] = useSearchParams();
     // toast("Account created successfully", { type: "success" });
     const {
         register,
@@ -31,6 +32,13 @@ function ProfessionalLoginForm() {
             toast(`${error}`, { type: "error", position: "top-center" });
         });
     };
+
+    useEffect(() => {
+        return () => {
+            dispatch(resetUI());
+        }
+    }, [dispatch])
+
 
     return (
         <div className="mx-auto max-w-[500px] bg-white border border-gray-200 shadow-sm mt-20 rounded-xl">

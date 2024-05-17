@@ -25,15 +25,22 @@ const initialState: IProfessionalAuthState = {
 const professionalAuthSlice = createSlice({
     name: "professionalAuth",
     initialState,
-    reducers: {},
+    reducers: {
+        resetUI: (state) => {
+            state.loading = "idle";
+            state.error = null;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(actProfessionalLogin.pending, (state) => {
                 state.loading = "pending";
+                state.error = null;
             })
             .addCase(actProfessionalLogin.fulfilled, (state, action) => {
                 state.loading = "succeeded";
                 state.accessToken = action.payload.token;
+                state.proAuth = action.payload.user;
             })
             .addCase(actProfessionalLogin.rejected, (state, action) => {
                 state.loading = "failed";
@@ -59,5 +66,5 @@ const professionalAuthSlice = createSlice({
 })
 
 export { actProfessionalRegister, actProfessionalLogin };
-
+export const { resetUI } = professionalAuthSlice.actions;
 export default professionalAuthSlice.reducer;

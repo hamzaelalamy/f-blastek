@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../common/Header';
 import HamburgerButton from '../common/HamburgerMenuButton/HamburgerButton';
 import MobileHeader from '../common/HamburgerMenuButton/MobileHeader';
+import { Link } from 'react-router-dom';
 
 function HeroSection() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -9,8 +10,8 @@ function HeroSection() {
   return (
     <>
       <div className="relative bg-cover bg-center h-[400px] lg:h-[600px] xl:h-[700px] ">
-  
-        <img className="absolute inset-0 w-full h-full object-cover " src="../../../landingPage/hero6.png" alt="Hero Image" />
+
+        <img className="absolute inset-0 object-cover w-full h-full " src="../../../landingPage/hero6.png" alt="Hero Image" />
 
         <div className="absolute inset-0 bg-black opacity-55"></div>
         <div className="absolute inset-0 flex items-center justify-center -mt-20">
@@ -22,7 +23,7 @@ function HeroSection() {
             <p className="lg:text-lg text-[8px] font-bold lg:mt-10 text-[#02033B]">Your Trusted Platform for Exceptional Services: Babysitting, Household Help, Personal Assistance,, School Support </p>
             <p className="lg:text-lg text-xs lg:block font-bold hidden text-[#11033A]">  Care Assistance - Empowering Lives, One Service at a Time!</p>
             <div className="flex justify-start lg:mt-10">
-              <button className="flex items-center bg-[#20B486] text-white lg:ml-40 lg:w-52 lg:p-4 lg:pr-5 rounded-md ml-6 mt-7 p-2 md:w-40 w-30"><span className="mr-auto flex-grow text-[10px] lg:text-[13px] "> I am looking For a job</span>  <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+              <button className="flex items-center bg-[#20B486] text-white lg:ml-40 lg:w-52 lg:p-4 lg:pr-5 rounded-md ml-6 mt-7 p-2 md:w-40 w-30"><Link to="register/applicant" className="mr-auto flex-grow text-[10px] lg:text-[13px] "> I am looking For a job</Link>  <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
               </svg></button>
               <button className="flex items-center bg-[#20B486] text-white lg:ml-24 lg:w-52 lg:p-2 rounded-md mt-7 ml-2 p-2 md:w-40 w-30"> <span className="mr-auto flex-grow text-[10px] lg:text-[13px] "> I am looking For home help</span> <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

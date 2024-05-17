@@ -29,8 +29,8 @@ function LoginForm() {
 
       const data = JSON.parse(responseString);
       const token = data?.data?.token;
-      
-      token ? navigate("/backoffice/dashboard") : navigate("/login");
+
+      token ? navigate("/backoffice/") : navigate("/login");
     } catch (err) {
       console.log(err);
     }

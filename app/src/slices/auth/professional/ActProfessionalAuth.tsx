@@ -21,7 +21,7 @@ export const actProfessionalLogin = createAsyncThunk(
         try {
             const response = await httpClient.post("auth/loginProfessional", { email: formData.email, password: formData.password });
             const resData = response.data;
-            console.log(resData);
+            localStorage.setItem('professional', JSON.stringify(resData));
             return resData;
         } catch (error) {
             if (axios.isAxiosError(error)) {
