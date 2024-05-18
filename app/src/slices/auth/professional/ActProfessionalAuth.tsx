@@ -1,15 +1,27 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { LOCAL_URL } from "../../../constants/Config";
 import httpClient from "../../../utils/AxiosInstance";
+
+type TFormData = {
+    firstname: string;
+    lastname: string;
+    email: string;
+    password: string;
+};
+
+type TProfessionalAuth = {
+    email: string;
+    password: string;
+};
 
 export const actProfessionalLogin = createAsyncThunk(
     "auth/professional/actProfessionalLogin",
-    async (data, thunkAPI) => {
+    async (formData: TProfessionalAuth, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            const response = await httpClient.post(LOCAL_URL + "auth/loginProfessional", data);
+            const response = await httpClient.post("auth/loginProfessional", { email: formData.email, password: formData.password });
             const resData = response.data;
+            localStorage.setItem('professional', JSON.stringify(resData));
             return resData;
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -23,10 +35,11 @@ export const actProfessionalLogin = createAsyncThunk(
 
 export const actProfessionalRegister = createAsyncThunk(
     "auth/professional/actProfessionalRegister",
-    async (data, thunkAPI) => {
+    async (formData: TFormData, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            const response = await httpClient.post(LOCAL_URL + "auth/registerProfessional", data);
+            // console.log(formData.firstname, formData.lastname, formData.email, formData.password);
+            const response = await httpClient.post("auth/registerProfessional", { firstName: formData.firstname, lastName: formData.lastname, email: formData.email, password: formData.password });
             const resData = response.data;
             return resData;
         } catch (error) {
@@ -44,7 +57,7 @@ export const actProfessionalLogout = createAsyncThunk(
     async (data, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            const response = await httpClient.post(LOCAL_URL + "auth/logoutProfessional", data);
+            const response = await httpClient.post("auth/logoutProfessional", data);
             const resData = response.data;
             return resData;
         } catch (error) {
@@ -62,7 +75,7 @@ export const actProfessionalForgotPassword = createAsyncThunk(
     async (data, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            const response = await httpClient.post(LOCAL_URL + "auth/forgotPasswordProfessional", data);
+            const response = await httpClient.post("auth/forgotPasswordProfessional", data);
             const resData = response.data;
             return resData;
         } catch (error) {
@@ -80,7 +93,7 @@ export const actProfessionalResetPassword = createAsyncThunk(
     async (data, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            const response = await httpClient.patch(LOCAL_URL + "auth/resetPasswordProfessional", data);
+            const response = await httpClient.patch("auth/resetPasswordProfessional", data);
             const resData = response.data;
             return resData;
         } catch (error) {
@@ -98,7 +111,7 @@ export const actProfessionalVerifyEmail = createAsyncThunk(
     async (_, thunkAPI) => {
         const { rejectWithValue } = thunkAPI;
         try {
-            const response = await httpClient.get(LOCAL_URL + "auth/verifyEmailProfessional");
+            const response = await httpClient.get("auth/verifyEmailProfessional");
             const resData = response.data;
             return resData;
         } catch (error) {

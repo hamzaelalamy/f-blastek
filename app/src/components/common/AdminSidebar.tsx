@@ -21,7 +21,7 @@ const Sidebar = () => {
   }
 
   const Menus = [
-    { title: 'Dashboard', path: '/backoffice/dashboard', src: <AiFillPieChart /> },
+    { title: 'Dashboard', path: '/backoffice/', src: <AiFillPieChart /> },
     { title: 'Clients', path: '/backoffice/clients', src: <CgProfile /> },
     { title: 'Professionals', path: '/backoffice/Professionals', src: <GrUserWorker /> },
     { title: 'Admins', path: '/backoffice/admins', src: <GrUserAdmin /> },

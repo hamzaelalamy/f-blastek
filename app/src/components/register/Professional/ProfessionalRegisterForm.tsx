@@ -1,11 +1,18 @@
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks/ReduxHooks';
+import { actProfessionalRegister, resetUI } from '../../../slices/auth/professional/ProfessionalAuthSlice';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfessionalSignupType, signupSchema } from '../../../validation/ProfessionalSignupSchema';
 import { FormInput } from '../../form/index';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useCheckEmailAvailability from '../../../hooks/useCheckEmailAvailability';
+import { toast } from 'react-toastify';
 
 function ProfessionalRegisterForm() {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { loading, error } = useAppSelector(state => state.professionalAuth);
 
     const {
         register,
@@ -17,11 +24,26 @@ function ProfessionalRegisterForm() {
         mode: 'onBlur',
         resolver: zodResolver(signupSchema)
     });
-    const submitForm: SubmitHandler<ProfessionalSignupType> = (data) => {
-        console.log(data)
+    const submitForm: SubmitHandler<ProfessionalSignupType> = async (data) => {
+        try {
+            const { firstname, lastname, email, password } = data;
+            await dispatch(actProfessionalRegister({ firstname, lastname, email, password })).unwrap().then(() => {
+                navigate('/login/applicant?message=account_created');
+                toast("Registered successfully", { type: "success", position: "top-center" });
+            });
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
     };
 
-    const { emailAvailabilityStatus, enteredEmail, checkEmailAvailability, resetCheckEmailAvailability } = useCheckEmailAvailability();
+    const onInvalid = (errors) => console.error(errors)
+
+    const {
+        emailAvailabilityStatus,
+        enteredEmail,
+        checkEmailAvailability,
+        resetCheckEmailAvailability
+    } = useCheckEmailAvailability();
 
     const emailOnBlurHandler = async (e: React.FocusEvent<HTMLInputElement>) => {
         await trigger("email");
@@ -39,8 +61,14 @@ function ProfessionalRegisterForm() {
         }
     };
 
+    useEffect(() => {
+        return () => {
+            dispatch(resetUI());
+        }
+    }, [dispatch])
+
     return (
-        <div className="mx-auto max-w-[500px] bg-white border border-gray-200 shadow-sm mt-7 rounded-xl ">
+        <div className="mx-auto max-w-[500px] bg-white border border-gray-200 shadow-sm mt-20 rounded-xl ">
             <div className="p-4 sm:p-7">
                 <div className="text-center">
                     <h1 className="block text-2xl font-bold text-gray-800">Sign up</h1>
@@ -56,7 +84,7 @@ function ProfessionalRegisterForm() {
                 </div>
 
                 <div className="mt-5">
-                    <form onSubmit={handleSubmit(submitForm)} className="grid gap-y-4">
+                    <form onSubmit={handleSubmit(submitForm, onInvalid)} className="grid gap-y-4">
                         <FormInput
                             label="First Name"
                             name="firstname"
@@ -143,11 +171,11 @@ function ProfessionalRegisterForm() {
                         >
                             Sign up
                         </button>
+                        {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
                     </form>
                 </div>
             </div>
         </div>
-
     )
 }
 
