@@ -17,6 +17,7 @@ interface IProfessional extends Document {
     hourlyRate?: number;
     bio?: string;
     experiences?: string[];
+    education?: string[];
     backgroundCheckCompleted: boolean;
     availability?: {
         days?: string[];
@@ -95,6 +96,10 @@ const professionalSchema = new Schema<IProfessional>({
         type: [String], 
         default: 'No past Experience',
         validate: [(experiences: string[]) => experiences.length > 0, 'At least one experience is required'] 
+    },
+    education: { 
+        type: [String], 
+        default: 'No information provided'
     },
     backgroundCheckCompleted: { 
         type: Boolean, 

@@ -31,7 +31,7 @@ try{
         from: "elaroussifatima7@gmail.com",
         to: option.email,
         subject: option.subject,
-        text:option.message,
+        html:option.message,
     }
   const emailSended= await transporter.sendMail(emailOptions);
   if(emailSended){
