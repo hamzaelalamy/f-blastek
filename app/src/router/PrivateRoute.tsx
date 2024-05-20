@@ -1,15 +1,15 @@
 import React from 'react'
-import { useAppSelector } from '../hooks/ReduxHooks'
-import { Redirect,Route } from 'react-router-dom'
-const PrivateRoute=({ path, exact, children }) =>{
-    const auth = useAppSelector((store)=>{store.adminAuth.authenticated})
-  return auth ? (
-    <Route path={path} exact={exact}>
-      {children}
-    </Route>
-  ) : (
-    <Redirect to="/login" />
-  );
+import { Navigate, Route } from 'react-router-dom'
+
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const professional = localStorage.getItem("professional");
+  const accessToken: string | null = JSON.parse(professional)?.token;
+
+  if (!accessToken) {
+    return <Navigate to="/login/applicant" />
+  }
+
+  return (<>{children}</>)
 }
 
 export default PrivateRoute
