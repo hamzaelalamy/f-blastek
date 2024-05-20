@@ -1,10 +1,10 @@
-const Review = require('../models/review');
+import Review from "../models/review";
 
-const getAverageRatingForProfessional = async (professionalId:any) => {
+const getAverageRatingForProfessional = async (professionalId: any) => {
   try {
     const result = await Review.aggregate([
-      { $match: { professionalId } }, 
-      { $group: { _id: null, averageRating: { $avg: '$rating' } } },
+      { $match: { professionalId } },
+      { $group: { _id: null, averageRating: { $avg: "$rating" } } },
     ]);
 
     if (result.length > 0) {
@@ -13,9 +13,9 @@ const getAverageRatingForProfessional = async (professionalId:any) => {
       return 0;
     }
   } catch (error) {
-    console.error('Error calculating average rating:', error);
+    console.error("Error calculating average rating:", error);
     throw error;
   }
 };
 
-export default getAverageRatingForProfessional ;
+export default getAverageRatingForProfessional;
