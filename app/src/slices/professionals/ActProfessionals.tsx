@@ -12,6 +12,8 @@ export const actGetProfessionals = createAsyncThunk("professionals/actGetProfess
 
     try {
         const response = await httpClient.get(LOCAL_URL + "professionals");
+        console.log(response.data);
+        
         const data = response.data;
         return data;
     } catch (error) {
@@ -70,7 +72,8 @@ export const actGetProfessionalById = createAsyncThunk("professionals/actGetProf
     const { rejectWithValue } = thunkAPI;
     try {
         const response = await httpClient.get(LOCAL_URL + `professionals/${id}`);
-        // console.log(response.data)
+        console.log("pro by id", response.data);
+        
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {

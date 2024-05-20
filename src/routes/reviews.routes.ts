@@ -69,7 +69,9 @@ const router = Router();
  *       '500':
  *         description: Internal server error
  */
-router.post("/reviews", verifyToken, createReview);
+router.post("/reviews",
+//  verifyToken,
+  createReview);
 
 /**
  * @swagger
