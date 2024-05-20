@@ -60,20 +60,20 @@ function ProfessionalDetails() {
   const similarProfiles =
     records.length != 0
       ? records.slice(0, 4).map((record,index) => (
-        <Link to={`/professional/details/${record._id}`} key={index}>
-            <div className="" >
+          <div className="" >
             <div className="text-center my-2">
+                <Link to={`/professional/details/${record._id}`} key={index}>
               <img
                 className="h-16 w-16 rounded-full mx-auto"
                 src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
                 alt=""
               />
-              <a href="" className="text-main-color" >
+              <p className="text-main-color" >
                 {record.firstName}
-              </a>
+              </p>
+          </Link>
             </div>
           </div>
-          </Link>
         ))
       : " No Professional available";
 
