@@ -29,6 +29,8 @@ import ProfessionalLoginPage from "../pages/auth/professional/ProfessionalLoginP
 import ProfessionalLayout from "../layouts/ProfessionalLayout.tsx";
 import ProfessionalDashboard from "../pages/professionalsDashboard/ProfessionalDashboard.tsx";
 import LoginChoice from "../pages/auth/LoginChoice.tsx";
+import ProfessionalDetails from "../components/frontOffice/ProfessionalDetails.tsx";
+import ProfessionalsProfile from "../components/frontOffice/ProfessionalsProfile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -131,6 +133,14 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
+        path: "professionals",
+        element: <ProfessionalsProfile />,
+      },
+      {
+        path: "professional/details/:id",
+        element: <ProfessionalDetails />,
+      },
+      {
         path: "help",
         element: <HelpLayout />,
         children: [
@@ -161,6 +171,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <Error />,
   },
+  
 ]);
 
 const AppRouter = () => {
