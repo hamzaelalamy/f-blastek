@@ -235,7 +235,7 @@ router.get("/professionals/:id", getProfessionalById);
 router.put(
   "/professionals/:id",
   //verifyToken,
-  ProfessionalSanitization,
+  //ProfessionalSanitization,
   validateRequest,
   updateProfessionalById
 );

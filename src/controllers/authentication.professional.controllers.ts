@@ -35,7 +35,7 @@ export const registerProfessional = async (req: Request, res: Response) => {
       email: email,
       subject: "Verify Your Email",
       message: `<p>Please Verify your email be aware that it will be expired in one day: click the link below to  Verify your email:</p>
-  <a href="http://localhost:8080/api/auth/verifyEmailClient/:${token}">Click Here ${token}</a>`,
+  <a href="http://localhost:8080/api/auth/verifyEmailProfessional/:${token}">Click Here ${token}</a>`,
     });
     if (sendMailToProfessional) {
       return res
