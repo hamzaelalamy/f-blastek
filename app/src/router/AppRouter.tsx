@@ -26,6 +26,9 @@ import Contact from "../pages/help/Contact.tsx";
 import InterestSelectionPage from "../pages/register/InterestSelectionPage.tsx";
 import ProfessionalRegister from "../pages/register/ProfessionalRegister.tsx";
 import ProfessionalLoginPage from "../pages/auth/professional/ProfessionalLoginPage.tsx";
+import ProfessionalLayout from "../layouts/ProfessionalLayout.tsx";
+import ProfessionalDashboard from "../pages/professionalsDashboard/ProfessionalDashboard.tsx";
+import LoginChoice from "../pages/auth/LoginChoice.tsx";
 import ProfessionalDetails from "../components/frontOffice/ProfessionalDetails.tsx";
 import ProfessionalsProfile from "../components/frontOffice/ProfessionalsProfile.tsx";
 
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "dashboard",
+        index: true,
         element: <AdminRoute> <Dashboard /></AdminRoute>
       }, {
         path: "clients",
@@ -122,6 +125,10 @@ const router = createBrowserRouter([
         element: <ProfessionalLoginPage />,
       },
       {
+        path: "user/login",
+        element: <LoginChoice />,
+      },
+      {
         path: "about",
         element: <About />,
       },
@@ -149,7 +156,17 @@ const router = createBrowserRouter([
       },
     ]
   },
-
+  {
+    path: "professional/dashboard",
+    element: <ProfessionalLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <ProfessionalDashboard />,
+      },
+    ],
+  },
   {
     path: "*",
     element: <Error />,

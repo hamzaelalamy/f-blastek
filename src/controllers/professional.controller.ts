@@ -85,6 +85,22 @@ export const checkProfessionalEmail = async (req: Request, res: Response) => {
   }
 };
 
+export const getProfessionalByEmail = async (req: Request, res: Response) => {
+  try {
+    const email = req.params.email;
+    const professional = await Professional.findOne({
+      email: email,
+    });
+    if (!professional) {
+      return res.status(404).json({ error: "Professional not found" });
+    }
+    return res.status(200).json(professional);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 export default {
   createProfessional,
   getAllProfessionals,
