@@ -6,7 +6,7 @@ import {
 } from "../../slices/professionals/ProfessionalsSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-
+import { MdEventBusy } from "react-icons/md";
 
 
 function ProfessionalDetails() {
@@ -61,8 +61,8 @@ function ProfessionalDetails() {
     records.length != 0
       ? records.slice(0, 4).map((record,index) => (
           <div className="" >
+                <Link reloadDocument to={`/professional/details/${record._id}`} key={index}>
             <div className="text-center my-2">
-                <Link to={`/professional/details/${record._id}`} key={index}>
               <img
                 className="h-16 w-16 rounded-full mx-auto"
                 src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
@@ -71,8 +71,8 @@ function ProfessionalDetails() {
               <p className="text-main-color" >
                 {record.firstName}
               </p>
-          </Link>
             </div>
+          </Link>
           </div>
         ))
       : " No Professional available";
@@ -363,7 +363,57 @@ const educations= record && record.education ? (
                               key={timeIndex}
                               className="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                             >
-                              Available
+                                <MdEventBusy  className="w-6 h-6 text-white bg-red-600 "/>
+                                <svg
+     className="w-6 h-6 text-white bg-red-600 rounded-full"
+    
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+
+
+                                <svg
+     className=" text-white bg-red-600"
+      
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M3 9h18" />
+      <path d="m9 16 3-3 3 3" />
+    </svg>
+                                  <svg
+     className="w-6 h-6 text-white bg-green-500 rounded-full"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+ 
                             </td>
                           ))}
                         </tr>

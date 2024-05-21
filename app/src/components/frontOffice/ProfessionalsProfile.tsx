@@ -2,22 +2,45 @@ import React, { useEffect } from 'react'
 import { actGetProfessionals } from '../../slices/professionals/ProfessionalsSlice'
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
 import { Link } from 'react-router-dom';
-
+import { actGetReviews, actGetAverageRating } from '../../slices/reviews/ActReview';
 function ProfessionalsProfile() {
 
     const dispatch = useAppDispatch();
     const { loading, error, records } = useAppSelector(
         (state) => state.professionals
     );
+
+    const reviews =  useAppSelector(
+        (state) => state.reviews.reviews
+    );
     useEffect(() => {
         if (!records.length) {
-            dispatch(actGetProfessionals());
+            dispatch(actGetReviews())
+            dispatch(actGetAverageRating())
+            dispatch(actGetProfessionals()); 
         }
-    }, [dispatch, records]);
+        console.log("reviews array",reviews);
+
+        
+    }, [dispatch, records,reviews]);
+
+
+    const findReview =(proId,reviews)=>{
+        const review = reviews.filter(review => review.professionalId === proId);
+        console.log(review);
+        
+
+return review.lenght
+    }
+
+
 
     const professionals = records.length > 0
-        ? records.map((record,index) => (<Link to={`/professional/details/${record._id}`} key={index}> <div className='flex justify-center items-center  container  max-w-sm rounded-lg overflow-hidden shadow-lg my-2 bg-white w-50 h-50  transition ease-in-out delay-150  hover:shadow-lg hover:-translate-y hover:scale-105  duration-200'  >
+        ? records.map((record,index) => (
             
+        <>
+        <Link to={`/professional/details/${record._id}`} key={index}> <div className='flex justify-center items-center  container  max-w-sm rounded-lg overflow-hidden shadow-lg my-2 bg-white w-50 h-50  transition ease-in-out delay-150  hover:shadow-lg hover:-translate-y hover:scale-105  duration-200'  >
+
                 <div className="">
                     <div className="relative z-10" >
                         <img className="w-full rounded-lg" src="../../../../landingPage/profile1.png" alt="Profile image" />
@@ -44,16 +67,22 @@ function ProfessionalsProfile() {
                     <div className="pb-10  text-center tracking-wide flex justify-around">
                         <div className="rating">
                             <p className="text-gray-400 text-sm">Rating</p>
-                            <p className="text-l font-semibold text-blue-300 flex"> <svg
+                            <p className="text-l font-semibold text-blue-300 flex"> 
+                            {/* {record.reviews.map((review,index) => ( ))}*/}
+                            
+                            <svg 
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5 text-yellow-500"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
-                            >
+                                >
                                 <path
                                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                />
-                            </svg> <span>4.9</span></p>
+                                    />
+                            </svg> 
+                            
+                            
+                            <span> </span></p>
 
                         </div>
                         <div className="posts">
@@ -62,13 +91,16 @@ function ProfessionalsProfile() {
                         </div>
                         <div className="Reviews">
                             <p className="text-gray-400 text-sm">Reviews</p>
-                            <p className="text-l font-semibold text-blue-300">964</p>
+                            <p className="text-l font-semibold text-blue-300">{record.reviews.length}</p>
                         </div>
 
                     </div>
                 </div>
             
         </div></Link>
+        {/* <button onClick={()=>findReview(record._id,reviews)}> log review</button> */}
+
+                                    </>
         )) : "No Professional available";
 
 
