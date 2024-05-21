@@ -15,6 +15,7 @@
     "@reduxjs/toolkit": "^2.2.3",
     "@types/chart.js": "^2.9.41",
     "@types/react-chartjs-2": "^2.5.7",
+    "aos": "^2.3.4",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
     "cloudinary-core": "^2.13.1",
