@@ -30,7 +30,8 @@ export const deleteReview = async (req: Request, res: Response) => {
 
 export const getAllReviews = async (req: Request, res: Response) => {
     try {
-        const reviews = await Review.find();
+        const reviews = await Review.find().populate("professionalId");
+        
         if(!reviews || reviews.length === 0) {
             return res.status(404).json({ error: 'No reviews found' });
         }
