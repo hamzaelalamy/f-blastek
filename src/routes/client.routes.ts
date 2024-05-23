@@ -14,7 +14,9 @@ import verifyToken from '../middleware/authentication';
 const router = express.Router();
 
 router.post('/clients',  ClientSanitization, validateRequest,createClient);
-router.get('/clients', verifyToken, getAllClients);
+router.get('/clients', 
+//verifyToken,
+ getAllClients);
 router.get('/clients/:id', verifyToken, getClientById);
 router.put('/clients/:id', verifyToken, updateClientById);
 router.delete('/clients/:id', verifyToken, deleteClientById);
