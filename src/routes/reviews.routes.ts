@@ -193,6 +193,6 @@ router.delete("/reviews/:id", verifyToken, deleteReview);
  *       '500':
  *         description: Internal server error
  */
-router.get("/reviews/average/:id", AverageRating);
+router.get("/reviews/average/:id", verifyToken, AverageRating);
 
 export default router;
