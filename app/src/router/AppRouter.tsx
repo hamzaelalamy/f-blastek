@@ -31,6 +31,10 @@ import ProfessionalDashboard from "../pages/professionalsDashboard/ProfessionalD
 import LoginChoice from "../pages/auth/LoginChoice.tsx";
 import ProfessionalDetails from "../components/frontOffice/ProfessionalDetails.tsx";
 import ProfessionalsProfile from "../components/frontOffice/ProfessionalsProfile.tsx";
+import ProfessionalPrivateRoute from "./ProfessionalPrivateRoute.tsx";
+import Map from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
+import ClientLayout from "../layouts/ClientLayout.tsx";
+import CreateOffer from "../pages/offers/CreateOffer.tsx";
 
 const router = createBrowserRouter([
   {
@@ -125,6 +129,10 @@ const router = createBrowserRouter([
         element: <ProfessionalLoginPage />,
       },
       {
+        path: "register/applicant/map",
+        element: <Map />,
+      },
+      {
         path: "user/login",
         element: <LoginChoice />,
       },
@@ -163,15 +171,30 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ProfessionalDashboard />,
+        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
       },
+    ],
+  },
+  {
+    path: "client",
+    element: <ClientLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <div>Client Dashboard</div>,
+      },
+      {
+        path: "offer/create",
+        element: <CreateOffer />,
+      }
     ],
   },
   {
     path: "*",
     element: <Error />,
   },
-  
+
 ]);
 
 const AppRouter = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Navigate, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
-const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+const ProfessionalPrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const professional = localStorage.getItem("professional");
   const accessToken: string | null = JSON.parse(professional)?.token;
 
@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
     return <Navigate to="/login/applicant" />
   }
 
-  return (<>{children}</>)
+  return <>{children}</>
 }
 
-export default PrivateRoute
+export default ProfessionalPrivateRoute
