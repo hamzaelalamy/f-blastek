@@ -3,6 +3,8 @@ import { actGetProfessionals } from '../../slices/professionals/ProfessionalsSli
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
 import { Link } from 'react-router-dom';
 import { actGetReviews, actGetAverageRating } from '../../slices/reviews/ActReview';
+import { actGetCategories } from '../../slices/categories/ActCategories';
+
 function ProfessionalsProfile() {
 
     const dispatch = useAppDispatch();
@@ -13,16 +15,20 @@ function ProfessionalsProfile() {
     const reviews = useAppSelector(
         (state) => state.reviews.reviews
     );
+    const categories = useAppSelector(
+        (state) => state.categories.records
+    );
     useEffect(() => {
         if (!records.length) {
             dispatch(actGetReviews())
             dispatch(actGetAverageRating())
             dispatch(actGetProfessionals());
+            dispatch(actGetCategories());
         }
         console.log("reviews array", reviews);
 
 
-    }, [dispatch, records, reviews]);
+    }, [dispatch, records, reviews,categories]);
 
 
     const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -31,7 +37,13 @@ function ProfessionalsProfile() {
       setDropdownVisible(!isDropdownVisible);
     };
 
+const category = categories &&categories.map((categorie)=>(
 
+    <li key={categorie._id}>
+<button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100">{categorie.name}</button>
+</li>
+
+)) 
 
     const professionals = records.length > 0
         ? records.map((record, index) => {
@@ -114,7 +126,7 @@ function ProfessionalsProfile() {
     return (
         <div >
 
-<form className="max-w-lg mt-20 mx-auto">
+<form className="max-w-lg mt-20   mx-auto">
       <div className="flex">
         <button
           id="dropdown-button"
@@ -140,19 +152,9 @@ function ProfessionalsProfile() {
           </svg>
         </button>
         <div id="dropdown" className={`z-10 ${isDropdownVisible ? 'block' : 'hidden'}  z-50 mt-11 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44`}>
-          <ul className="py-2 text-sm text-gray-700 relative " aria-labelledby="dropdown-button">
-            <li>
-              <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100">Mockups</button>
-            </li>
-            <li>
-              <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100">Templates</button>
-            </li>
-            <li>
-              <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100">Design</button>
-            </li>
-            <li>
-              <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100">Logos</button>
-            </li>
+    <ul className="py-2 text-sm text-gray-700 relative " aria-labelledby="dropdown-button">
+          
+          {category} 
           </ul>
         </div>
         <div className="relative w-full">
