@@ -57,20 +57,21 @@ interface IProfessional extends Document {
   verifiedEmailTokenExpire?: Date;
   passwordResetToken?: string;
   passwordResetTokenExpires?: Date;
+  categoryId: Schema.Types.ObjectId;
 }
 
 const availabilitySchema = new Schema<IAvailability>({
   day: {
     type: String,
     enum: Object.values(Days),
-    required: true,
+    
   },
   times: [
     {
       slot: {
         type: String,
         enum: Object.values(Timeslots),
-        required: true,
+        
       },
       available: {
         type: Boolean,
@@ -178,6 +179,11 @@ const professionalSchema = new Schema<IProfessional>(
     verifiedEmailTokenExpire: Date,
     passwordResetToken: { type: String },
     passwordResetTokenExpires: { type: Date },
+    categoryId:{
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+      required: [true, "A Category needs to be selected"],
+    }
   },
   { timestamps: true }
 );
