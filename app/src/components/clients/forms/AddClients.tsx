@@ -81,7 +81,7 @@ function CreateClient() {
           <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
           <input type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required onChange={handleChange} />
         </div>
-        <div className="flex items-start mb-6">
+        {/* <div className="flex items-start mb-6">
           <label htmlFor="backgroundCheckCompleted" className="mr-2 text-sm font-medium text-gray-900 ms-2">Background Check completed</label>
           <div className="flex items-center h-5">
             <input id="backgroundCheckCompleted" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" onChange={(e) =>
@@ -90,7 +90,7 @@ function CreateClient() {
                                                                                                                                                                                               backgroundCheckCompleted: e.target.checked
                                                                                                                                                                                               })} />
           </div>
-        </div>
+        </div> */}
       </div>
       <button type="submit" className="text-white bg-[#20B486] hover:bg-[#198f6a] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
     </form>
