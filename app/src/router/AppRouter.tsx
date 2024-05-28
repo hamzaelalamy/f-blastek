@@ -35,9 +35,10 @@ import ClientsList from "../pages/clients/ClientsList.tsx"
 import CreateClient from "../components/clients/forms/AddClients.tsx";
 import EditClients from "../components/clients/forms/EditClients.tsx";
 import ProfessionalPrivateRoute from "./ProfessionalPrivateRoute.tsx";
-import Map from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
+import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
 import ClientLayout from "../layouts/ClientLayout.tsx";
 import CreateOffer from "../pages/offers/CreateOffer.tsx";
+import MultistepRegistarion from "../pages/register/MultistepRegistarion.tsx";
 
 const router = createBrowserRouter([
   {
@@ -141,7 +142,7 @@ const router = createBrowserRouter([
       },
       {
         path: "register/applicant/map",
-        element: <Map />,
+        // element: <TestMap />,
       },
       {
         path: "user/login",
@@ -187,6 +188,10 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "register/applicant/steps",
+    element: <MultistepRegistarion />
+  },
+  {
     path: "client",
     element: <ClientLayout />,
     errorElement: <Error />,
@@ -200,6 +205,10 @@ const router = createBrowserRouter([
         element: <CreateOffer />,
       }
     ],
+  },
+  {
+    path: "map",
+    element: <TestMap />,
   },
   {
     path: "*",
