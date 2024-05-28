@@ -34,6 +34,7 @@ import ProfessionalsProfile from "../components/frontOffice/ProfessionalsProfile
 import ClientsList from "../pages/clients/ClientsList.tsx"
 import CreateClient from "../components/clients/forms/AddClients.tsx";
 import EditClients from "../components/clients/forms/EditClients.tsx";
+import ServiceLayout from "../layouts/ServiceLayout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -150,6 +151,10 @@ const router = createBrowserRouter([
       {
         path: "professional/details/:id",
         element: <ProfessionalDetails />,
+      },
+      {
+        path: "services",
+        element: <ServiceLayout />,
       },
       {
         path: "help",
