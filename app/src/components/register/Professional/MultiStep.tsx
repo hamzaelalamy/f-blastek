@@ -24,10 +24,10 @@ const steps = [
         name: 'Professional Information',
         fields: ['specialization', 'hourlyRate', 'bio', 'experiences', 'education'],
     },
-    { id: 'Step 5', name: 'Complete' },
+    { id: 'Step 4', name: 'Complete' },
 ];
 
-const genderOptions = ["Male", "Female", "Other"];
+const genderOptions = ["Male", "Female"];
 
 
 export default function MultiStepForm() {
@@ -42,28 +42,57 @@ export default function MultiStepForm() {
         trigger,
         formState: { errors },
     } = useForm<Inputs>({
+        mode: 'onBlur',
         resolver: zodResolver(FormDataSchema),
     });
 
-    const processForm: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
-        reset();
+    function transfomHourlyRate(value: string) {
+        return parseFloat(value);
+    }
+
+    const processForm: SubmitHandler<Inputs> = async (data) => {
+        console.log("begotten data:", data);
+        // Convert hourlyRate to number
+        // data.hourlyRate = transfomHourlyRate(data.hourlyRate);
+
+        // // Split Bio, Experiences, and Education strings into arrays
+        // data.bio = data.bio.split(',').map((item) => item.trim());
+        // data.experiences = data.experiences.split(',').map((item) => item.trim());
+        // data.education = data.education.split(',').map((item) => item.trim());
+
+        // console.log('Transformed data:', data);
+
+        // // Trigger validation for all fields before submitting
+        // const isValid = await trigger();
+
+        // if (isValid) {
+        //     // If all fields are valid, proceed with form submission
+        //     console.log('Form submission:', data);
+        //     reset();
+        // } else {
+        //     console.log('Validation errors:', errors);
+        // }
     };
+
+    const onInvalid = (errors) => console.error(errors);
 
     const next = async () => {
         const fields = steps[currentStep].fields;
         const output = await trigger(fields as (keyof Inputs)[], { shouldFocus: true });
+        console.log(`previousStep: ${previousStep} currentStep: ${currentStep}, output: ${output}, errors: ${errors}, steps: ${steps.length}`)
 
         if (!output) return;
 
         if (currentStep < steps.length - 1) {
             if (currentStep === steps.length - 2) {
-                await handleSubmit(processForm)();
+                console.log('Submitting form');
+                await handleSubmit(processForm, onInvalid)();
             }
             setPreviousStep(currentStep);
             setCurrentStep((step) => step + 1);
         }
     };
+
 
     const prev = () => {
         if (currentStep > 0) {
@@ -110,7 +139,7 @@ export default function MultiStepForm() {
             </nav>
 
             {/* Form */}
-            <form className='py-12 mt-12' onSubmit={handleSubmit(processForm)}>
+            <form className='py-12 mt-12' onSubmit={(e) => { handleSubmit(processForm, onInvalid)() }}>
                 {currentStep === 0 && (
                     <motion.div
                         initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
