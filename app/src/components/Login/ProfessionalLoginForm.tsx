@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/ReduxHooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
 import { actProfessionalLogin, resetUI } from '../../slices/auth/professional/ProfessionalAuthSlice';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfessionalSigninType, signinSchema } from '../../validation/ProfessionalSigninSchema';
 import { FormInput } from '../form/index';
-import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate, Navigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 function ProfessionalLoginForm() {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    const professional = localStorage.getItem("professional");
+    const accessToken: string | null = JSON.parse(professional)?.token;
 
     // const [searchParams, setSearchParams] = useSearchParams();
     // toast("Account created successfully", { type: "success" });
@@ -38,6 +41,10 @@ function ProfessionalLoginForm() {
             dispatch(resetUI());
         }
     }, [dispatch])
+
+    if (accessToken) {
+        return <Navigate to="/professional/dashboard" />
+    }
 
 
     return (

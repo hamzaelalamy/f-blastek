@@ -3,8 +3,8 @@ import bcryptjs from "bcryptjs";
 interface IProfessional extends Document {
   firstName: string;
   lastName: string;
-    gender? : string;
-    birthDay? : Date;
+  gender?: string;
+  birthDay?: Date;
   cin?: string;
   email: string;
   phoneNumber?: string;
@@ -17,7 +17,7 @@ interface IProfessional extends Document {
   hourlyRate?: number;
   bio?: string;
   experiences?: string[];
-    education?: string[];
+  education?: string[];
   backgroundCheckCompleted: boolean;
   availability?: {
     days?: string[];
@@ -46,13 +46,13 @@ const professionalSchema = new Schema<IProfessional>(
       lowercase: true,
     },
     gender: {
-        type: String,
-        required: [true, 'gender name is required'],
-        lowercase: true
+      type: String,
+      required: [true, "gender name is required"],
+      lowercase: true,
     },
     birthDay: {
-        type: Date,
-        lowercase: true
+      type: Date,
+      lowercase: true,
     },
     cin: {
       type: String,
@@ -106,9 +106,9 @@ const professionalSchema = new Schema<IProfessional>(
         "At least one experience is required",
       ],
     },
-    education: { 
-        type: [String], 
-        default: 'No information provided'
+    education: {
+      type: [String],
+      default: "No information provided",
     },
     backgroundCheckCompleted: {
       type: Boolean,
