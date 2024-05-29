@@ -43,7 +43,7 @@ function Header() {
   const handleLogout = () => {
     localStorage.removeItem("professional");
     setIsLoggedIn(false);
-    navigate("/professional/login");
+    navigate("/login/applicant");
   };
 
   return (

@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfessionalSignupType, signupSchema } from '../../../validation/ProfessionalSignupSchema';
 import { FormInput } from '../../form/index';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import useCheckEmailAvailability from '../../../hooks/useCheckEmailAvailability';
 import { toast } from 'react-toastify';
 
@@ -13,6 +13,9 @@ function ProfessionalRegisterForm() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { loading, error } = useAppSelector(state => state.professionalAuth);
+
+    const professional = localStorage.getItem("professional");
+    const accessToken: string | null = JSON.parse(professional)?.token;
 
     const {
         register,
@@ -66,6 +69,10 @@ function ProfessionalRegisterForm() {
             dispatch(resetUI());
         }
     }, [dispatch])
+
+    if (accessToken) {
+        return <Navigate to="/professional/dashboard" />
+    }
 
     return (
         <div className="mx-auto max-w-[500px] bg-white border border-gray-200 shadow-sm mt-20 rounded-xl ">

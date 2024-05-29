@@ -1,27 +1,50 @@
 import { Schema, model, Document } from "mongoose";
 
 interface IOffre extends Document {
-    service_id: Schema.Types.ObjectId;
-    description : string;
-    application_status : string;
+  jobTitle: string;
+  jobDescription: string;
+  requiredSkills: string[];
+  service: Schema.Types.ObjectId; // Reference to the service collection
+  location: string;
+  offeredHourlySalaryRange: string;
 }
 
-const offreSchema = new Schema<IOffre>({
-    service_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'service',
-        required: [true, 'A service needs to be selected'],
+const offreSchema = new Schema<IOffre>(
+  {
+    jobTitle: {
+      type: String,
+      required: [true, "Job title is required"],
     },
-    description:{
-        type: String,
-        required: [true, 'Enter a valid decription']
+    jobDescription: {
+      type: String,
+      required: [true, "Job description is required"],
     },
-    application_status: {
-        type: String,
-        required: [true, 'application status required']
-    }
-}, {timestamps:true})
+    requiredSkills: {
+      type: [String],
+      required: [true, "Required skills are required"],
+      validate: {
+        validator: (skills: string[]) =>
+          skills.every((skill) => typeof skill === "string"),
+        message: "Skills must be strings",
+      },
+    },
+    service: {
+      type: Schema.Types.ObjectId,
+      ref: "service", // Reference to the service collection
+      required: [true, "Service category is required"],
+    },
+    location: {
+      type: String,
+      required: [true, "Location is required"],
+    },
+    offeredHourlySalaryRange: {
+      type: String,
+      required: [true, "Offered hourly salary range is required"],
+    },
+  },
+  { timestamps: true }
+);
 
-const Offre = model<IOffre>('Offre', offreSchema);
+const Offre = model<IOffre>("Offre", offreSchema);
 
 export default Offre;
