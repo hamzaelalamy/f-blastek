@@ -26,6 +26,20 @@ import Contact from "../pages/help/Contact.tsx";
 import InterestSelectionPage from "../pages/register/InterestSelectionPage.tsx";
 import ProfessionalRegister from "../pages/register/ProfessionalRegister.tsx";
 import ProfessionalLoginPage from "../pages/auth/professional/ProfessionalLoginPage.tsx";
+import ProfessionalLayout from "../layouts/ProfessionalLayout.tsx";
+import ProfessionalDashboard from "../pages/professionalsDashboard/ProfessionalDashboard.tsx";
+import LoginChoice from "../pages/auth/LoginChoice.tsx";
+import ProfessionalDetails from "../components/frontOffice/ProfessionalDetails.tsx";
+import ProfessionalsProfile from "../components/frontOffice/ProfessionalsProfile.tsx";
+import ClientsList from "../pages/clients/ClientsList.tsx"
+import CreateClient from "../components/clients/forms/AddClients.tsx";
+import EditClients from "../components/clients/forms/EditClients.tsx";
+import ProfessionalPrivateRoute from "./ProfessionalPrivateRoute.tsx";
+import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
+import ClientLayout from "../layouts/ClientLayout.tsx";
+import CreateOffer from "../pages/offers/CreateOffer.tsx";
+import MultistepRegistarion from "../pages/register/MultistepRegistarion.tsx";
+import ServiceLayout from "../layouts/ServiceLayout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -34,11 +48,19 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "dashboard",
+        index: true,
         element: <AdminRoute> <Dashboard /></AdminRoute>
       }, {
         path: "clients",
-        element: <AdminRoute><div>Client List</div></AdminRoute>,
+        element: <AdminRoute> <ClientsList /></AdminRoute>,
+      },
+      {
+        path: "clients/create",
+        element: <AdminRoute> <CreateClient /></AdminRoute>,
+      },
+      {
+        path: "clients/edit/:id",
+        element: <AdminRoute> <EditClients /></AdminRoute>,
       },
       {
         path: "admins",
@@ -120,8 +142,28 @@ const router = createBrowserRouter([
         element: <ProfessionalLoginPage />,
       },
       {
+        path: "register/applicant/map",
+        // element: <TestMap />,
+      },
+      {
+        path: "user/login",
+        element: <LoginChoice />,
+      },
+      {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "professionals",
+        element: <ProfessionalsProfile />,
+      },
+      {
+        path: "professional/details/:id",
+        element: <ProfessionalDetails />,
+      },
+      {
+        path: "services",
+        element: <ServiceLayout />,
       },
       {
         path: "help",
@@ -139,11 +181,45 @@ const router = createBrowserRouter([
       },
     ]
   },
-
+  {
+    path: "professional/dashboard",
+    element: <ProfessionalLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
+      },
+    ],
+  },
+  {
+    path: "register/applicant/steps",
+    element: <MultistepRegistarion />
+  },
+  {
+    path: "client",
+    element: <ClientLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <div>Client Dashboard</div>,
+      },
+      {
+        path: "offer/create",
+        element: <CreateOffer />,
+      }
+    ],
+  },
+  {
+    path: "map",
+    element: <TestMap />,
+  },
   {
     path: "*",
     element: <Error />,
   },
+
 ]);
 
 const AppRouter = () => {

@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import AdminSidebar from "../components/common/AdminSidebar";
+import AdminHeader from "../components/common/AdminHeader";
 
 const AdminLayout = () => {
   return (
     <div className="flex flex-col h-screen">
-      <header>Header boilerplate</header>
+      <header><AdminHeader/></header>
       <div className="flex flex-1">
       <AdminSidebar />
       <div className="flex-1 mt-10 ml-10">

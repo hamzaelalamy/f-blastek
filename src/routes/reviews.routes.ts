@@ -5,7 +5,7 @@ import {
   getAllReviews,
   getReviewById,
   updateReviewById,
-  AverageRating
+  AverageRating,
 } from "../controllers/reviews.controller";
 import verifyToken from "../middleware/authentication";
 import adminAuthMiddleware from "../middleware/authorization";
@@ -43,7 +43,6 @@ const router = Router();
  *   name: Reviews
  *   description: API endpoints for managing reviews
  */
-
 
 /**
  * @swagger

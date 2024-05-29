@@ -1,11 +1,23 @@
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
+import { actProfessionalLogin, resetUI } from '../../slices/auth/professional/ProfessionalAuthSlice';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfessionalSigninType, signinSchema } from '../../validation/ProfessionalSigninSchema';
 import { FormInput } from '../form/index';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate, Navigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function ProfessionalLoginForm() {
 
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const professional = localStorage.getItem("professional");
+    const accessToken: string | null = JSON.parse(professional)?.token;
+
+    // const [searchParams, setSearchParams] = useSearchParams();
+    // toast("Account created successfully", { type: "success" });
     const {
         register,
         handleSubmit,
@@ -15,8 +27,25 @@ function ProfessionalLoginForm() {
         resolver: zodResolver(signinSchema)
     });
     const submitForm: SubmitHandler<ProfessionalSigninType> = (data) => {
-        console.log(data)
+        const { email, password } = data;
+        dispatch(actProfessionalLogin({ email, password })).unwrap().then(() => {
+            navigate('/professional/dashboard');
+            toast("Login successful", { type: "success", position: "top-center" });
+        }).catch((error) => {
+            toast(`${error}`, { type: "error", position: "top-center" });
+        });
     };
+
+    useEffect(() => {
+        return () => {
+            dispatch(resetUI());
+        }
+    }, [dispatch])
+
+    if (accessToken) {
+        return <Navigate to="/professional/dashboard" />
+    }
+
 
     return (
         <div className="mx-auto max-w-[500px] bg-white border border-gray-200 shadow-sm mt-20 rounded-xl">
