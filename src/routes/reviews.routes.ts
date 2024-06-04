@@ -5,7 +5,7 @@ import {
   getAllReviews,
   getReviewById,
   updateReviewById,
-  AverageRating
+  AverageRating,
 } from "../controllers/reviews.controller";
 import verifyToken from "../middleware/authentication";
 import adminAuthMiddleware from "../middleware/authorization";
@@ -44,7 +44,6 @@ const router = Router();
  *   description: API endpoints for managing reviews
  */
 
-
 /**
  * @swagger
  * /reviews:
@@ -69,9 +68,7 @@ const router = Router();
  *       '500':
  *         description: Internal server error
  */
-router.post("/reviews",
-//  verifyToken,
-  createReview);
+router.post("/reviews", verifyToken, createReview);
 
 /**
  * @swagger

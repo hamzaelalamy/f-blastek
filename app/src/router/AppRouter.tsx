@@ -35,6 +35,12 @@ import ClientsList from "../pages/clients/ClientsList.tsx"
 import CreateClient from "../components/clients/forms/AddClients.tsx";
 import EditClients from "../components/clients/forms/EditClients.tsx";
 import PaymentSuccess from "../components/paymet/paymentSuccess.tsx";
+import ProfessionalPrivateRoute from "./ProfessionalPrivateRoute.tsx";
+import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
+import ClientLayout from "../layouts/ClientLayout.tsx";
+import CreateOffer from "../pages/offers/CreateOffer.tsx";
+import MultistepRegistarion from "../pages/register/MultistepRegistarion.tsx";
+
 const router = createBrowserRouter([
   {
     path: "/backoffice",
@@ -136,6 +142,10 @@ const router = createBrowserRouter([
         element: <ProfessionalLoginPage />,
       },
       {
+        path: "register/applicant/map",
+        // element: <TestMap />,
+      },
+      {
         path: "user/login",
         element: <LoginChoice />,
       },
@@ -174,9 +184,32 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ProfessionalDashboard />,
+        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
       },
     ],
+  },
+  {
+    path: "register/applicant/steps",
+    element: <MultistepRegistarion />
+  },
+  {
+    path: "client",
+    element: <ClientLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <div>Client Dashboard</div>,
+      },
+      {
+        path: "offer/create",
+        element: <CreateOffer />,
+      }
+    ],
+  },
+  {
+    path: "map",
+    element: <TestMap />,
   },
   {
     path: "successPaymet",
@@ -187,7 +220,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <Error />,
   },
-  
+
 ]);
 
 const AppRouter = () => {
