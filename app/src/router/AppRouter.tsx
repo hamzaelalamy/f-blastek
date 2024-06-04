@@ -31,7 +31,10 @@ import ProfessionalDashboard from "../pages/professionalsDashboard/ProfessionalD
 import LoginChoice from "../pages/auth/LoginChoice.tsx";
 import ProfessionalDetails from "../components/frontOffice/ProfessionalDetails.tsx";
 import ProfessionalsProfile from "../components/frontOffice/ProfessionalsProfile.tsx";
-
+import ClientsList from "../pages/clients/ClientsList.tsx"
+import CreateClient from "../components/clients/forms/AddClients.tsx";
+import EditClients from "../components/clients/forms/EditClients.tsx";
+import PaymentSuccess from "../components/paymet/paymentSuccess.tsx";
 const router = createBrowserRouter([
   {
     path: "/backoffice",
@@ -43,7 +46,15 @@ const router = createBrowserRouter([
         element: <AdminRoute> <Dashboard /></AdminRoute>
       }, {
         path: "clients",
-        element: <AdminRoute><div>Client List</div></AdminRoute>,
+        element: <AdminRoute> <ClientsList /></AdminRoute>,
+      },
+      {
+        path: "clients/create",
+        element: <AdminRoute> <CreateClient /></AdminRoute>,
+      },
+      {
+        path: "clients/edit/:id",
+        element: <AdminRoute> <EditClients /></AdminRoute>,
       },
       {
         path: "admins",
@@ -167,6 +178,11 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "successPaymet",
+    element: <PaymentSuccess />,
+  },
+  
   {
     path: "*",
     element: <Error />,

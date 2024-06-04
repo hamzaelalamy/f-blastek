@@ -6,6 +6,8 @@ import adminAuthReducer from '../slices/admin/authSlice'
 import interventionReducer from '../slices/intervention/InterventionSlice'
 import categoriesReducer from '../slices/categories/CategoriesSlice';
 import professionalAuth from "../slices/auth/professional/ProfessionalAuthSlice"
+import clienReducer from "../slices/clients/ClientsSlice"
+import paymentReducer from "../slices/payment/PaymentSlice"
 import ReviewSlice from "../slices/reviews/ReviewSlice"
 export const store = configureStore({
 
@@ -17,7 +19,9 @@ export const store = configureStore({
         interventions: interventionReducer,
         categories: categoriesReducer,
         professionalAuth: professionalAuth,
-        reviews :ReviewSlice
+        clients: clienReducer,
+        reviews :ReviewSlice,
+        payment:paymentReducer,
     }
 });
 
