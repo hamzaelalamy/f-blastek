@@ -39,6 +39,9 @@ import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx
 import ClientLayout from "../layouts/ClientLayout.tsx";
 import CreateOffer from "../pages/offers/CreateOffer.tsx";
 import MultistepRegistarion from "../pages/register/MultistepRegistarion.tsx";
+import MapVertical from "../components/frontOffice/MapComp/MapCompVertical.tsx";
+import Map from "../components/frontOffice/MapComp/MapComp.tsx";
+import ProfileManagementPage from "../pages/ProfessionalsOffice/ProfileManagementPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -185,6 +188,10 @@ const router = createBrowserRouter([
         index: true,
         element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
       },
+      {
+        path: "profile",
+        element: <ProfessionalPrivateRoute> <ProfileManagementPage /> </ProfessionalPrivateRoute>
+      }
     ],
   },
   {
@@ -208,7 +215,7 @@ const router = createBrowserRouter([
   },
   {
     path: "map",
-    element: <TestMap />,
+    element: <Map />,
   },
   {
     path: "*",

@@ -7,6 +7,7 @@ import interventionReducer from '../slices/intervention/InterventionSlice'
 import categoriesReducer from '../slices/categories/CategoriesSlice';
 import professionalAuth from "../slices/auth/professional/ProfessionalAuthSlice"
 import clienReducer from "../slices/clients/ClientsSlice"
+import ClientAuthSlice from "../slices/auth/client/ClientAuthSlice"
 
 export const store = configureStore({
 
@@ -18,7 +19,8 @@ export const store = configureStore({
         interventions: interventionReducer,
         categories: categoriesReducer,
         professionalAuth: professionalAuth,
-        clients: clienReducer
+        clients: clienReducer,
+        ClientAuth: ClientAuthSlice,
     }
 });
 

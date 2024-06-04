@@ -16,21 +16,18 @@ function Header() {
   const professional = localStorage.getItem("professional");
   const token: string | null = JSON.parse(professional)?.token;
 
-  // Function to handle logout
   useEffect(() => {
     const handleNavbar = () => {
       if (token) {
-        console.log(token);
+        // console.log(token);
         setIsLoggedIn(true);
       } else {
         setIsLoggedIn(false);
       }
     };
 
-    // Call handleLogout when component mounts
     handleNavbar();
 
-    // Cleanup function
     return () => {
       // Perform any cleanup if needed
     };
@@ -81,13 +78,13 @@ function Header() {
                   className="flex items-center justify-center w-10 h-10 text-gray-600 bg-gray-300 rounded-full focus:outline-none"
                   onClick={toggleDropdown}
                 >
-                  JD {/* User initials */}
+                  <CgProfile />
                 </button>
                 {/* Dropdown menu */}
                 {isOpen && (
                   <div className="absolute right-0 z-10 w-48 mt-2 bg-white rounded-md shadow-lg">
                     <NavLink
-                      to="/profile"
+                      to="/professional/dashboard/profile"
                       className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       onClick={toggleDropdown}
                     >
