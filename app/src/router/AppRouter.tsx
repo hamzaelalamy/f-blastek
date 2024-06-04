@@ -178,17 +178,6 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "professional/dashboard",
-    element: <ProfessionalLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
-      },
-    ],
-  },
-  {
     path: "register/applicant/steps",
     element: <MultistepRegistarion />
   },
@@ -215,7 +204,17 @@ const router = createBrowserRouter([
     path: "successPaymet",
     element: <PaymentSuccess />,
   },
-  
+  {
+    path: "professional/dashboard",
+    element: <ProfessionalLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
+      },
+    ],
+  },
   {
     path: "*",
     element: <Error />,
