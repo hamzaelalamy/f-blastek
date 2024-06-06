@@ -60,7 +60,7 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] " to="#" replace>
+              <NavLink className="text-white text-lg hover:text-[#F98C60]  drop-shadow-[0_1px_0px_rgba(0,0,0,1)] " to="/services" replace>
                 Services
               </NavLink>
             </li>

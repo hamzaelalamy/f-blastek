@@ -34,11 +34,13 @@ import ProfessionalsProfile from "../components/frontOffice/ProfessionalsProfile
 import ClientsList from "../pages/clients/ClientsList.tsx"
 import CreateClient from "../components/clients/forms/AddClients.tsx";
 import EditClients from "../components/clients/forms/EditClients.tsx";
+import PaymentSuccess from "../components/paymet/paymentSuccess.tsx";
 import ProfessionalPrivateRoute from "./ProfessionalPrivateRoute.tsx";
 import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
 import ClientLayout from "../layouts/ClientLayout.tsx";
 import CreateOffer from "../pages/offers/CreateOffer.tsx";
 import MultistepRegistarion from "../pages/register/MultistepRegistarion.tsx";
+import ServiceLayout from "../layouts/ServiceLayout.tsx";
 import MapVertical from "../components/frontOffice/MapComp/MapCompVertical.tsx";
 import Map from "../components/frontOffice/MapComp/MapComp.tsx";
 import ProfileManagementPage from "../pages/ProfessionalsOffice/ProfileManagementPage.tsx";
@@ -164,6 +166,10 @@ const router = createBrowserRouter([
         element: <ProfessionalDetails />,
       },
       {
+        path: "services",
+        element: <ServiceLayout />,
+      },
+      {
         path: "help",
         element: <HelpLayout />,
         children: [
@@ -216,6 +222,36 @@ const router = createBrowserRouter([
   {
     path: "map",
     element: <Map />,
+  },
+  {
+    path: "successPaymet",
+    element: <PaymentSuccess />,
+  },
+  {
+    path: "professional/dashboard",
+    element: <ProfessionalLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
+      },
+    ],
+  },
+  {
+    path: "successPaymet",
+    element: <PaymentSuccess />,
+  },
+  {
+    path: "professional/dashboard",
+    element: <ProfessionalLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
+      },
+    ],
   },
   {
     path: "*",

@@ -34,7 +34,7 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className={`${open ? 'w-60' : 'w-fit'} hidden sm:block relative h-screen duration-300 bg-[#e9f8f3] border-r border-gray-200 p-5`}
+        className={`${open ? 'w-60' : 'w-fit'} hidden sm:block relative h-full duration-300 bg-[#e9f8f3] border-r  border-gray-200 p-5`}
       >
         <BsArrowLeftCircle
           className={`${!open && 'rotate-180'
@@ -45,7 +45,7 @@ const Sidebar = () => {
           <div className={`flex ${open && 'gap-x-4'} items-center`}>
             {open && (
               <span className='text-xl font-medium whitespace-nowrap'>
-                F'blastek
+                
               </span>
             )}
           </div>

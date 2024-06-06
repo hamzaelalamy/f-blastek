@@ -26,6 +26,7 @@ export const actPostInterventions = createAsyncThunk("interventions/actPostInter
   
         const response = await httpClient.post("createIntervention", data);
         return response.data;
+        
     } catch(error) {
         if(axios.isAxiosError(error)){
             return rejectWithValue(error.response?.data.message || error.message);
