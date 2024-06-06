@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Professional from "../models/professional";
 import checkProfesionalEmail from "../services/ProfessionalEmailCheck";
+import { forEach } from "cypress/types/lodash";
 
 export const createProfessional = async (req: Request, res: Response) => {
   try {
@@ -15,7 +16,23 @@ export const createProfessional = async (req: Request, res: Response) => {
 
 export const getAllProfessionals = async (req: Request, res: Response) => {
   try {
-    const professionals = await Professional.find({});
+    const professionals = await Professional.aggregate([
+      {
+        "$lookup": {
+            "from": "reviews",
+            "localField": "_id",
+            "foreignField": "professionalId",
+            "as": "reviews"
+        }
+    }
+    ])
+
+    professionals.forEach((pro) => {
+      
+    });
+    
+
+
     if (!professionals || professionals.length === 0) {
       res.status(404).json({ message: "No professionals found" });
     }

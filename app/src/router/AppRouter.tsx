@@ -34,6 +34,7 @@ import ProfessionalsProfile from "../components/frontOffice/ProfessionalsProfile
 import ClientsList from "../pages/clients/ClientsList.tsx"
 import CreateClient from "../components/clients/forms/AddClients.tsx";
 import EditClients from "../components/clients/forms/EditClients.tsx";
+import PaymentSuccess from "../components/paymet/paymentSuccess.tsx";
 import ProfessionalPrivateRoute from "./ProfessionalPrivateRoute.tsx";
 import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
 import ClientLayout from "../layouts/ClientLayout.tsx";
@@ -177,17 +178,6 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "professional/dashboard",
-    element: <ProfessionalLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
-      },
-    ],
-  },
-  {
     path: "register/applicant/steps",
     element: <MultistepRegistarion />
   },
@@ -209,6 +199,21 @@ const router = createBrowserRouter([
   {
     path: "map",
     element: <TestMap />,
+  },
+  {
+    path: "successPaymet",
+    element: <PaymentSuccess />,
+  },
+  {
+    path: "professional/dashboard",
+    element: <ProfessionalLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <ProfessionalPrivateRoute><ProfessionalDashboard /></ProfessionalPrivateRoute>,
+      },
+    ],
   },
   {
     path: "*",

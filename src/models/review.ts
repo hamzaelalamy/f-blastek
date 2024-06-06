@@ -16,7 +16,7 @@ const reviewSchema = new Schema<IReview>(
     },
     professionalId: {
       type: Schema.Types.ObjectId,
-      ref: "professional",
+      ref: "Professional",
       required: [true, "A professional needs to be selected"],
     },
     rating: {
