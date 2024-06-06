@@ -3,7 +3,6 @@ import {actGetInterventions,actPostInterventions,actPutInterventions,actDeleteIn
 
 interface InterventionState{
     records:{
-        id:number|null,
         name: string | null;
         clientId: number | null ;
         professionalID:number | null;

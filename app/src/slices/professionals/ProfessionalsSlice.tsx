@@ -19,10 +19,8 @@ interface IProState {
         bio?: string,
         experiences?: string[],
         backgroundCheckCompleted: boolean,
-        availability?: {
-            days?: string[],
-            timeslots?: string[],
-        };}[],
+        availability?:[]
+        ;}[],
         record: {},
     loading: "idle" | "pending" | "succeeded" | "failed",
     error: string | null

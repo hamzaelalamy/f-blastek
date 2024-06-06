@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import { RootState } from '../store/configureStore'
 import { Console } from 'console'
 
-const AdminRoute= ({ children }: { children: React.ReactNode }) => {
+const AdminRoute= ({ children }: { children: React.ReactNode }) =>{
   
   const responseString = localStorage.getItem("admin");
 
@@ -12,7 +12,7 @@ const AdminRoute= ({ children }: { children: React.ReactNode }) => {
   const token = data?.data?.token;
 
 
-  return token ? <>{children}</> : <Navigate to="/login" />;
+  return token ? <> {children}</> : <Navigate to="/login" />;
 }
 
 // ({children}) =>{

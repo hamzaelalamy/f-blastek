@@ -1,5 +1,35 @@
 import { Schema, model, Document } from "mongoose";
 import bcryptjs from "bcryptjs";
+
+enum Days {
+  Monday = "Monday",
+  Tuesday = "Tuesday",
+  Wednesday = "Wednesday",
+  Thursday = "Thursday",
+  Friday = "Friday",
+  Saturday = "Saturday",
+  Sunday = "Sunday",
+}
+
+enum Timeslots {
+  Slot1 = "7:00 - 8:00",
+  Slot2 = "8:00 - 10:00",
+  Slot3 = "10:00 - 12:00",
+  Slot4 = "12:00 - 14:00",
+  Slot5 = "14:00 - 16:00",
+  Slot6 = "16:00 - 18:00",
+  Slot7 = "18:00 - 20:00",
+  Slot8 = "20:00 - 22:00",
+}
+
+interface IAvailability {
+  day: Days;
+  times: {
+    slot: Timeslots;
+    available: boolean;
+  }[];
+}
+
 interface IProfessional extends Document {
   firstName: string;
   lastName: string;
@@ -19,19 +49,37 @@ interface IProfessional extends Document {
   experiences?: string[];
   education?: string[];
   backgroundCheckCompleted: boolean;
-  availability?: {
-    days?: string[];
-    timeslots?: string[];
-  };
+  availability?: IAvailability[];
   password: string;
   payments?: number[];
   emailVerified?: boolean;
   verifiedEmailToken?: string;
   verifiedEmailTokenExpire?: Date;
-  // payments_history: any[];
   passwordResetToken?: string;
   passwordResetTokenExpires?: Date;
+  categoryId: Schema.Types.ObjectId;
 }
+
+const availabilitySchema = new Schema<IAvailability>({
+  day: {
+    type: String,
+    enum: Object.values(Days),
+    
+  },
+  times: [
+    {
+      slot: {
+        type: String,
+        enum: Object.values(Timeslots),
+        
+      },
+      available: {
+        type: Boolean,
+        default: false,
+      },
+    },
+  ],
+});
 
 const professionalSchema = new Schema<IProfessional>(
   {
@@ -47,7 +95,6 @@ const professionalSchema = new Schema<IProfessional>(
     },
     gender: {
       type: String,
-      required: [true, "gender name is required"],
       lowercase: true,
     },
     birthDay: {
@@ -73,7 +120,6 @@ const professionalSchema = new Schema<IProfessional>(
     },
     phoneNumber: {
       type: String,
-      // match: [/(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}/, 'Invalid phone number format (10 digits)']
     },
     city: {
       type: String,
@@ -108,21 +154,14 @@ const professionalSchema = new Schema<IProfessional>(
     },
     education: {
       type: [String],
-      default: "No information provided",
+      default: 'No information provided',
     },
     backgroundCheckCompleted: {
       type: Boolean,
       required: [true, "Background check status is required"],
       default: false,
     },
-    availability: {
-      days: {
-        type: [String],
-      },
-      timeslots: {
-        type: [String],
-      },
-    },
+    availability: [availabilitySchema],
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -138,9 +177,13 @@ const professionalSchema = new Schema<IProfessional>(
     },
     verifiedEmailToken: String,
     verifiedEmailTokenExpire: Date,
-    // payments_history: { type: [Schema.Types.Mixed], required: [true, 'Payments history is required'] },
     passwordResetToken: { type: String },
     passwordResetTokenExpires: { type: Date },
+    categoryId:{
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+      required: [true, "A Category needs to be selected"],
+    }
   },
   { timestamps: true }
 );

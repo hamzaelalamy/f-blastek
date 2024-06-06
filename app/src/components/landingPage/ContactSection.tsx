@@ -63,7 +63,11 @@ function ContactSection() {
         </div>
         
         <div className='px-1 md:mt-10 mt-7 md:w-3/4'>
-            <img src="../../../landingPage/map.png" alt="" />
+      
+         
+        <iframe className='w-64 mx-auto h-60 md:w-96' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21339.59057156378!2d-7.651467136016285!3d33.56440130614434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7d3a2e5439e89%3A0xbf888b237cbe56b1!2sARK%20X%20Talent%20Factory!5e0!3m2!1sfr!2sma!4v1716376493701!5m2!1sfr!2sma"   loading="lazy" ></iframe>
+         
+            
         </div>
       </div>
       </div>
