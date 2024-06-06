@@ -1,0 +1,10 @@
+/* Customize the color of the inactive dots */
+.ant-carousel .slick-dots li button {
+    background-color: gray; /* Change this to your desired inactive color */
+  }
+  
+  /* Customize the color of the active dot */
+  .ant-carousel .slick-dots li.slick-active button {
+    background-color:#FF5C1A; /* Change this to your desired active color */
+  }
+  

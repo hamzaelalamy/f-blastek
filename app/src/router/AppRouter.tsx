@@ -40,6 +40,7 @@ import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx
 import ClientLayout from "../layouts/ClientLayout.tsx";
 import CreateOffer from "../pages/offers/CreateOffer.tsx";
 import MultistepRegistarion from "../pages/register/MultistepRegistarion.tsx";
+import ServiceLayout from "../layouts/ServiceLayout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -160,6 +161,10 @@ const router = createBrowserRouter([
       {
         path: "professional/details/:id",
         element: <ProfessionalDetails />,
+      },
+      {
+        path: "services",
+        element: <ServiceLayout />,
       },
       {
         path: "help",
