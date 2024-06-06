@@ -36,12 +36,12 @@ import CreateClient from "../components/clients/forms/AddClients.tsx";
 import EditClients from "../components/clients/forms/EditClients.tsx";
 import PaymentSuccess from "../components/paymet/paymentSuccess.tsx";
 import ProfessionalPrivateRoute from "./ProfessionalPrivateRoute.tsx";
-import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
+// import TestMap from "../components/frontOffice/professionalDetailsUpdate/Map.tsx";
 import ClientLayout from "../layouts/ClientLayout.tsx";
 import CreateOffer from "../pages/offers/CreateOffer.tsx";
 import MultistepRegistarion from "../pages/register/MultistepRegistarion.tsx";
 import ServiceLayout from "../layouts/ServiceLayout.tsx";
-import MapVertical from "../components/frontOffice/MapComp/MapCompVertical.tsx";
+// import MapVertical from "../components/frontOffice/MapComp/MapCompVertical.tsx";
 import Map from "../components/frontOffice/MapComp/MapComp.tsx";
 import ProfileManagementPage from "../pages/ProfessionalsOffice/ProfileManagementPage.tsx";
 
