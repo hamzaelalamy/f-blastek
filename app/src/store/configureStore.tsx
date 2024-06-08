@@ -21,7 +21,6 @@ export const store = configureStore({
                 interventions: interventionReducer,
                 categories: categoriesReducer,
                 professionalAuth: professionalAuth,
-                clients: clienReducer,
                 reviews: ReviewSlice,
                 payment: paymentReducer,
                 clients: clienReducer,

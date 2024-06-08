@@ -45,6 +45,7 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
 
     const clientId = client.id;
       console.log("clientId....................", clientId)
+      const photoUrl = professional.photo || 'https://example.com/default-photo.jpg';
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
@@ -57,8 +58,9 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
           price_data: {
             currency: "MAD",
             product_data: {
+              images: [photoUrl],
               name: intervention.name,
-              description: "professional.bio",
+              description: professional.bio||"No descreption provided",
             },
             unit_amount: req.body.price *100, // Update with actual service amount in cents
           },
@@ -70,22 +72,13 @@ export const getCheckoutSession = async (req: Request, res: Response) => {
     },
     });
 
-   // console.log('Stripe Checkout Session:', session);
+ 
    const paymentIntentId : any= session.payment_intent;
 
-// if (!paymentIntentId) {
-//     return res.status(500).json({ message: "Error creating checkout session: Payment intent ID is missing" });
-// }
 
    console.log("paymentIntentId......................",paymentIntentId)
 
-   //const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
-//    console.log("paymentIntent......................",paymentIntent)
-//    const transactionId = paymentIntent.id;
- //  console.log("transactionId......................",transactionId)
-
-   
-//console.log("type of session id",typeof(session.id));
+  
     const payment = new Payment({
       interventionId: intervention.id,
         clientId: intervention.clientId,

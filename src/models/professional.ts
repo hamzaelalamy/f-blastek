@@ -57,7 +57,7 @@ interface IProfessional extends Document {
   verifiedEmailTokenExpire?: Date;
   passwordResetToken?: string;
   passwordResetTokenExpires?: Date;
-  categoryId: Schema.Types.ObjectId;
+  categoryId?: Schema.Types.ObjectId;
 }
 
 const availabilitySchema = new Schema<IAvailability>({
@@ -182,7 +182,7 @@ const professionalSchema = new Schema<IProfessional>(
     categoryId:{
       type: Schema.Types.ObjectId,
       ref: "Category",
-      required: [true, "A Category needs to be selected"],
+      // required: [true, "A Category needs to be selected"],
     }
   },
   { timestamps: true }
