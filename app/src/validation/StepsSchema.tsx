@@ -11,7 +11,7 @@ export const FormDataSchema = z.object({
     // scannedCin: z.string().nonempty(),
     // photo: z.string().nonempty(),
     specialization: z.string().nonempty(),
-    // hourlyRate: z.number(),
+    hourlyRate: z.string(),
     bio: z.string().nonempty(),
     experiences: z.string(),
     education: z.string(),

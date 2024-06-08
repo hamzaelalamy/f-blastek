@@ -3,9 +3,11 @@ import mapboxgl from 'mapbox-gl';
 
 const Map = ({ onCoordinatesChange }) => {
     const mapContainerRef = useRef(null);
+    const token = "AIzaSyBZt0TMinHsTorL2FHo9nTBGgbKR09R2ug";
+
 
     useEffect(() => {
-        mapboxgl.accessToken = 'pk.eyJ1IjoibGFpc3Nhb3VpOTkiLCJhIjoiY2x2b3pkazNrMDA1aTJrbzBmdXpyZm95eiJ9.pXWnyETUBt12-6flzNYCeQ'; // Replace with your access token
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZWxlbDIwMDAiLCJhIjoiY2x3Zmw1cDE1MWZqNzJscG44ZWV5MXFtbyJ9.hhXDnBcf6PQirywPgJWaig'; // Replace with your access token
         if (mapboxgl.getRTLTextPluginStatus() === 'unavailable') {
             mapboxgl.setRTLTextPlugin(
                 'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
@@ -42,6 +44,12 @@ const Map = ({ onCoordinatesChange }) => {
             map.getSource('point').setData(geojson);
         }
 
+        const reversedGeocode = (latitude: number, longitude: number) => {
+            fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${token}`)
+                .then((response) => response.json())
+                .then((data) => { console.log(data?.results[0].address_components) });
+        };
+
         function onMove(e) {
             const coords = e.lngLat;
             canvas.style.cursor = 'grabbing';
@@ -56,6 +64,8 @@ const Map = ({ onCoordinatesChange }) => {
             if (onCoordinatesChange) {
                 onCoordinatesChange({ lng: coords.lng, lat: coords.lat });
             }
+            console.log(coords)
+            reversedGeocode(coords.lat, coords.lng);
 
             map.off('mousemove', onMove);
             map.off('touchmove', onMove);

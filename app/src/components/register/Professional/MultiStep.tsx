@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { FormDataSchema } from '../../../validation/StepsSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import Map from "../../frontOffice/MapComp/MapComp";
 
 type Inputs = z.infer<typeof FormDataSchema>
 
@@ -33,6 +34,8 @@ const genderOptions = ["Male", "Female"];
 export default function MultiStepForm() {
     const [previousStep, setPreviousStep] = useState(0);
     const [currentStep, setCurrentStep] = useState(0);
+    const [coordinates, setCoordinates] = useState({ lng: 0, lat: 0 });
+
     const delta = currentStep - previousStep;
 
     const {
@@ -53,25 +56,25 @@ export default function MultiStepForm() {
     const processForm: SubmitHandler<Inputs> = async (data) => {
         console.log("begotten data:", data);
         // Convert hourlyRate to number
-        // data.hourlyRate = transfomHourlyRate(data.hourlyRate);
+        data.hourlyRate = transfomHourlyRate(data.hourlyRate);
 
-        // // Split Bio, Experiences, and Education strings into arrays
-        // data.bio = data.bio.split(',').map((item) => item.trim());
-        // data.experiences = data.experiences.split(',').map((item) => item.trim());
-        // data.education = data.education.split(',').map((item) => item.trim());
+        // Split Bio, Experiences, and Education strings into arrays
+        data.bio = data.bio.split(',').map((item) => item.trim());
+        data.experiences = data.experiences.split(',').map((item) => item.trim());
+        data.education = data.education.split(',').map((item) => item.trim());
 
-        // console.log('Transformed data:', data);
+        console.log('Transformed data:', data);
 
-        // // Trigger validation for all fields before submitting
-        // const isValid = await trigger();
+        // Trigger validation for all fields before submitting
+        const isValid = await trigger();
 
-        // if (isValid) {
-        //     // If all fields are valid, proceed with form submission
-        //     console.log('Form submission:', data);
-        //     reset();
-        // } else {
-        //     console.log('Validation errors:', errors);
-        // }
+        if (isValid) {
+            // If all fields are valid, proceed with form submission
+            console.log('Form submission:', data);
+            reset();
+        } else {
+            console.log('Validation errors:', errors);
+        }
     };
 
     const onInvalid = (errors) => console.error(errors);
@@ -286,6 +289,7 @@ export default function MultiStepForm() {
                                     )}
                                 </div>
                             </div>
+
                             <div className='sm:col-span-3'>
                                 <label
                                     htmlFor='address'
@@ -304,6 +308,22 @@ export default function MultiStepForm() {
                                     {errors.address?.message && (
                                         <p className='mt-2 text-sm text-red-400'>
                                             {errors.address.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                            <div className='mx-auto sm:col-span-3'>
+                                <label
+                                    htmlFor='map'
+                                    className='block text-sm font-medium leading-6 text-gray-900'
+                                >
+                                    Map
+                                </label>
+                                <div className='mt-2'>
+                                    <Map onCoordinatesChange={setCoordinates} />
+                                    {errors.city?.message && (
+                                        <p className='mt-2 text-sm text-red-400'>
+                                            {errors.city.message}
                                         </p>
                                     )}
                                 </div>
