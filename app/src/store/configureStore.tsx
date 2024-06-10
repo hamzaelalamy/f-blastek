@@ -24,7 +24,6 @@ export const store = configureStore({
                 clients: clienReducer,
                 reviews: ReviewSlice,
                 payment: paymentReducer,
-                clients: clienReducer,
                 ClientAuth: ClientAuthSlice,
         }
 });
