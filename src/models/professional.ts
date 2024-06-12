@@ -57,21 +57,19 @@ interface IProfessional extends Document {
   verifiedEmailTokenExpire?: Date;
   passwordResetToken?: string;
   passwordResetTokenExpires?: Date;
-  categoryId: Schema.Types.ObjectId;
+  categoryId?: Schema.Types.ObjectId;
 }
 
 const availabilitySchema = new Schema<IAvailability>({
   day: {
     type: String,
     enum: Object.values(Days),
-    
   },
   times: [
     {
       slot: {
         type: String,
         enum: Object.values(Timeslots),
-        
       },
       available: {
         type: Boolean,
@@ -154,7 +152,7 @@ const professionalSchema = new Schema<IProfessional>(
     },
     education: {
       type: [String],
-      default: 'No information provided',
+      default: "No information provided",
     },
     backgroundCheckCompleted: {
       type: Boolean,
@@ -179,11 +177,10 @@ const professionalSchema = new Schema<IProfessional>(
     verifiedEmailTokenExpire: Date,
     passwordResetToken: { type: String },
     passwordResetTokenExpires: { type: Date },
-    categoryId:{
+    categoryId: {
       type: Schema.Types.ObjectId,
       ref: "Category",
-      required: [true, "A Category needs to be selected"],
-    }
+    },
   },
   { timestamps: true }
 );
