@@ -2,9 +2,9 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="mt-16 border border-solid h-full  pt-10 pl-10">
-      <div className="grid md:grid-cols-5 grid-cols-2 gap-1 ">
-        <div className=" ">
+    <div className="h-full pt-10 pl-10 mt-16 border border-solid">
+      <div className="grid grid-cols-2 gap-1 md:grid-cols-5 ">
+        <div className="">
           <h2 className="text-[#20B486] font-bold text-l md:text-2xl">F'Blastek</h2>
           <h6 className="mt-6 text-xs md:text-sm">F’blastek@info.com</h6>
           <h6 className="mt-6 text-xs md:text-sm">+212570215600</h6>

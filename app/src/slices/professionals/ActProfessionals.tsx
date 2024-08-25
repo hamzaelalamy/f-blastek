@@ -3,17 +3,16 @@ import axios from 'axios';
 import { LOCAL_URL } from "../../constants/Config";
 import httpClient from "../../utils/AxiosInstance";
 
+// Define the type for Professional data
+interface ProfessionalData {
+    _id: string;
+    [key: string]: unknown; // Adjust this as per the actual structure of your Professional data
+}
+
 export const actGetProfessionals = createAsyncThunk("professionals/actGetProfessionals", async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    // Retrieve the response string from local storage
-    // const responseString = localStorage.getItem('admin');
-    // const data = JSON.parse(responseString);
-    // const token = data.data.token;
-
     try {
         const response = await httpClient.get(LOCAL_URL + "professionals");
-        // console.log(response.data);
-
         const data = response.data;
         return data;
     } catch (error) {
@@ -25,8 +24,7 @@ export const actGetProfessionals = createAsyncThunk("professionals/actGetProfess
     }
 });
 
-
-export const actPostProfessionals = createAsyncThunk("professionals/actPostProfessionals", async (data, thunkAPI) => {
+export const actPostProfessionals = createAsyncThunk("professionals/actPostProfessionals", async (data: ProfessionalData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
         const response = await httpClient.post(LOCAL_URL + "professionals", data);
@@ -40,7 +38,7 @@ export const actPostProfessionals = createAsyncThunk("professionals/actPostProfe
     }
 });
 
-export const actPutProfessionals = createAsyncThunk("professionals/actPutProfessionals", async (data, thunkAPI) => {
+export const actPutProfessionals = createAsyncThunk("professionals/actPutProfessionals", async (data: ProfessionalData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
         const response = await httpClient.put(LOCAL_URL + `professionals/${data._id}`, data);
@@ -54,7 +52,7 @@ export const actPutProfessionals = createAsyncThunk("professionals/actPutProfess
     }
 });
 
-export const actDeleteProfessionals = createAsyncThunk("professionals/actDeleteProfessionals", async (id, thunkAPI) => {
+export const actDeleteProfessionals = createAsyncThunk("professionals/actDeleteProfessionals", async (id: string, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
         const response = await httpClient.delete(LOCAL_URL + `professionals/${id}`);
@@ -68,12 +66,10 @@ export const actDeleteProfessionals = createAsyncThunk("professionals/actDeleteP
     }
 });
 
-export const actGetProfessionalById = createAsyncThunk("professionals/actGetProfessionalById", async (id, thunkAPI) => {
+export const actGetProfessionalById = createAsyncThunk("professionals/actGetProfessionalById", async (id: string, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
         const response = await httpClient.get(LOCAL_URL + `professionals/${id}`);
-        // console.log("pro by id", response.data);
-
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
